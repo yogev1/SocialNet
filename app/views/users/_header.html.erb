@@ -1,0 +1,55 @@
+  
+<!-- navbar -->
+
+<nav class="navbar navbar-inverse navbar-fixed-top row">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    
+    <div id="navbar" class="collapse navbar-collapse">
+      <a class="navbar-brand" href="<%= root_path %>">CarList</a>
+      <ul class="nav navbar-nav" style="display: inline">
+        <li><a class="navbar-brand col-xs-12" href="<%= root_path %>">Cars</a></li>
+        <% if current_user %>
+        <li><a class="navbar-brand" href="<%= new_car_path %>">Add New Car</a></li>
+        <% end %>
+        <!--  generate search query -->
+
+        <li><form class="navbar-form">
+          <div class="form-group col-md-12 col-xs-12">
+            <%= form_tag cars_path ,method: 'get' do %>
+            <%= text_field_tag :search , params[:search], placeholder: "Search Cars", class: "form-control" %>
+            <%= submit_tag "Search Cars", :name => nil, class:"btn btn-success"%>
+            <% end %>
+          </div>
+        </form></li>
+      </ul>
+
+      <!--  user authentication -->
+
+      <% if user_signed_in? %>
+
+
+      <form class="navbar-form">
+        <p style="color: white">Hello <%= current_user.name %> : <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-success" %></p>
+      </form>
+
+      <% else %>
+
+      <div class="navbar-form navbar-right" style="color: white">
+        <div>
+          <a class="btn btn-success" href="<%= new_user_session_path %>" role="button">Please Sign In </a>
+          OR 
+          <a class="btn btn-success" href="<%= new_user_registration_path %>" role="button"> Sign Up</a>
+        </div>  
+      </div>
+      <% end %>
+    </div><!--/.navbar-collapse --> 
+  </div><!-- /.container-fluid -->  
+</nav>
