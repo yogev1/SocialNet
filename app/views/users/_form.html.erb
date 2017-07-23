@@ -13,7 +13,9 @@
     </div>
   <% end %>
 
-    <%= f.text_field :name, id: :user_name %>
+    <%= f.text_field :name, id: :user_name, placeholder: "Enter Name" %>
+    <%= f.text_field :email, placeholder: "Enter Email" %>
+    <%= f.password_field :password, placeholder: "Enter Password" %>
     <%= f.file_field :image %>
 
   <div class="actions">
