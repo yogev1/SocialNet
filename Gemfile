@@ -29,11 +29,11 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
-gem "paperclip", "~> 5.0.0"
 gem 'devise'
 gem 'nested_form'
 gem 'bootstrap_form'
-gem 'aws-sdk', '<2.0'
+gem "paperclip", ">= 5.0"
+gem "aws-sdk", ">= 2.0"
 gem 'rspec'
 
 # Use Redis adapter to run Action Cable in production
