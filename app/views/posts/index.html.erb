@@ -17,7 +17,7 @@
         <!-- add user name here!!! -->
         <h1><%= post.description %></h1>
       </div>
-      <div class="col-md-4 btn-group">
+      <div class="col-md-4 btn-group btn-sm">
         <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
         <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info" %>
       </div>
