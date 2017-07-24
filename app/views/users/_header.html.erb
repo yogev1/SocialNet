@@ -13,22 +13,9 @@
     </div>
     
     <div id="navbar" class="collapse navbar-collapse">
-      <a class="navbar-brand" href="<%= root_path %>">CarList</a>
       <ul class="nav navbar-nav" style="display: inline">
-        <li><a class="navbar-brand col-xs-12" href="<%= root_path %>">Cars</a></li>
-        <% if current_user %>
-        <li><a class="navbar-brand" href="<%= new_car_path %>">Add New Car</a></li>
-        <% end %>
-        <!--  generate search query -->
-
-        <li><form class="navbar-form">
-          <div class="form-group col-md-12 col-xs-12">
-            <%= form_tag cars_path ,method: 'get' do %>
-            <%= text_field_tag :search , params[:search], placeholder: "Search Cars", class: "form-control" %>
-            <%= submit_tag "Search Cars", :name => nil, class:"btn btn-success"%>
-            <% end %>
-          </div>
-        </form></li>
+        <li><a class="navbar-brand" href="<%= root_path %>">SocialNet</a></li>
+        <li><a class="navbar-brand col-xs-12" href="<%= posts_path %>">View Feed</a></li>
       </ul>
 
       <!--  user authentication -->

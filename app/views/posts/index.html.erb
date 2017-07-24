@@ -1,31 +1,33 @@
-    <!--  user authentication -->
-<% if user_signed_in? %>
-<p id="notice"><%= notice %></p>
+<div class="container">    
+      <!--  user authentication -->
+  <% if user_signed_in? %>
+  <p id="notice"><%= notice %></p>
+  
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h1>Feed</h1>
+    </div>
+  </div>
 
-<h1>Posts</h1>
-
-
-  <tbody>
+  <div class="row">
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.description %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-6">
+        <!-- add user name here!!! -->
+        <h1><%= post.description %></h1>
+      </div>
+      <div class="col-md-4 btn-group">
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info" %>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+  <% else %>
+    <div class="row">
+      <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
+    </div>
 
-<br>
+  <% end %>
 
-<%= link_to 'New Post', new_post_path %>
-<% else %>
-  <h1>Please Sign In or Sign Up</h1>
-  <a class="btn btn-success" href="<%= new_user_session_path %>" role="button">Sign In </a>
-  <a class="btn btn-success" href="<%= new_user_registration_path %>" role="button"> Sign Up</a>
-
-<% end %>
-
-
+</div>

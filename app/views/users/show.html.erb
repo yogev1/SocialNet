@@ -1,9 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container">
-  <div class="media">
-  </div>  
-
   <div class="col-md-4 col-xs-12">
     <div class="row">
       <%= image_tag @user.image.url(:medium) %>
@@ -12,16 +9,21 @@
       <div class="col-md-8">
         <h1><%= @user.name %></h1>
       </div>  
-    </div>
+    </div><br/>
     <div class="row">
       <div class="btn-group col-md-3">
-        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-info" %>
-        <%= link_to 'Back', users_path, class: "btn btn-info" %>
+        <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-info btn-lg" %>
+        <%= link_to 'Back', users_path, class: "btn btn-info btn-lg" %>
       </div>
     </div>  
   </div> 
+
   <div class="col-md-4 col-xs-12">
-    
+    <br/><br/><br/>
+      <%= bootstrap_form_for(@post, html: { multipart: true }) do |f| %>
+        <%= f.text_field :description, hide_label: true, placeholder: "What's on your mind?"%>
+        <%= f.submit "Post", class: "btn btn-info btn-lg" %>
+      <% end %> 
   </div> 
   <div class="col-md-4 col-xs-12">
 
