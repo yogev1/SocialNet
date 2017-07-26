@@ -4,8 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-
+    @posts = Post.all 
   end
 
   # GET /posts/1
@@ -25,9 +24,8 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
-    @post.user_id = current_user.id
-
+    @post = current_user.posts.new(post_params)
+    
     respond_to do |format|
       if @post.save
         format.html { redirect_to action: "index", notice: 'Post was successfully created.' }

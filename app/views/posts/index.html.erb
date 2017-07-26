@@ -4,30 +4,33 @@
   <p id="notice"><%= notice %></p>
   
   <div class="row">
-    <div class="col-md-12 text-center">
-      <h1>Feed</h1>
+    <div class="col-md-2">
     </div>
+    <div class="col-md-6 text-center coolfont">
+      <h1 style="text-decoration: underline">Feed</h1>
+    </div>  
   </div>
 
   <div class="row">
     <% @posts.each do |post| %>
       <div class="col-md-2">
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 coolfont" align="center" >
         <!-- add user name here!!! -->
-        <h1><%= post.description %></h1>
-      </div>
+        <h3 class="box"><%= @name = User.find(post.user_id).name %>'s Saying: <%= post.description %></h3>
+        <h5>Created at: <%= post.created_at %></h5><hr>
+      </div>     
       <div class="col-md-4 btn-group btn-sm">
-        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info" %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info" %>
+        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info", style: "height: 5%" %>
+        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info", style: "height: 5%" %>
       </div>
-    <% end %>
-  </div>
+    <% end %> 
+  </div>    
+
+  
   <% else %>
     <div class="row">
       <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
     </div>
-
   <% end %>
-
 </div>

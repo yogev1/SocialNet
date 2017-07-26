@@ -1,0 +1,7 @@
+<div class="row">
+	<%= bootstrap_form_for current_user do |f| %>
+		user = current_user.friendships.friend_id
+		<%= f.email_field :email %>
+		<%= link_to 'Add Friend Using Email Address', friendships_path(user.email), method: :post, class: "btn btn-primary" %>
+	<% end %>
+</div>
