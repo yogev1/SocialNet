@@ -1,45 +1,8 @@
-<div class="row">
-	<% @user.friendships.each do |friend| %>
-		<% if friend.friend_id %>
-			<div class="col-md-4">
-				<%= @user.friend_id.image %>
-				<h3><%= user.friend_id.name %></h3>
-			</div>		
-		<% end %>	
-	<% end %>
+<div class="row text-center">
+	<% current_user.friends.each do |friend| %>
+		<div class="col-md-4">
+			<a href="<%= friendship_path(friend) %>"><%= image_tag friend.image, style: "height: 35%" %></a>
+			<h3><%= friend.name %></h3>
+		</div>		
+	<% end %>	
 </div>
-
-  <!-- extracted from web -->
-  <div class="row">
-    <div class="col-md-12 col-xs-12 text-center">
-      <h1>Friends List:</h1>
-      <ul>
-        <h4>Your friends listed:</h4>
-        <% unless @user == current_user || @user == current_user && @user.pending == true %>
-          <li>
-            <%= @user.name %> |
-            <%= link_to "Add Friend", friendships_path(friend_id: @user), method: :post %>
-          </li>
-        <% end %>
-      </ul>
-      <ul>
-        <h4>Your awaiting friend requests:</h4>
-          <% current_user.requested_friendships.each do |request| %>
-            <li>
-              <%= request.name %>
-              <%= link_to "Accept",  friendship_path(id: request.id), method: "put" %>
-              <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
-            </li>
-          <% end %>
-      </ul>
-      <ul>
-        <h4>Your sent friend requests:</h4>
-          <% current_user.pending_friends.each do |request| %>
-            <li>
-              <%= request.name %>
-              <%= link_to "Accept",  friendship_path(id: request.id), method: "put" %>
-              <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
-            </li>
-          <% end %>
-      </ul>
-  </div>

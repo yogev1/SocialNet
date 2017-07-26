@@ -4,10 +4,13 @@ class FriendshipsController < ApplicationController
   end
 
   def index
-    @user_id = Friendship.user_id
-    @user = User.find(id: :@user_id)
   end
 
+  def show
+    @friend = User.find(params[:id])
+    @posts = current_user.posts
+  end
+  
   def create
   	@friendship = current_user.friendships.build(friend_id: params[:friend_id])
       if @friendship.save
@@ -16,7 +19,7 @@ class FriendshipsController < ApplicationController
         redirect_to current_user
       else
         flash[:error] = "Unable to request friendship."
-        redirect_to current_user
+        redirect_to users_path
       end
   end
 
@@ -31,10 +34,10 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
-  	 @friendship = Friendship.find_by(id: params[:id])
-      @friendship.destroy
-      flash[:notice] = "Removed friendship."
-      redirect_to root_path
+  	@friendship = Friendship.find_by(id: params[:id])
+    @friendship.destroy
+    flash[:notice] = "Removed friendship."
+    redirect_to current_user
   end
 
   private
