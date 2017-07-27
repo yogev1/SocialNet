@@ -25,7 +25,7 @@ class User < ApplicationRecord
 # to call your pending sent or received
 
     def pending
-        pending_friends | requested_friendships
+      pending_friends | requested_friendships
     end
 
 end
