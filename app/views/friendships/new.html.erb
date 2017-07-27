@@ -2,7 +2,7 @@
 	<div class="col-md-6">
 		<%= bootstrap_form_for current_user do |f| %>
 			<%= f.email_field :email, placeholder: "Enter Email To Add Friend" %>
-			<%= f.submit "Add Friend Using Email Address", friendships_path(:email), method: :post, class: "btn btn-primary" %>
+			<%= f.submit "Add Friend", friendships_path(friend_id: @friend), method: :post, class: "btn btn-primary" %>
 		<% end %>
 	</div>
 </div>
