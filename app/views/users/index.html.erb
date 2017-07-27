@@ -37,11 +37,12 @@
 			<% is_act_friend = current_user.active_friends.include?(user) %>
 			<% if user != current_user && is_act_friend %>
 				<button class="btn btn-primary deactive" type="submit">Already Your Friend</button>
-				<%= link_to 'Cancel Friendship', friendships_path(friend_id: user), :method => 'delete', data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "btn btn-danger" %>
+				<%= link_to 'Cancel Friendship', friendship_path(id: user.id), :method => 'delete', data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "btn btn-danger" %>
 				<!-- cancel pending request -->
 
 				<% elsif user != current_user %>
-					<%= link_to 'Cancel Received Friend Request \ Ignore Request', friendships_path(friend_id: user), :method => 'delete', data: { confirm: 'Are you sure you want to cancel friend request?' }, class: "btn btn-danger" %>
+					
+					<%= link_to 'Ignore Friend Request', friendship_path(id: user.id), :method => 'delete', data: { confirm: 'Are you sure you want to cancel friend request?' }, class: "btn btn-danger" %>
 			<% end %>
 		<% end %>
 	</div>	
