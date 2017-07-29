@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all 
+    @posts = Post.all.order(created_at: "DESC") 
   end
 
   # GET /posts/1
@@ -25,7 +25,6 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
-    
     respond_to do |format|
       if @post.save
         format.html { redirect_to action: "index", notice: 'Post was successfully created.' }
@@ -40,6 +39,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
+    post = Post.find_by(id: params[:post_id])
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -69,6 +69,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:title, :description, :user_id)
+      params.require(:post).permit(:title, :description, :user_id, :image)
     end
 end

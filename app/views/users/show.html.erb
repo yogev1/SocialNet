@@ -22,10 +22,12 @@
 
     <div class="col-md-4 col-xs-12">
       <br/><br/><br/>
-        <%= bootstrap_form_for(@post, html: { multipart: true }) do |f| %>
-          <%= f.text_field :description, hide_label: true, placeholder: "What's on your mind?"%>
-          <%= f.submit "Post", class: "btn btn-info btn-lg" %>
-        <% end %><br/> 
+      <%= bootstrap_form_for(@post) do |f| %>
+        <%= f.text_field :description, hide_label: true, placeholder: "What's on your mind?"%>
+        <%= f.file_field :image, class: "img-responsive" %>
+        <%= f.submit "Post", class: "btn btn-info btn-lg" %>
+      <% end %><br/>
+
       <div class="row">
         <div class="col-md-12">
           <h2 style="text-decoration: underline">Your recent posts:</h2>
@@ -33,10 +35,13 @@
       </div>
       <div class="row">  
         <% @posts.each do |post| %>
-          <div class="col-md-12 box coolfont">
+          <div class="col-md-12 box coolfont thumbnail">
+            <%= image_tag post.image.url(:thumb) %>
             <h2 class="text-center"><%= post.description %></h2>
           </div>
         <% end %>
       </div>
+      <div class="col-md-4">
+      </div>  
     </div> 
   </div><br/> 
