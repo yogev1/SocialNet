@@ -12,8 +12,11 @@ class FriendshipsController < ApplicationController
   end
   
   def create
-    @email_friend = current_user.friends.find_by_email(:email)
-  	@friendship = current_user.friendships.build(friend_id: params[:friend_id])
+    if current_user.friendships.find_by(email: params[:email])
+      something = current_user.friendships.find_by(:email) 
+      current_user.friendships.frined_id = something.id 
+    end        
+  	  @friendship = current_user.friendships.build(friend_id: params[:friend_id])  
       if @friendship.save
         @friend = User.find(params[:friend_id])
         flash[:notice] = "Friend Request Sent To #{@friend.name}"
@@ -21,12 +24,12 @@ class FriendshipsController < ApplicationController
       else
         flash[:error] = "Unable to request friendship."
         redirect_to users_path
-      end
+      end  
   end
 
   def update
-  	@friendship = current_user.friendships.find_by(friend_id: params[:id])
-    @friendship.update(status: "accepted")
+  	@friendship = current_user.all_friendships.select {|f| f.friend_id == params[:id].to_i || f.user_id == params[:id].to_i}[0]
+    @friendship.update(accepted: true)
       if @friendship.save
         redirect_to users_path, notice: "Successfully confirmed friend!"
       else

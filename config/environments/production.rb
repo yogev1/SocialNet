@@ -89,7 +89,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-    # configuring AWS
+# configuring AWS
 
   config.paperclip_defaults = {
     storage: :s3,

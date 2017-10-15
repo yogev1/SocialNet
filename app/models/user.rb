@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,15 +8,16 @@ class User < ApplicationRecord
   	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   	has_many :posts
-    has_many :likes, through: :posts    
+    has_many :likes#, through: :posts    
   	has_many :friendships
+    has_many :comments
     # has_many :friends, through: :friendships
     has_many :received_friendships, class_name: "Friendship", foreign_key: "friend_id"
 
     has_many :active_friends, through: :friendships, source: :friend
     has_many :received_friends, through: :received_friendships, source: :user
-    # has_many :pending_friends, -> { where(friendships: { accepted: false}) }, through: :friendships, source: :friend
-    # has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
+    has_many :pending_friends, -> { where(friendships: { accepted: false}) }, through: :friendships, source: :friend
+    has_many :requested_friendships, -> { where(friendships: { accepted: false}) }, through: :received_friendships, source: :user
 
 
     
@@ -23,6 +25,10 @@ class User < ApplicationRecord
 
     def friends
       active_friends | received_friends
+    end
+
+    def all_friendships
+      friendships | received_friendships
     end
 
 # to call your pending sent or received

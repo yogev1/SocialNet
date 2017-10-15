@@ -1,16 +1,4 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- */
+
 @import "bootstrap";
 
 .box {
@@ -28,3 +16,35 @@
 	transform: rotate(90deg);
 	transform-origin: left top 0;
 }
+
+.font {
+   font-family: 'Raleway', sans-serif;
+}
+
+.name {
+    padding-top: 10px; 
+    font-size: 135%;
+    font-weight: 900;
+    color: #004d99;
+}
+
+.btn1 {
+    background-color: inherit;
+}
+
+.btn2 {
+   background-color: inherit;
+   font-weight: 900;
+   margin-left: -7px; 
+   margin-top: -6px;
+}
+
+
+
+
+
+
+
+
+
+

@@ -1,66 +1,172 @@
 <div class="container">    
   <!--  user authentication -->
   <% if user_signed_in? %>
-  <p id="notice"><%= notice %></p>
-  
   <div class="row">
     <div class="col-md-2">
     </div>
-    <div class="col-md-6 text-center coolfont">
+    <div class="col-md-6 text-center">
       <h1 style="text-decoration: underline">Feed</h1>
-    </div>  
+    </div>
+    <div class="col-md-4"></div>  
   </div>
-
-  <div class="row">
+  <div class="row">   
     <% @posts.each do |post| %>
-    <div class="col-md-2">
-    </div>
-    <div class="col-md-6 coolfont" align="center">
-      <h3 class="row box text-center">
-        <div class="col-md-12">
-          <%= @name = User.find(post.user_id).name %>'s Saying: <%= post.description %>
-        </div>
-        <div class="col-md-12">        
-          <br/><%= image_tag post.image.url(:thumb), class: "img-responsive", style: "display: inline-block" %><br/><br/>
-        </div>  
-        <div class="col-md-12">
-            <%= bootstrap_form_for [post, post.likes.new] do |f| %> 
-              <h3 class="pull-left" style="font-size: 80%">
-              <%= f.submit "Like", class: "btn btn-primary btn-sm pull-left" %>
-            <% end %>
-            <%= bootstrap_form_for [post, post.comments.new] do |f| %> 
-              <h3 class="pull-left" style="font-size: 80%">
-              <%= f.text_area :description, hide_label: true, rows: "1", cols: "25" %>
-              <%= f.submit "Add Comment", class: "btn btn-primary btn-sm pull-left" %>
-            <% end %>
-        </div>
-        <div class="col-md-12">
-          <h6><%= post.likes.count %></h6>
-            <% if post.comments %>
-            <div class="row">
-              <% post.comments.order(created_at: "DESC").limit(3) %> 
-              <% post.comments.each do |c| %>
-              <div class="col-md-6">
-                <%= c.description %>
-              </div>  
-              <% end %> 
-            </div>
-            <% end %>  
-          </div>  
-        </h3>
-        <h5>Created at: <%= post.created_at %></h5><hr>
+      <div class="col-md-2">
       </div>     
-      <div class="col-md-4 btn-group btn-sm">
-        <%= link_to 'Edit', edit_post_path(post), class: "btn btn-info", style: "height: 5%" %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info", style: "height: 5%" %>
+      <div class="col-md-6">
+        <div class="panel">
+          <div class="panel-heading">
+            <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
+              <% user = User.find_by(id: post.user_id) %>
+              <%= image_tag user.image.url, class: "img-circle", size: "40x40" %>
+            </div>
+            <div class="col-md-4 col-xs-6 col-sm-6 name">
+              <%= link_to user.name, user  %>
+              <% created = post.created_at %>
+              <% year = @time_now.year - created.year %>
+              <% month = @time_now.month - created.month %>
+              <% day = @time_now.day - created.day %>
+              <% hour = @time_now.hour - created.hour %>
+              <% min = @time_now.min - created.min %>
+              <% sec = @time_now.sec - created.sec %>
+              <% if year > 0 %>
+                <h5><%= year %> years ago</h5>
+              <% elsif month > 0 %>  
+                <h5><%= month %> months ago</h5>
+              <% elsif day > 0 %>  
+                <h5><%= day %> days ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>
+              <% elsif hour > 0 %>  
+                <h5><%= hour %> hours ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>  
+              <% elsif min > 0 %>  
+                <h5><%= min %> minutes ago</h5>
+              <% elsif sec > 0 %>
+                <h5><%= sec %> seconds ago</h5>                  
+              <% end %>
+            </div>
+            <div class="col-md-2 col-md-push-6">
+              <div class="dropdown">
+                <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
+                <ul class="dropdown-menu">
+                  <div class="col-md-4 btn-group"> 
+                    <%= link_to 'Edit Post', edit_post_path(post), class: "btn btn-default", style: "padding: 6px 39px" %>
+                    <%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default", style: "padding: 6px 30px" %>
+                  </div>
+                </ul>
+              </div>
+            </div>              
+          </div><br><br><br>
+          <div class="panel-body"> 
+            <div class="row">    
+              <div class="col-md-12 text-center jumbotron"> 
+                <h2><%= post.description %></h2> 
+                <% if post.image.present? %>                  
+                  <%= image_tag post.image.url(:medium), class: "img-responsive text-center", style: "margin: auto" %><br/><br/>
+                <% end %>                
+              </div>
+            </div><hr>  
+            <div class="row">
+                <% if !post.likes.find_by(user_id: current_user.id) %>
+                  <div class="col-md-3 col-md-push-1">
+                    <div class="row">
+                      <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%"></span>  
+                      <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %> 
+                        <%= f.submit "Like", class: "btn btn2" %>
+                      <% end %>
+                    </div>
+                  </div>                       
+                <% else %>
+                  <div class="col-md-3 col-md-push-1">
+                    <div class="row">                    
+                      <span class="glyphicon glyphicon-thumbs-down" style="font-size: 170%"></span>
+                      <% like = post.likes.find_by(post_id: post.id, user_id: current_user.id) %>  
+                      <%= link_to 'UnLike', post_like_path(post_id: post.id, id: like.id), method: :delete, class: "btn btn2" %>
+                    </div>                      
+                  </div>  
+                <% end %>
+                <div class="col-md-3">
+                  <span class="glyphicon glyphicon-comment" style="font-size: 120%"></span>
+                  <a href="#comment" class="btn btn2">Comment</a>
+                </div>
+                <div class="col-md-3">
+                  <%= image_tag("share-icon.png", size: "20x20", style: "margin-top: -10px; margin-left: -15px") %>
+                  <a href="#" class="btn btn2">Share</a>
+                </div>                
+              </div>                             
+          </div>
+          <div class="panel-footer" id="comment">
+            <div class="col-md-12"> 
+              <div class="col-md-3 col-xs-3 col-sm-3">
+                <div class="row">
+                  <% like_names = Like.where(post_id: post.id).limit(3) %>
+                  <% if post.likes %>
+                    <% like_names.each do |user| %>
+                      <% user = user.user_id %>
+                      <% user = User.find_by(id: user) %>
+                      <h5 style="color: blue"><a href="<%= user_path(user) %>"><%= user.name %></a></h5>
+                      <% if like_names.last.user_id != user.id %>
+                        ,&nbsp&nbsp
+                      <% end %>
+                    <% end %>
+                    <% if like_names.count > 1 %>
+                      <h5 style="color: blue">....</h5>
+                    <% end %>
+                  <% end %>
+                  <h3 class="label" style="color: black; font-size: 120%; margin-top: 5px"><%= post.likes.count %></h3>
+                </div>    
+              </div>                  
+            </div><br><br><br>
+            <!-- post Comments -->
+            <div class="panel font" style="background-color: inherit"> 
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <%= bootstrap_form_for(Comment.new, :url => post_comments_path(post_id: post.id)) do |f| %> 
+                    <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
+                    <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px" %><br><br>
+                    <% end %>
+                  </div>
+                </div><br><br>           
+                <div class="row">
+                  <div class="col-md-3">
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-xs-12"> 
+                    <% comments = post.comments.all %>
+                    <% comments.each do |com| %>
+                    <% user = User.find_by(id: com.user_id) %>
+                    <div class="row">
+                      <% if com.description %>
+                      <div class="col-md-9 col-sm-6 col-xs-6">
+                        <h2><%= user.name.capitalize %>:&nbsp&nbsp&nbsp   
+                          <%= com.description %></h2>
+                        </div>
+                        <div class="col-md-3 col-sm-6 col-xs-6 btn-group">
+                          <%= link_to 'Edit', edit_post_comment_path(id: com.id), class: "btn btn-info", style: "font-size: 150%" %>
+                          <%= link_to 'Delete', com, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-info", style: "font-size: 150%" %>
+                        </div>                     
+                        <% end %>    
+                      </div>       
+                      <% end %>
+                      <% if !@comments %>
+                      <div class="row">
+                        <h4>Be The First One To Comment</h4>
+                      </div>  
+                      <% end %> 
+                    </div>       
+                    <div class="col-md-3">
+                    </div>                
+                  </div>            
+                </div> 
+              </div>
+            </div> 
+          </div>
+        </div> 
+        <div class="col-md-4">
+        </div>            
+        <% end %> 
+      </div>    
+      <% else %>
+      <div class="row">
+        <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
       </div>
-      <% end %> 
-    </div>    
-
-
-    <% else %>
-    <div class="row">
-      <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
+      <% end %>
     </div>
-    <% end %>
-  </div>

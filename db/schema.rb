@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728225709) do
+ActiveRecord::Schema.define(version: 20170803233218) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "description"
+    t.integer "user_id"
   end
 
   create_table "friendships", force: :cascade do |t|
@@ -25,12 +26,14 @@ ActiveRecord::Schema.define(version: 20170728225709) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "likes", force: :cascade do |t|
     t.integer "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "posts", force: :cascade do |t|
