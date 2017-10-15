@@ -6,8 +6,8 @@ class CommentsController < ApplicationController
     @comment.update(user_id: current_user.id, description: params[:comment][:description])
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to post_path(post) }
-        format.json { render :show, status: :created, location: post_path(@post) }
+        format.html { redirect_to posts_path }
+        format.json { render :show, status: :created, location: posts_path }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
