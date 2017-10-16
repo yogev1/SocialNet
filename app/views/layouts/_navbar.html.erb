@@ -15,23 +15,34 @@
       <ul class="nav navbar-nav navbar-left" style="display: inline">
         <li><a href="<%= root_path %>"><%= image_tag("social-icon.jpeg", size: "40x40", class: "mr-auto") %></a></li>
         <li>            
-          <form class="navbar-form navbar-left" role="search" style="margin-top: 17px">
-            <div class="form-group">
-              <input type="text" class="form-control" placeholder="Search" style="height: 30px; width: 500px">
+          <div class="col-md-5 col-sm-4 col-sm-push-1">
+            <div id="custom-search-input">
+              <div class="input-group col-md-12">
+                <input type="text" class="form-control" placeholder="Buscar" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-info btn-sm" type="button">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+              </div>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
+          </div>
         </li>
       </ul>
     </div>
     <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
       <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <li><a class="navbar-brand col" href="<%= root_path %>">SocialNet</a></li>
-        <li><a class="navbar-brand col" href="<%= posts_path %>">View Feed</a></li>
-        <li><a class="navbar-brand col" href="<%= posts_path %>">Find Friends</a></li>
-        <% if current_user %>
-          <li> <a class="navbar-brand col" href="<%= user_path(current_user) %>"><%= current_user.name %></a></li>
-        <% end %>  
+        <li><%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %>
+        </li>
+        <li><a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a></li>
+        <li><a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25", class: "mr-auto") %></a></li>
+        <li><a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25", class: "mr-auto") %></a></li> 
+        <li><a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25", class: "mr-auto") %></a></li>
+        <li class="navbar-brand">
+          <span class="col glyphicon glyphicon-triangle-bottom"></span>
+        </li>
+        <li class="navbar-brand"></li>
+        <li class="navbar-brand"></li>  
       </ul>
     </div>  
       <!--  user authentication -->

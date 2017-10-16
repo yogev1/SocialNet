@@ -1,11 +1,28 @@
-<div class="container" style="padding-top:85px">    
+<div class="container" style="padding-top:70px">    
   <!--  user authentication -->
   <% if user_signed_in? %>
-  <div class="row">   
+  <div class="row">
+    <div class="col-md-2 col-md-pull-1">
+      <div class="row">
+        <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin: 10px; height: 30px; width: 30px") %>
+        <a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a>
+      </div>
+      <div class="row">
+        <a href="#" class: "btn" style="margin: 6px 30px">News Feed</a>
+      </div>
+      <div class="row">
+        <a href="#" class: "btn" style="margin: 6px 30px">Messenger</a>
+      </div>
+      <div class="row">
+      </div>
+
+
+
+
+    </div>
+    <div class="col-md-7 col-md-pull-1">       
     <% @posts.each do |post| %>
-      <div class="col-md-1">
-      </div>     
-      <div class="col-md-7">
+      <div class="col-md-12">
         <div class="panel">
           <div class="panel-heading">
             <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
@@ -165,8 +182,6 @@
               </div>
             </div> 
           </div>
-        </div> 
-        <div class="col-md-4">
         </div>            
         <% end %> 
       </div>    
@@ -175,4 +190,5 @@
         <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
       </div>
       <% end %>
+    </div>
     </div>
