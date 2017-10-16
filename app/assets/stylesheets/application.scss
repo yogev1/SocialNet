@@ -1,4 +1,5 @@
 
+@import "font-awesome";
 @import "bootstrap";
 
 .box {
@@ -53,7 +54,12 @@
     color: #707070;
 }
 
-
+.btn5 {
+    background-color: inherit;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 150%;
+}
 
 .navbar {
    background-color: #003399;
@@ -101,7 +107,12 @@
     font-size: 23px;
 }
 
-
+#post {
+    top:30%;
+    right:0;
+    outline: none;
+    overflow:hidden;
+}
 
 
 
@@ -120,4 +131,18 @@ for user profile
     height: 51px;
     font-size: 150%;
     font-weight: 900;
+}
+
+.inputfile {
+    margin-top: 12px;
+    width: 30px;
+    height: 20px;
+    opacity: 1;
+    overflow: hidden;
+    position: absolute;
+}
+
+.modal-header {
+    background-color: #F8F8F8;
+    max-height: 40px;    
 }
