@@ -46,10 +46,19 @@
    margin-top: -6px;
 }
 
+.btn4 {
+    font-size: 120%; 
+    padding: 1px 20px; 
+    font-weight: 900; 
+    color: #707070;
+}
+
+
+
 .navbar {
    background-color: #003399;
    height: 20px;
-   opacity: 0.8;
+   opacity: 1;
    color: white;
 }
 
@@ -90,4 +99,25 @@
 
 #custom-search-input .glyphicon-search{
     font-size: 23px;
+}
+
+
+
+
+
+
+/*
+for user profile
+*/
+
+.cov { 
+    padding-bottom: 300px; 
+    background-size: cover;
+    max-height: 400px;
+}
+
+.nav-tabs {
+    height: 52px;
+    font-size: 150%;
+    font-weight: 900;
 }

@@ -1,15 +1,123 @@
-  <h1 style="color:red"><p id="notice"><%= notice %></p></h1>
 
-  <div class="row coolfont">
-    <div class="col-md-4 col-xs-12">
-      <div class="row">
-        <%= image_tag @user.image.url(:medium) %>
+<div class="container-fluid" style="margin-top: 50px">
+  <div class="row">
+    <div class="col-md-10 col-md-pull-1">  
+      <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
+        <div class="col-md-3" style="margin-top: 180px; z-index: 100">
+          <%= image_tag(@user.image.url(:medium), class: "img-responsive", size: "200x200") %>
+        </div> 
+        <div class="col-md-1 col-md-pull-4 col-sm-2 col-xs-4" style="margin-top: 480px"> 
+          <h1 style="font-weight: 700; margin: -140px 10px 200px 290px; color:white"><%= @user.name.capitalize %></h1>  
+        </div>
+        <% if @user.id == current_user.id %>
+        <div class="col-md-2 col-xs-3 col-sm-3 col-md-push-3 text-center" style="margin-top: 350px"> 
+          <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
+        </div>
+        <div class="col-md-2 col-xs-3 col-sm-3 col-md-push-3 text-center" style="margin-top: 350px"> 
+          <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
+        </div>        
+      <% end %>
       </div>
-      <div class="row">
-        <div class="col-md-7 text-center">
-          <h1><%= @user.name %></h1>
+    </div> 
+  </div> 
+  <div class="row">
+    <div class="col-md-10 col-md-pull-1" style="background-color: white; height: 51px">
+      <div class="col-md-8 col-md-push-3">         
+        <div data-spy="scroll" class="tabbable-panel">
+          <div class="tabbable-line">
+            <ul class="nav nav-tabs">
+              <li class="active">
+                <a href="#about" data-toggle="tab">
+                  TimeLine </a>
+                </li>
+                <li>
+                  <a href="#activities" data-toggle="tab">
+                   About</a>
+                </li>
+                <li>
+                  <a href="#events" data-toggle="tab">
+                   Friends</a>
+                </li>
+                <li>
+                  <a href="#friends" data-toggle="tab">
+                   Photos</a>
+                </li>
+                <li>
+                  <a href="#friends" data-toggle="tab">
+                    <span class="glyphicon glyphicon-triangle-bottom"></span>More</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>    
+    </div>
+  </div>    
+  <div class="tab-content">
+    <div class="tab-pane active" id="about">
+      <p>
+      </p>
+    </div>
+    <div class="tab-pane" id="activities" style="padding-top: 20px">     
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <h3>About</h3>
+        </div>             
+        <div class="panel-body" style="min-height: 220px"> 
+          <div class="col-md-12 col-sm-12 col-xs-12 text-center" align="center">
+          </div>     
         </div>  
-      </div><br/>
+      </div>  
+      <p>
+        <% if @user.id == current_user.id %>
+        <div class="panel-footer text-center">
+        </div>
+        <% end %> 
+      </p>              
+    </div>
+    <div class="tab-pane" id="events" style="padding-top: 20px"> 
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12"> 
+          <h4></h4>    
+          <h3></h3>
+        </div>                         
+      </div>
+    </div>
+    <div class="tab-pane" id="friends">
+      <div class="row">
+        <div class="col-md-12 text-center" style="padding-top: 20px">
+          <%= link_to 'Expend Your Network', users_path, class: "btn btn-danger", style: "font-size: 150%; padding: 6px 80px" %>
+        </div>
+        <div class="col-sm-6">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+        </div>                                    
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>  
+  </div>
+</div>
+
+
+
+
+    <div class="">
+
       <div class="row">
         <div class="btn-group col-md-3">
           <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-info btn-lg" %>
@@ -20,19 +128,12 @@
       </div>  
     </div> 
 
-    <div class="col-md-4 col-xs-12">
-      <br/><br/><br/>
       <%= bootstrap_form_for(@post) do |f| %>
         <%= f.text_field :description, hide_label: true, placeholder: "What's on your mind?"%>
         <%= f.file_field :image, class: "img-responsive" %>
         <%= f.submit "Post", class: "btn btn-info btn-lg" %>
       <% end %><br/>
 
-      <div class="row">
-        <div class="col-md-12">
-          <h2 style="text-decoration: underline">Your recent posts:</h2>
-        </div>  
-      </div>
       <div class="row">  
         <% @posts.each do |post| %>
           <div class="col-md-12 box coolfont thumbnail">
@@ -41,7 +142,3 @@
           </div>
         <% end %>
       </div>
-      <div class="col-md-4">
-      </div>  
-    </div> 
-  </div><br/> 
