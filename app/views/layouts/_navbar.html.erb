@@ -1,37 +1,45 @@
   
 <!-- navbar -->
-
-<nav class="navbar navbar-inverse navbar-fixed-top row">
-  <div class="container">
+<nav class="navbar navbar-fixed-top row">
+  <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
       </button>
     </div>
-    
     <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav" style="display: inline">
-        <li><a class="navbar-brand" href="<%= root_path %>">SocialNet</a></li>
-        <li><a class="navbar-brand col-xs-12" href="<%= posts_path %>">View Feed</a></li>
+      <ul class="nav navbar-nav navbar-left" style="display: inline">
+        <li><a href="<%= root_path %>"><%= image_tag("social-icon.jpeg", size: "40x40", class: "mr-auto") %></a></li>
+        <li>            
+          <form class="navbar-form navbar-left" role="search" style="margin-top: 17px">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search" style="height: 30px; width: 500px">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
+      <ul class="nav navbar-nav navbar-right" style="display: inline">
+        <li><a class="navbar-brand col" href="<%= root_path %>">SocialNet</a></li>
+        <li><a class="navbar-brand col" href="<%= posts_path %>">View Feed</a></li>
+        <li><a class="navbar-brand col" href="<%= posts_path %>">Find Friends</a></li>
         <% if current_user %>
-          <li> <a class="navbar-brand" href="<%= user_path(current_user) %>"><%= current_user.name %></a></li>
+          <li> <a class="navbar-brand col" href="<%= user_path(current_user) %>"><%= current_user.name %></a></li>
         <% end %>  
       </ul>
-
+    </div>  
       <!--  user authentication -->
-
-      <% if user_signed_in? %>
-
-
+<!--       <% if user_signed_in? %>
       <form class="navbar-form navbar-right">
         <p style="color: white">Hello <%= current_user.name %> : <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-success" %></p>
       </form>
-
       <% else %>
-
       <div class="navbar-form navbar-right" style="color: white">
         <div>
           <a class="btn btn-success" href="<%= new_user_session_path %>" role="button">Please Sign In </a>
@@ -39,7 +47,7 @@
           <a class="btn btn-success" href="<%= new_user_registration_path %>" role="button"> Sign Up</a>
         </div>  
       </div>
-      <% end %>
+      <% end %> -->
     </div><!--/.navbar-collapse --> 
   </div><!-- /.container-fluid -->  
 </nav>
