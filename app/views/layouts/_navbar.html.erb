@@ -32,12 +32,12 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
       <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <li>
-          <% if user_signed_in? %>
-            <%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %>
-          <% end %>  
-        </li>
-        <li><a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a></li>
+        <% if user_signed_in? %>
+          <li>
+            <%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %> 
+          </li>
+          <li><a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a></li>
+        <% end %>  
         <li><a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25", class: "mr-auto") %></a></li>
         <li><a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25", class: "mr-auto") %></a></li> 
         <li><a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25", class: "mr-auto") %></a></li>
@@ -48,20 +48,6 @@
         <li class="navbar-brand"></li>  
       </ul>
     </div>  
-      <!--  user authentication -->
-<!--       <% if user_signed_in? %>
-      <form class="navbar-form navbar-right">
-        <p style="color: white">Hello <%= current_user.name %> : <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-success" %></p>
-      </form>
-      <% else %>
-      <div class="navbar-form navbar-right" style="color: white">
-        <div>
-          <a class="btn btn-success" href="<%= new_user_session_path %>" role="button">Please Sign In </a>
-          OR 
-          <a class="btn btn-success" href="<%= new_user_registration_path %>" role="button"> Sign Up</a>
-        </div>  
-      </div>
-      <% end %> -->
     </div><!--/.navbar-collapse --> 
   </div><!-- /.container-fluid -->  
 </nav>
