@@ -19,6 +19,8 @@
       <% end %>
       </div>
     </div> 
+    <div class="col-md-3">
+    </div>
   </div> 
   <div class="row">
     <div class="col-md-9" style="background-color: white; height: 50px">
@@ -55,78 +57,232 @@
   </div>
   <div class="row">
     <div class="col-md-9">    
-  <div class="tab-content">
-    <div class="tab-pane active" id="timeline">
-      <div class="row" style="margin-top: 10px">
-        <div class="col-md-4">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title"></h3>
-            </div>
-            <div class="panel-body">
-
-            </div>
-            <div class="panel-footer">
-            </div>
-          </div>           
-        </div>
-        <div class="col-md-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-2">
-                  <%= image_tag(current_user.image.url, size: "50x50", class: "img-responsive img-circle") %>
+      <div class="tab-content">
+        <div class="tab-pane active" id="timeline">
+          <div class="row" style="margin-top: 10px">
+            <div class="col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title"></h3>
                 </div>
-                <div class="col-md-8" style="margin-top: 20px">  
-                  <%= bootstrap_form_for(@post) do |f| %>
-                    <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="font-size: 150%; color: #B0B0B0;padding-right: 100px;">What's on your mind?</button>
-                  <% end %>
-                </div>  
+                <div class="panel-body">
+                </div>
+                <div class="panel-footer">
+                </div>
+              </div>           
+            </div>
+            <div class="col-md-8">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-2">
+                      <%= image_tag(current_user.image.url, size: "50x50", class: "img-responsive img-circle") %>
+                    </div>
+                    <div class="col-md-8" style="margin-top: 20px">  
+                      <%= bootstrap_form_for(@post) do |f| %>
+                        <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="font-size: 150%; color: #B0B0B0;padding-right: 100px;">What's on your mind?</button>
+                      <% end %>
+                    </div>  
+                  </div>
+                </div>
+                <div class="panel-footer">
+                </div>
               </div>
-            </div>
-            <div class="panel-footer">
-            </div>
+            </div>        
           </div>
-        </div>        
-      </div>  
-      <div class="row">
-        <div class="col-md-12">     
-          
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">  
-          <% @posts.each do |post| %>
-            <div class="col-md-12">
-              <%= image_tag post.image.url(:thumb) %>
-              <h2 class="text-center"><%= post.description %></h2>
-            </div>
-          <% end %>
-        </div>
-      </div>
-    </div>     
-    <div class="tab-pane" id="about" style="padding-top: 20px">
-      <div class="row">
-        <div class="col-md-12">     
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-              <h3>About</h3>
-            </div>             
-            <div class="panel-body" style="min-height: 220px"> 
+          <div class="row">
+            <% @posts.each do |post| %>  
+              <div class="col-md-4">     
+              </div>
+              <div class="col-md-8">     
+                <div class="panel">
+                  <div class="panel-heading pan">
+                    <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
+                      <% user = User.find_by(id: post.user_id) %>
+                      <%= image_tag user.image.url, class: "img-circle", size: "40x40" %>
+                    </div>
+                    <div class="col-md-4 col-xs-6 col-sm-6 name">
+                      <%= link_to user.name, user  %>
+                      <% created = post.created_at %>
+                      <% year = @time_now.year - created.year %>
+                      <% month = @time_now.month - created.month %>
+                      <% day = @time_now.day - created.day %>
+                      <% hour = @time_now.hour - created.hour %>
+                      <% min = @time_now.min - created.min %>
+                      <% sec = @time_now.sec - created.sec %>
+                      <% if year > 0 %>
+                        <h5><%= year %> years ago</h5>
+                      <% elsif month > 0 %>  
+                        <h5><%= month %> months ago</h5>
+                      <% elsif day > 0 %>  
+                        <h5><%= day %> days ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>
+                      <% elsif hour > 0 %>  
+                        <h5><%= hour %> hours ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>  
+                      <% elsif min > 0 %>  
+                        <h5><%= min %> minutes ago</h5>
+                      <% elsif sec > 0 %>
+                        <h5><%= sec %> seconds ago</h5>                  
+                      <% end %>
+                    </div>
+                    <div class="col-md-5 col-md-push-6">
+                      <div class="dropdown">
+                        <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
+                        <ul class="dropdown-menu">
+                          <div class="col-md-12 btn-group">
+                            <div class="row">
+                              <span class="glyphicon glyphicon-edit" style="padding-left: 5px; font-size: 150%; margin-top: 5px"></span>&nbsp&nbsp                   
+                              <%= link_to 'Edit Post', edit_post_path(post), class: "btn btn-default", style: "padding: 6px 39px" %>&nbsp&nbsp
+                            </div><br>
+                            <div class="row">
+                              <span class="glyphicon glyphicon-trash" style="padding-left: 5px; font-size: 150%; margin-top: 5px"></span>&nbsp&nbsp                    
+                              <%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default", style: "padding: 6px 30px" %>&nbsp&nbsp
+                            </div>  
+                          </div>
+                        </ul>
+                      </div>
+                    </div>         
+                  </div><br><br><br>
+                  <div class="panel-body">
+                    <div class="row">    
+                      <div class="col-md-12 text-center"> 
+                        <h2><%= post.description %></h2> 
+                        <% if post.image.present? %>                  
+                          <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: cover" %><br/><br/>
+                        <% end %>                
+                      </div>
+                    </div><hr>  
+                    <div class="row">
+                      <% if !post.likes.find_by(user_id: current_user.id) %>
+                        <div class="col-md-3 col-md-push-1 col-xs-3 col-sm-3 col-xs-push-1 col-sm-push-1">
+                          <div class="row">
+                            <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%"></span>  
+                            <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %> 
+                            <%= f.submit "Like", class: "btn btn2" %>
+                            <% end %>
+                          </div>
+                        </div>                       
+                      <% else %>
+                        <div class="col-md-3 col-sm-4 col-xs-4 col-md-push-1 col-xs-push-1 col-sm-push-1">
+                          <div class="row">                    
+                            <span class="glyphicon glyphicon-thumbs-down" style="font-size: 170%"></span>
+                            <% like = post.likes.find_by(post_id: post.id, user_id: current_user.id) %>  
+                            <%= link_to 'UnLike', post_like_path(post_id: post.id, id: like.id), method: :delete, class: "btn btn2" %>
+                          </div>                      
+                        </div>  
+                      <% end %>
+                      <div class="col-md-3 col-sm-4 col-xs-5">
+                        <span class="glyphicon glyphicon-comment" style="font-size: 120%">
+                        </span>
+                        <a href="#comment" class="btn btn2">Comment</a>
+                      </div>
+                      <div class="col-md-3 col-sm-4 col-xs-3">
+                        <%= image_tag("share-icon.png", size: "20x20", style: "margin-top: -10px; margin-left: -15px") %>
+                        <a href="#" class="btn btn2">Share</a>
+                      </div>                
+                    </div>
+                  </div>
+                  <div class="panel-footer" id="comment">
+                    <div class="row">
+                      <div class="col-md-12"> 
+                        <div class="col-md-6 col-xs-12 col-sm-12">
+                          <div class="row">
+                            <% like_names = Like.where(post_id: post.id).limit(3) %>
+                            <% if post.likes %>
+                              <% like_names.each do |user| %>
+                                <% user = user.user_id %>
+                                <% user = User.find_by(id: user) %>
+                                <h5 style="color: blue"><a href="<%= user_path(user) %>"><%= user.name %></a></h5>
+                                <% if like_names.last.user_id != user.id %>
+                                  <h7 style="color: #00a3cc; font-size: 160%">,&nbsp</h7>
+                                <% end %>
+                              <% end %>
+                              <% if like_names.count > 1 %>
+                                <h5 style="color: blue">....</h5>
+                              <% end %>
+                            <% end %>
+                            <% if post.likes.count > 0 %>
+                              <h3 class="label" style="color: black; font-size: 120%; margin-top: 5px"><%= post.likes.count %></h3>
+                            <% end %>  
+                        </div>    
+                      </div>
+                    </div>                      
+                    <!-- post Comments -->
+                    <div class="panel font" style="background-color: inherit"> 
+                      <div class="panel-body">
+                        <div class="row">
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                            <%= bootstrap_form_for(Comment.new, :url => post_comments_path(post_id: post.id)) do |f| %> 
+                            <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
+                            <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px" %><br><br>
+                            <% end %>
+                          </div>
+                        </div>           
+                        <div class="row">
+                          <% comments = post.comments.all %>
+                          <% comments.each do |com| %>
+                          <% user = User.find_by(id: com.user_id) %>
+                          <div class="row">
+                            <% if com.description %>
+                            <div class="col-md-6 col-sm-6 col-xs-6 col-md-push-2 col-xs-push-2">
+                              <div class="row">
+                                <h4><%= user.name.capitalize %>: <%= com.description %></h4>   
+                              </div>  
+                            </div>
+                            <div class="col-md-6 col-md-push-12 col-sm-6 col-xs-6 col-xs-push-10">    
+                              <div class="dropdown">
+                                <div class="col-md-4 col-xs-3 col-sm-4 btn-group">
+                                  <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
+                                  <ul class="dropdown-menu">
+                                    <span class="glyphicon glyphicon-edit" style="padding-left: 5px"></span>
+                                    <%= link_to 'Edit...', edit_post_comment_path(post_id: post.id,id: com.id), class: "btn btn3" %><br>
+                                    <span class="glyphicon glyphicon-trash" style="padding-left: 5px"></span>
+                                    <%= link_to 'Delete...', post_comment_path(post_id: post.id,id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn3" %>
+                                  </ul>  
+                                </div>
+                              </div>
+                            </div>  
+                            <% end %>    
+                              </div>       
+                              <% end %><br>
+                            <div class="row">  
+                              <% if !comments %>
+                                <h4>Be The First One To Comment</h4>
+                              <% end %> 
+                            </div>       
+                            <div class="col-md-3">
+                            </div>                
+                          </div>            
+                        </div> 
+                      </div>
+                    </div>
+                  </div>                                    
+                </div>
+              </div>
+            </div>   
+        <% end %>
+        </div>      
+      </div>     
+      <div class="tab-pane" id="about" style="padding-top: 20px">
+        <div class="row">
+          <div class="col-md-12">     
+            <div class="panel panel-default">
+              <div class="panel-heading text-center">
+                <h3>About</h3>
+              </div>             
+              <div class="panel-body" style="min-height: 220px"> 
 
+              </div>  
             </div>  
-          </div>  
-        </div>             
+          </div>             
+        </div>
       </div>
-    </div>
     <div class="tab-pane" id="friends" style="padding-top: 20px"> 
       <div class="row">
           <%= link_to 'Expend Your Network', users_path, class: "btn btn-danger", style: "font-size: 150%; padding: 6px 80px" %>
           <%= link_to 'Manage Friend Requests', users_path, class: "btn btn-primary btn-lg" %>
-          <%= link_to 'Your Friends', friendships_path, class: "btn btn-success btn-lg" %>             
+          <%= link_to 'Your Friends', friendships_path, class: "btn btn-success btn-lg" %>
       </div>
     </div>
     <div class="tab-pane" id="photos">

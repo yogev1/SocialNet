@@ -15,10 +15,6 @@
       </div>
       <div class="row">
       </div>
-
-
-
-
     </div>
     <div class="col-md-7 col-md-pull-1">       
     <% @posts.each do |post| %>
@@ -75,7 +71,7 @@
               <div class="col-md-12 text-center"> 
                 <h2><%= post.description %></h2> 
                 <% if post.image.present? %>                  
-                  <%= image_tag post.image.url(:medium), class: "img-responsive text-center", style: "margin: auto" %><br/><br/>
+                  <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto" %><br/><br/>
                 <% end %>                
               </div>
             </div><hr>  
@@ -131,7 +127,7 @@
                   <% end %>  
                 </div>    
               </div>                  
-            </div><br><br><br><br>
+            </div><br><br>
             <!-- post Comments -->
             <div class="panel font" style="background-color: inherit"> 
               <div class="panel-body">
