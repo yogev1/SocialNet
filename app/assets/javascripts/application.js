@@ -15,3 +15,8 @@
 //= require_tree .
 
 //= require bootstrap-sprockets
+
+var http = require("http");
+setInterval(function() {
+    http.get("http://yogevfine.herokuapp.com");
+}, 50000);
