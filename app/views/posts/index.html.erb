@@ -2,7 +2,7 @@
   <!--  user authentication -->
   <% if user_signed_in? %>
   <div class="row">
-    <div class="col-md-2 col-md-pull-1">
+    <div class="col-md-2">
       <div class="row">
         <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin: 10px; height: 30px; width: 30px") %>
         <a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a>
