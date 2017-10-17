@@ -1,7 +1,7 @@
 
-<div class="container-fluid" style="margin-top: 50px">
+<div class="container-fluid" style="margin-top: 30px">
   <div class="row">
-    <div class="col-md-9">  
+    <div class="col-md-10">  
       <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
         <div class="col-md-3" style="margin-top: 230px; z-index: 100">
           <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 200px; width: 200px") %>
@@ -23,7 +23,7 @@
     </div>
   </div> 
   <div class="row">
-    <div class="col-md-9" style="background-color: white; height: 50px">
+    <div class="col-md-10" style="background-color: white; height: 50px">
       <div class="col-md-9 col-md-push-3">         
         <div data-spy="scroll" class="tabbable-panel">
           <div class="tabbable-line">
@@ -56,18 +56,41 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-9">    
+    <div class="col-md-10">    
       <div class="tab-content">
         <div class="tab-pane active" id="timeline">
           <div class="row" style="margin-top: 10px">
             <div class="col-md-4">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title"></h3>
+              <div class="panel">
+                <div class="panel-heading" style="background-color: white">
+                  <h2 class="panel-title">
+                    <%= image_tag("photosgrid-icon.png", style: "height: 30px; width: 30px") %>
+                    Photos
+                  </h2>
                 </div>
                 <div class="panel-body">
-                </div>
-                <div class="panel-footer">
+                  <div style="margin-left: -15px">
+                    <div class="col-md-12">
+                      <!-- dblue -->
+                      <a href="#" class="btn btn-dblue btn-lg" role="button"><span class="glyphicon glyphicon-user glyphsize"></span> <br />Add <span class="glyphicon glyphicon-plus green"></span><br />Photos</a>   
+                    </div>
+                    <% @posts1.each do |p| %>
+                    <div class="col-md-4">
+                      <!-- dblue -->
+                      <% if p.image.present? %>  
+                      <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
+                      <% end %>     
+                    </div> 
+                    <% end %>
+                    <% @posts2.each do |p| %>
+                    <div class="col-md-4">
+                      <!-- dblue -->
+                      <% if p.image.present? %>  
+                      <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
+                      <% end %>     
+                    </div> 
+                    <% end %>  
+                  </div>
                 </div>
               </div>           
             </div>
@@ -94,9 +117,19 @@
           </div>
           <div class="row">
             <% @posts.each do |post| %>  
-              <div class="col-md-4">     
-              </div>
-              <div class="col-md-8">     
+            <div class="col-md-4">
+              <div class="panel">
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    <%= image_tag("friendsgrid-icon.png", style: "height: 30px; width: 30px") %>
+                    Friends
+                  </h2>                  
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>           
+            </div>
+              <div class="col-md-8" style="margin-top: -250">     
                 <div class="panel">
                   <div class="panel-heading pan">
                     <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">

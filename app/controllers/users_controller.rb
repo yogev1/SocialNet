@@ -15,6 +15,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id]) #to get the specific user
     @post = Post.new #to write new post
     @posts = @user.posts.order(created_at: "DESC") #to iterate over previous posts and show
+    @posts1 = @user.posts.order(created_at: "DESC").limit(2)
+    @posts2 = @user.posts.order(created_at: "DESC")
     @friend = Friendship.new #to create new friendship
   end
 
