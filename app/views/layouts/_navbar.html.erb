@@ -42,7 +42,20 @@
         <li><a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25", class: "mr-auto") %></a></li> 
         <li><a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25", class: "mr-auto") %></a></li>
         <li class="navbar-brand">
-          <span class="col glyphicon glyphicon-triangle-bottom"></span>
+          <div class="dropdown">
+            <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <% if user_signed_in? %>
+              <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
+              </li>
+              <% end %>  
+            </ul>
+          </div>
         </li>
         <li class="navbar-brand"></li>
         <li class="navbar-brand"></li>  

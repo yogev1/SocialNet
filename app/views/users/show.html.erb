@@ -129,7 +129,7 @@
                 </div>
               </div>           
             </div>
-              <div class="col-md-8" style="margin-top: -250">     
+              <div class="col-md-8" style="margin-top: auto">     
                 <div class="panel">
                   <div class="panel-heading pan">
                     <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
@@ -248,7 +248,7 @@
                           <div class="col-md-12 col-sm-12 col-xs-12">
                             <%= bootstrap_form_for(Comment.new, :url => post_comments_path(post_id: post.id)) do |f| %> 
                             <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
-                            <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px" %><br><br>
+                            <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px;" %><br><br>
                             <% end %>
                           </div>
                         </div>           
