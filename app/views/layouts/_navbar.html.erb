@@ -33,7 +33,7 @@
     <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
       <ul class="nav navbar-nav navbar-right" style="display: inline">
         <li>
-          <% if user.user_signed_in? %>
+          <% if user_signed_in? %>
             <%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %>
           <% end %>  
         </li>
