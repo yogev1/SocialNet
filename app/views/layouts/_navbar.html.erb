@@ -32,7 +32,10 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
       <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <li><%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %>
+        <li>
+          <% if user.user_signed_in? %>
+            <%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %>
+          <% end %>  
         </li>
         <li><a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a></li>
         <li><a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25", class: "mr-auto") %></a></li>
