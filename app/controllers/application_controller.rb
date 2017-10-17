@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_filter :authenticate_user!
 
   before_action :update_sanitized_params, if: :devise_controller?
   before_action :get_time
