@@ -19,10 +19,10 @@
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12">
       <div id="navbar" class="collapse navbar-collapse colp">
-        <div class="col-md-2 col-xs-5 col-sm-3">
+        <div class="col-md-2 col-xs-6 col-sm-3">
           <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
         </div>
-        <div class="col-md-5 col-sm-3 col-xs-7">
+        <div class="col-md-5 col-sm-3 col-xs-6">
           <ul class="nav navbar-nav navbar-left" style="display: inline">
             <li>              
               <div id="custom-search-input">
@@ -67,15 +67,15 @@
                 <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1 col-xs-push-3">   
+            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1">   
               <li>
                 <div class="dropdown">
                   <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                     <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Action</a></li>
                     <li role="separator" class="divider"></li>
                     <% if user_signed_in? %>
                     <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
