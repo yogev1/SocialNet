@@ -3,32 +3,36 @@
   <div class="row">
     <div class="col-md-10">  
       <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
-        <div class="col-md-3" style="margin-top: 230px; z-index: 100">
+        <div class="col-md-3 col-sm-3 col-xs-7" style="margin-top: 230px; z-index: 100">
           <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 200px; width: 200px") %>
         </div> 
-        <div class="col-md-1 col-md-pull-4 col-sm-2 col-xs-4" style="margin-top: 480px"> 
-          <h1 style="font-weight: 700; margin: -140px 10px 200px 290px; color:white"><%= @user.name.capitalize %></h1>  
+        <div class="col-md-2 col-sm-2 col-xs-5" style="margin-top: 320px"> 
+          <h1 style="font-weight: 700; color:white"><%= @user.name.capitalize %></h1>  
         </div>
         <% if @user.id == current_user.id %>
-        <div class="col-md-2 col-xs-3 col-sm-3 col-md-push-3 text-center" style="margin-top: 350px"> 
-          <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
-        </div>
-        <div class="col-md-2 col-xs-3 col-sm-3 col-md-push-3 text-center" style="margin-top: 350px"> 
-          <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
-        </div>        
-      <% end %>
+          <div class="col-md-2 col-sm-6 col-md-push-2 text-center hidden-xs" style="margin-top: 350px"> 
+            <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
+          </div>
+          <div class="col-md-2 col-sm-6 col-md-push-2 text-center hidden-xs" style="margin-top: 350px"> 
+            <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
+          </div> 
+          <div class="col-xs-5 col-xs-push-1 visible-xs" style="z-index: 5; margin-top: 10px"> 
+            <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
+          </div>
+          <div class="col-xs-4 col-xs-4 col-xs-push-1 visible-xs" style="z-index: 5; margin-top: 10px"> 
+            <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
+          </div>                 
+        <% end %>
       </div>
     </div> 
-    <div class="col-md-3">
-    </div>
   </div> 
   <div class="row">
-    <div class="col-md-10" style="background-color: white; height: 50px">
+    <div class="col-md-10 col-sm-12 col-xs-12" style="background-color: white; height: auto">
       <div class="col-md-9 col-md-push-3">         
         <div data-spy="scroll" class="tabbable-panel">
           <div class="tabbable-line">
-            <ul class="nav nav-tabs">
-              <li class="active">
+            <ul class="nav nav-tabs hidden-xs">
+              <li class="active col-xs-2">
                 <a href="#timeline" data-toggle="tab">
                   TimeLine </a>
               </li>
@@ -45,6 +49,28 @@
                    Photos</a>
               </li>
               <li>
+                <a href="#more" data-toggle="tab">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>More</a>
+              </li>
+            </ul>
+            <ul class="nav nav-tabs visible-xs" style="margin-top: 80px">
+              <li class="active col-xs-6">
+                <a href="#timeline" data-toggle="tab">
+                  TimeLine </a>
+              </li>
+              <li class="col-xs-6">
+                <a href="#about" data-toggle="tab">
+                   About</a>
+              </li>
+              <li class="col-xs-6">
+                <a href="#friends" data-toggle="tab">
+                   Friends</a>
+              </li>
+              <li class="col-xs-6">
+                <a href="#photos" data-toggle="tab">
+                   Photos</a>
+              </li>
+              <li class="col-xs-6">
                 <a href="#more" data-toggle="tab">
                   <span class="glyphicon glyphicon-triangle-bottom"></span>More</a>
               </li>
@@ -70,12 +96,12 @@
                 </div>
                 <div class="panel-body">
                   <div style="margin-left: -15px">
-                    <div class="col-md-12">
+                    <div class="col-md-12 col-xs-12 col-sm-12">
                       <!-- dblue -->
                       <a href="#" class="btn btn-dblue btn-lg" role="button"><span class="glyphicon glyphicon-user glyphsize"></span> <br /><span class="glyphicon glyphicon-plus green"></span><br />Photos</a>   
                     </div>
                     <% @posts1.each do |p| %>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-3 col-xs-3">
                       <!-- dblue -->
                       <% if p.image.present? %>  
                       <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
@@ -83,7 +109,7 @@
                     </div> 
                     <% end %>
                     <% @posts2.each do |p| %>
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-3 col-xs-3">
                       <!-- dblue -->
                       <% if p.image.present? %>  
                       <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
