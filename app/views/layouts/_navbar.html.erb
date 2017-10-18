@@ -12,60 +12,82 @@
             <span class="glyphicon glyphicon-user" style="font-size: 200%"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
           </button>
         </div>        
       </div>
     </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-left" style="display: inline">
-        <li><a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30", class: "mr-auto") %></a></li>
-        <li>            
-          <div class="col-md-5 col-sm-4 col-sm-push-2" style="margin-top:5px">
-            <div id="custom-search-input">
-              <div class="input-group col-md-12">
-                <input type="text" class="form-control" placeholder="Search..." />
-                  <span class="input-group-btn">
-                    <button class="btn btn-info btn-sm" type="button">
-                      <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                  </span>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div id="navbar" class="collapse navbar-collapse colp">
+        <div class="col-md-2 col-xs-5 col-sm-3">
+          <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
+        </div>
+        <div class="col-md-5 col-sm-3 col-xs-7">
+          <ul class="nav navbar-nav navbar-left" style="display: inline">
+            <li>              
+              <div id="custom-search-input">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search..." />
+                    <span class="input-group-btn">
+                      <button class="btn btn-info btn-sm" type="button">
+                        <i class="glyphicon glyphicon-search"></i>
+                      </button>
+                    </span>
+                </div>
               </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse" style="margin-top: -70px">
-      <ul class="nav navbar-nav navbar-right" style="display: inline">
-        <% if user_signed_in? %>
-          <li>
-            <%= image_tag(current_user.image.url, size: "25x25", class: "img-responsive img-circle", style: "margin: 10px") %> 
-          </li>
-          <li><a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a></li>
-        <% end %>  
-        <li><a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25", class: "mr-auto") %></a></li>
-        <li><a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25", class: "mr-auto") %></a></li> 
-        <li><a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25", class: "mr-auto") %></a></li>
-        <li class="navbar-brand">
-          <div class="dropdown">
-            <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li role="separator" class="divider"></li>
-              <% if user_signed_in? %>
-              <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
+            </li>
+          </ul>
+        </div>  
+        <div class="col-md-5 col-sm-6 col-xs-6 text-center">
+          <ul class="nav navbar-nav navbar-right" style="display: inline">
+            <% if user_signed_in? %>
+              <div class="col-md-2 col-sm-2 col-xs-1">
+                <li>
+                  <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle", style: "margin-top: 3px") %> 
+                </li>
+              </div>
+              <div class="col-md-2 col-md-pull-1 col-sm-2 col-xs-0" style="margin-right: 10px; margin-top: 5px">  
+                <li>
+                  <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
+                </li>
+              </div>  
+            <% end %>
+            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px"> 
+              <li>
+                <a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
               </li>
-              <% end %>  
-            </ul>
-          </div>
-        </li>
-        <li class="navbar-brand"></li>
-        <li class="navbar-brand"></li>  
-      </ul>
-    </div>  
+            </div>
+            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px">               
+              <li>
+                <a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
+              </li>
+            </div>
+            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px">                
+              <li>
+                <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
+              </li>
+            </div>
+            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1 col-xs-push-3">   
+              <li>
+                <div class="dropdown">
+                  <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <% if user_signed_in? %>
+                    <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
+                    </li>
+                    <% end %>  
+                  </ul>
+                </div>
+              </li>
+            </div>    
+          </ul>
+        </div>  
+      </div>  
     </div><!--/.navbar-collapse --> 
   </div><!-- /.container-fluid -->  
 </nav>

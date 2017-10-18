@@ -1,11 +1,11 @@
 
 <!-- navbar -->
-<nav class="inline navbar-home navbar-fixed-top row" style="margin-top: 0px; margin-bottom:20px">
+<nav class="inline navbar-home navbar-fixed-top row" style="margin-bottom:20px">
   <div class="container">
     <div class="navbar-header">
       <div class="row center-block">
         <div class="col-sm-12 col-xs-12 col-md-12">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded=" " aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar" style="margin-left: -170px"><%= image_tag("fakebook-icon.png", style: "height: 50px; width: 150px") %></span>
             <span class="icon-bar"></span>
@@ -17,29 +17,29 @@
       </div>   
     </div>
     <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top: 20px">                
-        <div id="navbar" class="collapse navbar-collapse colp">
-          <div class="col-md-2 col-sm-4 col-md-6">
-            <%= image_tag("fakebook-icon.png", style: "height: 50px; width: 150px") %>
-          </div>
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-6 col-sm-8 col-md-6">                      
-            <%= bootstrap_form_for(:user, url: session_path(:user)) do |f| %>
-              <ul class="nav navbar-nav navbar-right" style="display: inline"> 
-                <li>
-                  <%= f.email_field :email, autofocus: true, placeholder: "Enter Email", style: "height: 30px; width: 170px; margin-right:10px" %>
-                </li> 
-                <li>
-                  <%= f.password_field :password, autocomplete: "off", placeholder: "Enter Password", style: "height: 30px; width: 170px; margin-right:10px" %> 
-                </li>
-                <li>
-                  <%= f.submit "Log in", style: "height: 30px; width: 60px; font-weight:900; background-color: #002b80; margin-top: 25px", class: "btn btn-primary" %>
-                </li>
-              </ul>
-            <% end %>
-          </div>    
-        </div>  
-      </div>
+      <div id="navbar" class="collapse navbar-collapse colp">
+        <div class="col-md-2 col-sm-4 col-md-6">
+          <%= image_tag("fakebook-icon.png", style: "height: 50px; width: 150px") %>
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-6 col-sm-8 col-md-6">                      
+          <%= bootstrap_form_for(:user, url: session_path(:user)) do |f| %>
+          <ul class="nav navbar-nav navbar-right" style="display: inline"> 
+            <li>
+              <%= f.email_field :email, autofocus: true, placeholder: "Enter Email", style: "height: 30px; width: 170px; margin-right:10px" %>
+            </li> 
+            <li>
+              <%= f.password_field :password, autocomplete: "off", placeholder: "Enter Password", style: "height: 30px; width: 170px; margin-right:10px" %> 
+            </li>
+            <li>
+              <%= f.submit "Log in", style: "height: 30px; width: 60px; font-weight:900; background-color: #002b80; margin-top: 25px", class: "btn btn-primary" %>
+            </li>
+          </ul>
+          <% end %>
+        </div>    
+      </div>  
+    </div>
     </div><!--/.navbar-collapse --> 
   </div><!-- /.container-fluid -->  
 </nav>
