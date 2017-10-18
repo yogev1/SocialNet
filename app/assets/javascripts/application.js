@@ -18,5 +18,5 @@
 
 var http = require("http");
 setInterval(function() {
-    http.get("http://yogevfine.herokuapp.com");
+    http.get("http://socialnet1.herokuapp.com");
 }, 50000);
