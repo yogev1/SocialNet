@@ -100,22 +100,14 @@
                       <!-- dblue -->
                       <a href="#" class="btn btn-dblue btn-lg" role="button"><span class="glyphicon glyphicon-user glyphsize"></span> <br /><span class="glyphicon glyphicon-plus green"></span><br />Photos</a>   
                     </div>
-                    <% @posts1.each do |p| %>
+                    <% @posts.each do |p| %>
                     <div class="col-md-4 col-sm-3 col-xs-3">
                       <!-- dblue -->
                       <% if p.image.present? %>  
                       <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
                       <% end %>     
                     </div> 
-                    <% end %>
-                    <% @posts2.each do |p| %>
-                    <div class="col-md-4 col-sm-3 col-xs-3">
-                      <!-- dblue -->
-                      <% if p.image.present? %>  
-                      <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
-                      <% end %>     
-                    </div> 
-                    <% end %>  
+                    <% end %> 
                   </div>
                 </div>
               </div>

@@ -14,6 +14,11 @@
     color: #004d99;
 }
 
+.name2 { 
+    font-weight: 900;
+    color: #004d99;
+}
+
 .btn1 {
     background-color: inherit;
 }
@@ -48,30 +53,35 @@
     font-size: 150%;
 }
 
+.btnfriend {
+  background-color: #284c79;
+  color: white;
+}
+
 #dropdownMenu1 {
   background-color: #1a75ff;
   border: none;
 }
 
 .navbar {
-   background-color: #002b80;
+   background-color: #284c79;
    height: 50px;
    color: white;
 }
 
 .colp { 
-  background: #002b80;
+  background: #284c79;
 }
 
 
 .navbar-home {
-   background-color: #002b80;
+   background-color: #284c79;
    height: 100px;
    color: white;
 }
 
 .navbar-home2 {
-   background-color: #002b80;
+   background-color: #284c79;
    height: 60px;
    color: white;
 }
@@ -237,3 +247,64 @@ fieldset[disabled] .btn-dblue.active {
   color: #1B23BD; 
   background-color: #ffffff; 
 }
+
+
+
+
+
+
+.src-image {
+  display: none;
+}
+
+.card {
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #CCC;
+  border-radius: 8px;
+  text-align: center;
+  padding: 0;
+  background-color: #284c79;
+  color: rgb(136, 172, 217);
+}
+
+.card .header-bg {
+  /* This stretches the canvas across the entire hero unit */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  border-bottom: 1px #FFF solid;
+  /* This positions the canvas under the text */
+  z-index: 1;
+}
+.card .avatar {
+  position: relative;
+  margin-top: 15px;
+  z-index: 100;
+}
+
+.card .avatar img {
+  width: 100px;
+  height: 100px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  border: 5px solid rgba(0,0,30,0.8);
+}
+
+#map {
+    padding: 6px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc #ccc #999 #ccc;
+    -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+    box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+  //  width: 500px;
+  }
+  #map {
+  //  width: 500px;
+      height: 500px;
+  }

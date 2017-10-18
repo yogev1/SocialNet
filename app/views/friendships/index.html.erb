@@ -1,8 +1,0 @@
-<div class="row text-center">
-	<% current_user.friends.each do |friend| %>
-		<div class="col-md-4">
-			<a href="<%= friendship_path(friend) %>"><%= image_tag friend.image, style: "height: 35%" %></a>
-			<h3><%= friend.name %></h3>
-		</div>		
-	<% end %>	
-</div>
