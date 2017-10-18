@@ -22,7 +22,7 @@
         <div class="col-md-2 col-xs-6 col-sm-3">
           <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
         </div>
-        <div class="col-md-5 col-sm-3 col-xs-6">
+        <div class="col-md-4 col-sm-3 col-xs-6">
           <ul class="nav navbar-nav navbar-left" style="display: inline">
             <li>              
               <div id="custom-search-input">
@@ -52,41 +52,38 @@
                 </li>
               </div>  
             <% end %>
-            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px"> 
+            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px"> 
               <li>
                 <a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px">               
+            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px">               
               <li>
                 <a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-pull-1 col-sm-2 col-xs-1" style="margin-right: 10px">                
+            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px">                
               <li>
                 <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1">   
-              <li>
-                <div class="dropdown">
-                  <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Action</a></li>
-                    <li role="separator" class="divider"></li>
-                    <% if user_signed_in? %>
-                    <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
-                    </li>
-                    <% end %>  
-                  </ul>
-                </div>
-              </li>
-            </div>    
           </ul>
-        </div>  
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-1">   
+          <div class="dropdown">
+            <button class="btn btn-default glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Action</a></li>
+              <li role="separator" class="divider"></li>
+              <% if user_signed_in? %>
+              <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
+              </li>
+              <% end %>  
+            </ul>
+          </div>
+        </div>     
       </div>  
     </div><!--/.navbar-collapse --> 
   </div><!-- /.container-fluid -->  
