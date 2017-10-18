@@ -92,7 +92,17 @@
                     <% end %>  
                   </div>
                 </div>
-              </div>           
+              </div>
+              <div class="panel">
+                <div class="panel-heading">
+                  <h2 class="panel-title">
+                    <%= image_tag("friendsgrid-icon.png", style: "height: 30px; width: 30px") %>
+                    Friends
+                  </h2>                  
+                </div>
+                <div class="panel-body">
+                </div>
+              </div>                                    
             </div>
             <div class="col-md-8">
               <div class="panel panel-default">
@@ -113,23 +123,7 @@
                 <div class="panel-footer">
                 </div>
               </div>
-            </div>        
-          </div>
-          <div class="row">
-            <% @posts.each do |post| %>  
-            <div class="col-md-4">
-              <div class="panel">
-                <div class="panel-heading">
-                  <h2 class="panel-title">
-                    <%= image_tag("friendsgrid-icon.png", style: "height: 30px; width: 30px") %>
-                    Friends
-                  </h2>                  
-                </div>
-                <div class="panel-body">
-                </div>
-              </div>           
-            </div>
-              <div class="col-md-8" style="margin-top: auto">     
+              <% @posts.each do |post| %>     
                 <div class="panel">
                   <div class="panel-heading pan">
                     <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
@@ -147,16 +141,16 @@
                       <% sec = @time_now.sec - created.sec %>
                       <% if year > 0 %>
                         <h5><%= year %> years ago</h5>
-                      <% elsif month > 0 %>  
-                        <h5><%= month %> months ago</h5>
-                      <% elsif day > 0 %>  
-                        <h5><%= day %> days ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>
-                      <% elsif hour > 0 %>  
-                        <h5><%= hour %> hours ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>  
-                      <% elsif min > 0 %>  
-                        <h5><%= min %> minutes ago</h5>
-                      <% elsif sec > 0 %>
-                        <h5><%= sec %> seconds ago</h5>                  
+                        <% elsif month > 0 %>  
+                          <h5><%= month %> months ago</h5>
+                        <% elsif day > 0 %>  
+                          <h5><%= day %> days ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>
+                        <% elsif hour > 0 %>  
+                          <h5><%= hour %> hours ago at <%= post.created_at.hour %>:<%= post.created_at.min %></h5>  
+                        <% elsif min > 0 %>  
+                          <h5><%= min %> minutes ago</h5>
+                        <% elsif sec > 0 %>
+                          <h5><%= sec %> seconds ago</h5>                  
                       <% end %>
                     </div>
                     <div class="col-md-5 col-md-push-6">
@@ -192,7 +186,7 @@
                           <div class="row">
                             <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%"></span>  
                             <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %> 
-                            <%= f.submit "Like", class: "btn btn2" %>
+                              <%= f.submit "Like", class: "btn btn2" %>
                             <% end %>
                           </div>
                         </div>                       
@@ -247,54 +241,54 @@
                         <div class="row">
                           <div class="col-md-12 col-sm-12 col-xs-12">
                             <%= bootstrap_form_for(Comment.new, :url => post_comments_path(post_id: post.id)) do |f| %> 
-                            <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
-                            <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px;" %><br><br>
+                              <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
+                              <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px;" %><br><br>
                             <% end %>
                           </div>
                         </div>           
                         <div class="row">
                           <% comments = post.comments.all %>
                           <% comments.each do |com| %>
-                          <% user = User.find_by(id: com.user_id) %>
-                          <div class="row">
-                            <% if com.description %>
-                            <div class="col-md-6 col-sm-6 col-xs-6 col-md-push-2 col-xs-push-2">
-                              <div class="row">
-                                <h4><%= user.name.capitalize %>: <%= com.description %></h4>   
-                              </div>  
-                            </div>
-                            <div class="col-md-6 col-md-push-12 col-sm-6 col-xs-6 col-xs-push-10">    
-                              <div class="dropdown">
-                                <div class="col-md-4 col-xs-3 col-sm-4 btn-group">
-                                  <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
-                                  <ul class="dropdown-menu">
-                                    <span class="glyphicon glyphicon-edit" style="padding-left: 5px"></span>
-                                    <%= link_to 'Edit...', edit_post_comment_path(post_id: post.id,id: com.id), class: "btn btn3" %><br>
-                                    <span class="glyphicon glyphicon-trash" style="padding-left: 5px"></span>
-                                    <%= link_to 'Delete...', post_comment_path(post_id: post.id,id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn3" %>
-                                  </ul>  
-                                </div>
+                            <% user = User.find_by(id: com.user_id) %>
+                            <div class="row">
+                              <% if com.description %>
+                              <div class="col-md-6 col-sm-6 col-xs-6 col-md-push-2 col-xs-push-2">
+                                <div class="row">
+                                  <h4><%= user.name.capitalize %>: <%= com.description %></h4>   
+                                </div>  
                               </div>
-                            </div>  
-                            <% end %>    
-                              </div>       
-                              <% end %><br>
-                            <div class="row">  
-                              <% if !comments %>
-                                <h4>Be The First One To Comment</h4>
-                              <% end %> 
+                              <div class="col-md-6 col-md-push-12 col-sm-6 col-xs-6 col-xs-push-10">    
+                                <div class="dropdown">
+                                  <div class="col-md-4 col-xs-3 col-sm-4 btn-group">
+                                    <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
+                                    <ul class="dropdown-menu">
+                                      <span class="glyphicon glyphicon-edit" style="padding-left: 5px"></span>
+                                      <%= link_to 'Edit...', edit_post_comment_path(post_id: post.id,id: com.id), class: "btn btn3" %><br>
+                                      <span class="glyphicon glyphicon-trash" style="padding-left: 5px"></span>
+                                      <%= link_to 'Delete...', post_comment_path(post_id: post.id,id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn3" %>
+                                    </ul>  
+                                  </div>
+                                </div>
+                              </div>  
+                              <% end %>    
                             </div>       
-                            <div class="col-md-3">
-                            </div>                
-                          </div>            
+                          <% end %><br>
+                          <div class="row">  
+                            <% if !comments %>
+                              <h4>Be The First One To Comment</h4>
+                            <% end %> 
+                          </div>       
+                          <div class="col-md-3">
+                          </div>                
+                        </div>            
                         </div> 
                       </div>
                     </div>
                   </div>                                    
                 </div>
-              </div>
-            </div>   
-        <% end %>
+              <% end %>
+            </div>         
+          </div>        
         </div>      
       </div>     
       <div class="tab-pane" id="about" style="padding-top: 20px">
