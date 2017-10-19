@@ -1,3 +1,5 @@
+<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
 <div class="container" style="padding-top:70px">    
   <!--  user authentication -->
   <% if user_signed_in? %>
@@ -21,9 +23,21 @@
       <div class="col-md-12">
         <div class="panel">
           <div class="panel-heading">
-            <div class="col-md-1 col-xs-3 col-sm-3" style="padding: 5px">
-              <% user = User.find_by(id: post.user_id) %>
-              <%= image_tag user.image.url, class: "img-circle", size: "40x40" %>
+            <% user = User.find_by(id: post.user_id) %>
+            <div class="col-md-1 col-xs-3 col-sm-3 card2" style="padding: 5px">
+              <div class="front"> 
+                <%= image_tag user.image.url, class: "img-circle", size: "40x40" %>
+              </div> 
+              <div class="back img-circle" style="background-color: black; max-height: 40px; max-width: 40px; opacity: 0.7">
+                <div style="background-color: white">
+                  <h7 style="margin-top: 10px"><%= user.name %></h7>
+                </div>  
+              </div>
+              <script>$(".card2").flip({
+                axis: 'y',
+                trigger: 'click'
+              }); 
+              </script>
             </div>
             <div class="col-md-4 col-xs-6 col-sm-6 name">
               <%= link_to user.name, user  %>
@@ -59,7 +73,7 @@
                     </div><br>
                     <div class="row">
                       <span class="glyphicon glyphicon-trash" style="padding-left: 5px; font-size: 150%; margin-top: 5px"></span>&nbsp&nbsp                    
-                      <%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default", style: "padding: 6px 30px" %>&nbsp&nbsp
+                      <%= link_to 'Delete Post', post, method: :delete, data: { confirm: 'Are you sure?' }, class: " delete_post btn btn-default", style: "padding: 6px 30px", remote: :true %>&nbsp&nbsp
                     </div>  
                   </div>
                 </ul>
@@ -69,10 +83,26 @@
           <div class="panel-body"> 
             <div class="row">    
               <div class="col-md-12 text-center"> 
-                <h2><%= post.description %></h2> 
                 <% if post.image.present? %>                  
-                  <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto" %><br/><br/>
-                <% end %>                
+                <div class="card" style="max-height: 400px"> 
+                  <div class="front"> 
+                    <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto" %><br/><br/>
+                  </div> 
+                  <div class="back">
+                    <div style="background-color: #284c79">
+                      <h1><%= post.description %></h1>
+                      <h3>Post Created At: <br> <%= post.created_at.inspect %></h3>
+                    </div>  
+                  </div>
+                  <script>$(".card").flip({
+                    axis: 'y',
+                    trigger: 'click'
+                  }); 
+                  </script> 
+                </div>
+                <% else %>
+                <h1><%= post.description %></h1>  
+                <% end %>                               
               </div>
             </div><hr>  
             <div class="row">
