@@ -11,18 +11,17 @@
             <span class="glyphicon glyphicon-user" style="font-size: 200%"></span>  
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>            
           </button>
         </div>        
       </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12" style="margin-top:10px">
-      <div id="navbar" class="collapse navbar-collapse colp">
-        <div class="col-md-2 col-xs-12 col-sm-3">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div id="navbar" class="collapse navbar-collapse colp" style="margin-top:10px">
+        <div class="col-md-2 hidden-xs hidden-sm">
           <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
         </div>
-        <div class="col-md-4 col-sm-3 col-xs-12">
+        <div class="col-md-4 hidden-xs hidden-sm">
           <ul class="nav navbar-nav navbar-left" style="display: inline">
             <li>              
               <div id="custom-search-input">
@@ -41,35 +40,52 @@
         <div class="col-md-5 col-sm-6 col-xs-6 text-center">
           <ul class="nav navbar-nav navbar-right" style="display: inline">
             <% if user_signed_in? %>
-              <div class="col-md-2 col-sm-2 col-xs-1">
+              <div class="col-md-2 hidden-xs hidden-sm">
                 <li>
                   <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle", style: "margin-top: 3px") %> 
                 </li>
               </div>
-              <div class="col-md-2 col-md-pull-1 col-sm-2 col-xs-0" style="margin-right: 10px; margin-top: 5px">  
+              <div class="col-md-2 col-md-pull-1 hidden-xs hidden-sm" style="margin-right: 10px; margin-top: 5px">  
                 <li>
                   <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
                 </li>
               </div>  
             <% end %>
-            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px"> 
+            <div class="col-md-1 col-md-push-1 col-sm-2" style="margin-right: 10px"> 
               <li>
                 <a href="<%= root_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px">               
+            <div class="col-md-1 col-md-push-1 col-sm-2" style="margin-right: 10px">
               <li>
                 <a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
               </li>
             </div>
-            <div class="col-md-1 col-md-push-1 col-sm-2 col-xs-1" style="margin-right: 10px">                
+            <div class="col-md-1 col-md-push-1 col-sm-2" style="margin-right: 10px">                
               <li>
                 <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
               </li>
             </div>
+            <li>
+              <div class="col-md-1 visible-xs visible-sm hidden-md">   
+                <div class="dropdown">
+                  <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Action</a></li>
+                    <li role="separator" class="divider"></li>
+                    <% if user_signed_in? %>
+                    <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
+                    </li>
+                    <% end %>  
+                  </ul>
+                </div>
+              </div> 
+            </li>   
           </ul>
         </div>
-        <div class="col-md-1 col-sm-1 col-xs-1 col-md-pull-1">   
+        <div class="col-md-1 hidden-xs hidden-sm">   
           <div class="dropdown">
             <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
             </button>
