@@ -4,21 +4,25 @@
   <!--  user authentication -->
   <% if user_signed_in? %>
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-2 hidden-xs hidden-sm">
       <div class="row">
-        <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin: 10px; height: 30px; width: 30px") %>
-        <a href="<%= user_path(current_user) %>" class="navbar-brand col"><%= current_user.name %></a>
+        <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
+        <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-2 col-xs-3 col-sm-2">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat;">News Feed<i class="glyphicon glyphicon-option-horizontal" style="margin-left: 40px"></i></a>
+        </div>  
       </div>
       <div class="row">
-        <a href="#" class: "btn" style="margin: 6px 30px">News Feed</a>
-      </div>
-      <div class="row">
-        <a href="#" class: "btn" style="margin: 6px 30px">Messenger</a>
+        <div class="col-md-2 col-xs-3 col-sm-2">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat;">Messenger<i class="glyphicon glyphicon-option-horizontal" style="margin-left: 40px"></i></a>
+        </div>  
       </div>
       <div class="row">
       </div>
     </div>
-    <div class="col-md-7 col-md-pull-1">       
+    <div class="col-md-6">       
     <% @posts.each do |post| %>
       <div class="col-md-12">
         <div class="panel">
