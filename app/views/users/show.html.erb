@@ -230,8 +230,10 @@
                   <div class="panel-body">
                     <div class="row">    
                       <div class="col-md-12 text-center"> 
-                        <h2><%= post.description %></h2> 
-                        <% if post.image.present? %>                  
+                        <% if !post.image.present? %>
+                          <h2><%= post.description %></h2>   
+                        <% else %> 
+                          <h1><%= post.description %></h1>                 
                           <div class="card" style="max-height: 400px"> 
                             <div class="front"> 
                               <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto" %><br/><br/>
@@ -247,10 +249,8 @@
                               trigger: 'click'
                             }); 
                             </script> 
-                          </div>
-                        <% else %>
-                          <h1><%= post.description %></h1>  
-                        <% end %>                
+                          </div>  
+                        <% end %>        
                       </div>
                     </div><hr>  
                     <div class="row">

@@ -1,10 +1,8 @@
   <style>
-    .toggler { width: auto; height: auto; position: relative; }
-    #button { padding: .5em 1em; text-decoration: none; }
-    #effect { width: 730px; height: 80px;  position: relative; background: #fff; }
+    .toggler { width: auto; height: auto; position: relative; hidden-xs}
+    #button { text-decoration: none; }
+    #effect { width: auto; height: auto;  position: relative; background: #fff; }
   </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
     var state = true;
@@ -13,13 +11,13 @@
         $( "#effect" ).animate({
           backgroundColor: "#284c79",
           color: "white",
-          width: 500
+          width: "50%"
         }, 1000 );
       } else {
         $( "#effect" ).animate({
           backgroundColor: "white",
           color: "white",
-          width: 730
+          width: "100%"
         }, 1000 );
       }
       state = !state;
@@ -29,8 +27,8 @@
 
 <div class="container" style="margin-top: 80px">
   <div class="row">
-    <div class="col-md-8 col-xs-12 col-sm-12">     
-      <div class="panel">
+    <div class="col-md-7 col-xs-12 col-sm-12">     
+      <div class="panel" style="border-radius: 0px">
         <div class="panel-heading">
           <h1 class="panel-title">Pending Friend Requests</h1>
         </div>
@@ -43,12 +41,12 @@
             <% i_friend_of_u = user.friends.include?(current_user) %>
             <% if !is_friend && i_friend_of_u && !accepted_friend %>
             <div class="row">               
-              <div class="col-md-3" style="margin: -15px">
+              <div class="col-md-3">
                 <%= image_tag user.image.url, style: "height: 80; width: 80", class: "img-responsive" %>
               </div>
-              <div class="col-md-3 name2">
-                <a href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
-                <a href="<%= user_path(user) %>"><%= user.email %></a>
+              <div class="col-md-3">
+                <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
+                <p style="color: #A9A9A9"><%= user.email %></p>
               </div>
               <div class="col-md-6">            
                 <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%" %>
@@ -67,36 +65,36 @@
         <% if user != current_user %>
           <div class="row">
             <div class="col-md-12 toggler col-xs-12 col-sm-12">
-              <div class="panel panel-default ui-widget-content ui-corner-all" id="effect">
+              <div class="panel panel-default ui-widget-content ui-corner-all" id="effect" style="border-radius: 0px">
                 <div class="panel-body">
-                  <div class="col-md-2" style="margin: -15px">
+                  <div class="col-md-2 col-xs-12 col-sm-12" style="margin-top: -15px; margin-left: -30px">
                     <%= image_tag user.image.url, style: "height: 80; width: 80", class: "img-responsive" %>
                   </div>
-                  <div class="col-md-3 name2">
-                    <a href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
-                    <a href="<%= user_path(user) %>"><%= user.email %></a>
+                  <div class="col-md-3 col-xs-12 col-sm-12 name2">
+                    <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
+                    <p style="color: #A9A9A9"><%= user.email %></p>
                   </div> 
-                  <div class="col-md-7 col-md-push-1 col-xs-12 col-sm-12">
-                    <% is_friend = current_user.friends.include?(user) %>
-                    <% accepted = current_user.friendships.where(accepted: true) %>
-                    <% accepted_user = user.friendships.where(accepted: true)  %>
-                    <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
-                    <% i_friend_of_u = user.friends.include?(current_user) %>
-                    <% if !is_friend && !i_friend_of_u %>
+                  <div class="col-md-7 col-md-push-3 col-xs-12 col-sm-12">
                     <div class="row" style="margin-top: 10px">
-                      <div class="col-md-12 col-xs-12 col-sm-12"> 
+                      <div class="col-md-8 col-xs-12 col-sm-12">                    
+                        <% is_friend = current_user.friends.include?(user) %>
+                        <% accepted = current_user.friendships.where(accepted: true) %>
+                        <% accepted_user = user.friendships.where(accepted: true)  %>
+                        <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
+                        <% i_friend_of_u = user.friends.include?(current_user) %>
+                        <% if !is_friend && !i_friend_of_u %> 
                         <%= link_to '+  Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border: 1px solid white" %>
                         <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
                           <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%; margin-left: -10px; border: 1px solid white; color: white" %>
                           <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%" %> 
                         <% elsif is_friend && !accepted_friend %>
                           <span class="label label-success" style="max-height: 20px; min-width: 130px; font-size: 80%">Friend Request Sent</span>
-                          <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%; margin-top: 10px" %>
+                          <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-danger", style: "max-height: 20px; min-width: 120px; font-size: 75%; margin-top: 10px; color: white" %>
                         <% end %>                               
                         <% if accepted_friend %>
                           <%= link_to 'Cancel Friendship', friend_path(id: user.id), method: :delete, data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "font btn btn-danger", style: "max-height: 20px; min-width: 130px; font-size: 80%" %>
                         <% end %>
-                        <button id="button" class="ui-state-default ui-corner-all glyphicon glyphicon-backward" style="margin-left: 10px;padding-left: 5px; max-width: 15px;"></button>
+                        <button id="button" class="ui-state-default ui-corner-all glyphicon glyphicon-backward" style="margin-left: 10px;padding-right: 20px; max-width: 15px;"></button>
                       </div> 
                     </div>                    
                   </div>                      
@@ -107,18 +105,26 @@
         <% end %>
       <% end %>
     </div>
+    <div class="col-md-3 col-xs-12 col-sm-12">
+      <div class="panel" style="border-radius: 0px">
+        <div class="panel-heading">
+          <h3 class="panel-title">Add Personal Contacts</h3>
+        </div><hr>
+        <div class="panel-body">
+          
+        </div>
+      </div>
+      <div class="panel" style="border-radius: 0px">
+        <div class="panel-heading">
+          <h3 class="panel-title">Serach For Friends</h3>
+        </div><hr>
+        <div class="panel-body">
+          
+        </div>
+      </div>      
+    </div>
   </div>
 </div>
 
 
-
-
-
-
-
-
-
- 
-
- 
  
