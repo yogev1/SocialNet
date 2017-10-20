@@ -1,8 +1,8 @@
+<div class="jumbotron col-md-6 col-xs-12 col-sm-9">
 <%= bootstrap_form_for(post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
       <ul>
       <% post.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,8 +10,8 @@
       </ul>
     </div>
   <% end %>
-  <%= form.text_field :title, id: :post_title %>
   <%= form.text_area :description, id: :post_description %>
   <%= form.file_field :image %>
   <%= form.submit %>
 <% end %>
+</div>
