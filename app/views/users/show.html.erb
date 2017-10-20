@@ -4,7 +4,9 @@
     <div class="col-md-10">  
       <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
         <div class="col-md-3 col-sm-3 col-xs-7" style="margin-top: 230px; z-index: 100">
-          <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 200px; width: 200px") %>
+          <% if current_user.image.present? %>
+            <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 200px; width: 200px") %>
+            <% end %>
         </div> 
         <div class="col-md-2 col-sm-2 col-xs-5" style="margin-top: 320px"> 
           <h1 style="font-weight: 700; color:white"><%= @user.name.capitalize %></h1>  

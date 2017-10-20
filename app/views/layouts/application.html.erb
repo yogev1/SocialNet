@@ -24,10 +24,10 @@
 		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
  	</head>
  	<body class="font" style="background-color: #E8E8E8">
- 	  <% if params[:controller] != 'pages' && params[:action] != 'home' %> 
-      <%= render 'layouts/navbar' %>
-    <% else %>
-      <%= render 'layouts/home_nav' %>  
+ 	  <% if (params[:controller] == 'pages' && params[:action] == 'home') %>
+      <%= render 'layouts/home_nav' %> 
+    <% elsif user_signed_in? %>
+      <%= render 'layouts/navbar' %>   
     <% end %>
 		<div class="container">
 	    <%= yield %>

@@ -1,21 +1,19 @@
-
-<%= bootstrap_form_for(@user, html: { multipart: true }) do |f| %>
-  
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="jumbotron col-md-6 col-xs-12 col-sm-9">
+  <%= bootstrap_form_for(@user, html: { multipart: true }) do |f| %> 
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+      <%= f.text_field :name, id: :user_name, placeholder: "Enter Name" %>
+      <%= f.email_field :email, placeholder: "Enter Email" %>
+      <%= f.password_field :password, placeholder: "Enter Password" %>
+      <%= f.file_field :image %>
+      <%= f.submit %>
   <% end %>
-
-    <%= f.text_field :name, id: :user_name, placeholder: "Enter Name" %>
-    <%= f.email_field :email, placeholder: "Enter Email" %>
-    <%= f.password_field :password, placeholder: "Enter Password" %>
-    <%= f.file_field :image %>
-    <%= f.submit %>
-<% end %>
+</div>

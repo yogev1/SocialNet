@@ -1,3 +1,6 @@
+<div class="col-md-12 col-xs-12 col-sm-12 text-center">
+  <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
+</div>  
 <h1 style="margin-top: 60px">Log in</h1><br>
 <div class="jumbotron col-md-6">
   <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>

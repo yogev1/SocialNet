@@ -42,7 +42,9 @@
             <% if user_signed_in? %>
               <div class="col-md-2 hidden-xs hidden-sm">
                 <li>
-                  <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle", style: "margin-top: 3px") %> 
+                  <% if current_user.image.present? %>
+                    <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle", style: "margin-top: 3px") %> 
+                  <% end %>  
                 </li>
               </div>
               <div class="col-md-2 col-md-pull-1 hidden-xs hidden-sm" style="margin-right: 10px; margin-top: 5px">  
