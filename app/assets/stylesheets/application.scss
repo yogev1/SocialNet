@@ -57,6 +57,23 @@
   background-color: #F8F8F8;
 }
 
+.btn7 {
+  color: #284c79;
+  font-weight: bold; 
+}
+.btn7:hover {
+  background-color: #F8F8F8;
+  color: #284c79;
+  font-weight: bold; 
+}
+
+
+button .full-width{
+  width:100%;
+  display:block; 
+}
+
+
 .btnfriend {
   background-color: #284c79;
   color: white;
@@ -187,13 +204,11 @@ for user profile
 
 .panel-body 
 .btn:not(.btn-block) { 
-    width:80px !important;
-    height:80px !important;
-    margin-bottom:10px !important;
+
     vertical-align: middle !important;
-    text-align: center !important;
+
     text-wrap: normal !important;
-    padding: 0 0 0 0 !important; 
+    padding: 0; 
 }
 /* Font Size For Button Text */
 .glyphsize {
@@ -264,3 +279,8 @@ fieldset[disabled] .btn-dblue.active {
   color: rgb(136, 172, 217);
   border: none;
 }
+
+#drop:hover{
+  background-color: #284c79;
+}
+

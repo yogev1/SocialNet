@@ -98,30 +98,25 @@
                 </div>
                 <div class="panel-body">
                   <div style="margin-left: -15px">
-                    <div class="col-md-12 col-xs-12 col-sm-12">
-                      <!-- dblue -->
-                      <a href="#" class="btn btn-dblue btn-lg" role="button"><span class="glyphicon glyphicon-user glyphsize"></span> <br /><span class="glyphicon glyphicon-plus green"></span><br />Photos</a>   
-                    </div>
                     <% @posts.each do |p| %>
-                    <div class="col-md-4 col-sm-3 col-xs-3 card2">
-                      <!-- dblue -->
-                      <% if p.image.present? %>  
-                        <div class="front"> 
-                          <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
-                        </div> 
-                        <div class="back" style="background-color: #284c79; max-height: 82px; max-width: 82px; opacity: 0.7">
-                          <div style="background-color: #284c79">
-                            <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
-                          </div>  
-                        </div>
-                        <script>
-                          $(".card2").flip({
-                            axis: 'y',
-                            trigger: 'hover'
-                          }); 
-                        </script>
-                      <% end %>     
-                    </div> 
+                      <div class="col-md-4 col-sm-3 col-xs-3 card2">
+                        <% if p.image.present? %>  
+                          <div class="front"> 
+                            <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 96px; width: 88px;" %></a>
+                          </div> 
+                          <div class="back" style="background-color: #284c79; max-height: 90px; max-width: 90px; opacity: 0.7">
+                            <div style="background-color: #284c79">
+                              <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
+                            </div>  
+                          </div>
+                          <script>
+                            $(".card2").flip({
+                              axis: 'y',
+                              trigger: 'hover'
+                            }); 
+                          </script>
+                        <% end %>     
+                      </div> 
                     <% end %> 
                   </div>
                 </div>
@@ -136,25 +131,25 @@
                 <div class="panel-body">
                   <div style="margin-left: -15px">
                     <% current_user.friends.each do |f| %>
-                    <div class="col-md-4 col-sm-3 col-xs-3 card2">
-                      <!-- dblue -->
-                      <% if f.image.present? %>  
-                        <div class="front"> 
-                          <a href="<%= user_path(f) %>" class="btn btn-lg" role="button"><%= image_tag f.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
-                        </div> 
-                        <div class="back"  style="background-color: #284c79; max-height: 82px; max-width: 82px">
-                          <div>
-                            <h4 class="text-center" style="color: white"><br><%= f.name %></h4>
-                          </div>  
-                        </div>
-                        <script>
-                          $(".card2").flip({
-                            axis: 'y',
-                            trigger: 'hover'
-                          }); 
-                        </script>
-                      <% end %>     
-                    </div> 
+                      <div class="col-md-4 col-sm-3 col-xs-3 card2">
+                        <!-- dblue -->
+                        <% if f.image.present? %>  
+                          <div class="front"> 
+                            <a href="<%= user_path(f) %>" class="btn btn-lg" role="button"><%= image_tag f.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
+                          </div> 
+                          <div class="back"  style="background-color: #284c79; max-height: 82px; max-width: 82px">
+                            <div>
+                              <h4 class="text-center" style="color: white"><br><%= f.name %></h4>
+                            </div>  
+                          </div>
+                          <script>
+                            $(".card2").flip({
+                              axis: 'y',
+                              trigger: 'hover'
+                            }); 
+                          </script>
+                        <% end %>     
+                      </div> 
                     <% end %> 
                   </div>
                 </div>
@@ -168,12 +163,12 @@
                   <div class="row">
                     <div class="col-md-2">
                       <%= image_tag(current_user.image.url, size: "50x50", class: "img-responsive img-circle") %>
-                    </div>
-                    <div>  
+                    </div> 
+                    <div class="col-md-12 col-xs-12 col-sm-12">  
                       <%= bootstrap_form_for(@post) do |f| %>
-                        <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="font-size: 150%; color: #B0B0B0;padding-right: 100px;">What's on your mind?</button>
+                      <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="text-align: center; font-size: 150%; color: #B0B0B0;padding-right: 100px;"><h4 >What's on your mind?</h4></button>
                       <% end %>
-                    </div>  
+                    </div>    
                   </div>
                 </div>
                 <div class="panel-footer">
@@ -255,10 +250,10 @@
                     </div><hr>  
                     <div class="row">
                       <% if !post.likes.find_by(user_id: current_user.id) %>
-                        <div class="col-md-3 col-md-push-1 col-xs-3 col-sm-3 col-xs-push-1 col-sm-push-1">
-                          <div class="row">
-                            <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%"></span>  
-                            <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %> 
+                        <div class="col-md-3 col-xs-3 col-sm-3">
+                          <div class="row"> 
+                            <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %>
+                              <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%; margin-left: 20px"></span>  
                               <%= f.submit "Like", class: "btn btn2" %>
                             <% end %>
                           </div>
@@ -272,13 +267,13 @@
                           </div>                      
                         </div>  
                       <% end %>
-                      <div class="col-md-3 col-sm-4 col-xs-5">
-                        <span class="glyphicon glyphicon-comment" style="font-size: 120%">
+                      <div class="col-md-3 col-sm-4 col-xs-3">
+                        <span class="glyphicon glyphicon-comment" style="margin-top: 5px; font-size: 120%">
                         </span>
                         <a href="#comment" class="btn btn2">Comment</a>
                       </div>
                       <div class="col-md-3 col-sm-4 col-xs-3">
-                        <%= image_tag("share-icon.png", size: "20x20", style: "margin-top: -10px; margin-left: -15px") %>
+                        <%= image_tag("share-icon.png", size: "20x20", style: "margin-left: 25px") %>
                         <a href="#" class="btn btn2">Share</a>
                       </div>                
                     </div>
@@ -413,24 +408,24 @@
     <div class="modal-content">
       <div class="modal-header">
         <div class="row">
-          <div class="col-md-1">
-            <a href="#" class="navbar-brand" style="font-size: 100%;">Post</a>
+          <div class="col-md-1 col-sm-2 col-xs-2 col-xs-pull-1">
+            <a href="#" class="navbar-brand" style="font-size: 100%; margin-left:5px">Post</a>
           </div>
-          <div class="col-md-2" style=" margin-right: 5px">
+          <div class="col-md-2 col-sm-2 col-xs-2 col-xs-pull-1" style=" margin-right: 5px">
             <a href="#" class="navbar-brand" style="font-size: 100%;">Photo/Video</a>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-sm-2 col-xs-2">
             <a href="#" class="navbar-brand" style="font-size: 100%;">Live Video</a>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-2 col-sm-2 col-xs-2 col-xs-push-1">
             <a href="#" class="navbar-brand" style="font-size: 100%;">Life Event</a>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-3 col-sm-1 col-xs-1">
           </div>
-          <div class="col-md-1" style="margin-top: 10px">
+          <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 10px">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size: 150%">&times;</span></button>
           </div>   
-        </div>  
+        </div> 
       </div>
       <div class="modal-body">
         <%= bootstrap_form_for(@post) do |f| %>

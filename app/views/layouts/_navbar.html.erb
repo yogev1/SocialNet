@@ -7,7 +7,7 @@
         <div class="col-sm-12 col-xs-12 col-md-12">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded=" " aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar" style="margin-left: -160px"><%= image_tag("fakebook-icon.png", style: "height: 30px; width: 150px") %></span>
+            <a href="<%= root_path %>"><span class="icon-bar" style="margin-left: -160px"><%= image_tag("fakebook-icon.png", style: "height: 30px; width: 150px") %></span></a>
             <span class="glyphicon glyphicon-user" style="font-size: 200%"></span>  
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -87,17 +87,20 @@
             </li>   
           </ul>
         </div>
-        <div class="col-md-1 hidden-xs hidden-sm">   
+        <div class="col-md-1 col-md-pull-1 hidden-xs hidden-sm">   
           <div class="dropdown">
             <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Action</a></li>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="border-radius: 0px">
+              <li><a href="#">Create Group</a></li>
+              <li><a href="#">Manage Groups</a></li>
               <li role="separator" class="divider"></li>
+              <li><a href="#">Activity Log</a></li>
+              <li><a href="#">News Feed Preferences</a></li>
+              <li><a href="#">Settings</a></li>
               <% if user_signed_in? %>
-              <li><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn-danger", style: "font-size: 90%" %>
-              </li>
+                <li style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop" %>
+                </li>
               <% end %>  
             </ul>
           </div>

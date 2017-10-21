@@ -1,54 +1,87 @@
 <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
 
-<div class="container" style="padding-top:70px">    
+<div class="container-fluid" style="padding-top:70px">    
   <!--  user authentication -->
   <% if user_signed_in? %>
   <div class="row">
-    <div class="col-md-2 hidden-xs hidden-sm">
+    <div class="col-md-2 col-sm-12 col-xs-12">
       <div class="row">
         <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
         <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
       </div>
       <div class="row" style="margin-bottom: 1px">
-        <div class="col-md-2 col-xs-3 col-sm-2">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat;">News Feed<i class="glyphicon glyphicon-option-horizontal" style="margin-left: 40px"></i></a>
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat;">News Feed</a>
         </div>  
       </div>
       <div class="row">
-        <div class="col-md-2 col-xs-3 col-sm-2">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat;">Messenger<i class="glyphicon glyphicon-option-horizontal" style="margin-left: 40px"></i></a>
+        <div class="col-md-6 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat;">Messenger</a>
+        </div>    
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center;">
+          <h6>Shortcuts</h6>
         </div>  
       </div>
       <div class="row">
-      </div>
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center;">
+          <h6>Explore</h6>
+        </div>
+          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
+            <a href="#" class="btn btn6" style="border-radius: 0px; min-width: 180px;"><%= image_tag("event-icon.png", size: "20x20") %>Events</a>
+          </div>
+          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
+            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 180px">Pages</a>
+          </div>
+          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
+            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 180px">Groups</a>
+          </div>
+          <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; margin-bottom: 5px;">
+            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 180px">Friends List</a>
+          </div>                          
+      </div>      
     </div>
     <div class="col-md-6">
-    <div class="row"> 
-      <div>  
-        <%= bootstrap_form_for(@post) do |f| %>
-        <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="font-size: 150%; color: #B0B0B0;padding-right: 100px;">What's on your mind?</button>
-        <% end %>
+    <div class="col-md-12"> 
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-2">
+              <%= image_tag(current_user.image.url, size: "50x50", class: "img-responsive img-circle") %>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12">  
+              <%= bootstrap_form_for(@post) do |f| %>
+              <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="text-align: center; font-size: 150%; color: #B0B0B0;padding-right: 100px;"><h4 >What's on your mind?</h4></button>
+              <% end %>
+            </div>  
+          </div>
+        </div>
+        <div class="panel-footer">
+        </div>
       </div>
       <div class="modal" id="post" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <div class="row">
-                <div class="col-md-1">
-                  <a href="#" class="navbar-brand" style="font-size: 100%;">Post</a>
+                <div class="col-md-1 col-sm-2 col-xs-2 col-xs-pull-1">
+                  <a href="#" class="navbar-brand" style="font-size: 100%; margin-left:5px">Post</a>
                 </div>
-                <div class="col-md-2" style=" margin-right: 5px">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-pull-1" style=" margin-right: 5px">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Photo/Video</a>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-2 col-xs-2">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Live Video</a>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-push-1">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Life Event</a>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-1 col-xs-1">
                 </div>
-                <div class="col-md-1" style="margin-top: 10px">
+                <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 10px">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size: 150%">&times;</span></button>
                 </div>   
               </div>  
@@ -92,7 +125,7 @@
               </div> 
               <div class="back img-circle" style="background-color: black; max-height: 40px; max-width: 40px; opacity: 0.7">
                 <div style="background-color: white">
-                  <h7 style="margin-top: 10px"><%= user.name %></h7>
+                  <h7 style="margin-top: 10px"><a href="<%= user_path(user) %>"><%= user.name.capitalize %></a></h7>
                 </div>  
               </div>
               <script>$(".card2").flip({
@@ -102,7 +135,7 @@
               </script>
             </div>
             <div class="col-md-4 col-xs-6 col-sm-6 name">
-              <%= link_to user.name, user  %>
+              <a href="<%= user_path(user) %>" style="z-index: 1000000"><%= user.name.capitalize %></a>
               <% created = post.created_at %>
               <% year = @time_now.year - created.year %>
               <% month = @time_now.month - created.month %>
@@ -124,7 +157,7 @@
                 <h5><%= sec %> seconds ago</h5>                  
               <% end %>
             </div>
-            <div class="col-md-5 col-md-push-6">
+            <div class="col-md-5 col-md-push-6 col-xs-3 col-sm-3">
               <div class="dropdown">
                 <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
                 <ul class="dropdown-menu">
@@ -170,14 +203,14 @@
             </div><hr>  
             <div class="row">
                 <% if !post.likes.find_by(user_id: current_user.id) %>
-                  <div class="col-md-3 col-md-push-1 col-xs-3 col-sm-3 col-xs-push-1 col-sm-push-1">
-                    <div class="row">
-                      <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%"></span>  
-                      <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %> 
-                        <%= f.submit "Like", class: "btn btn2" %>
-                      <% end %>
-                    </div>
-                  </div>                       
+                <div class="col-md-3 col-xs-4 col-sm-4">
+                  <div class="row"> 
+                    <%= bootstrap_form_for(Like.new, :url => post_likes_path(post_id: post.id)) do |f| %>
+                    <span class="glyphicon glyphicon-thumbs-up" style="font-size: 170%; margin-left: 20px"></span>  
+                    <%= f.submit "Like", class: "btn btn2" %>
+                    <% end %>
+                  </div>
+                </div>                       
                 <% else %>
                   <div class="col-md-3 col-sm-4 col-xs-4 col-md-push-1 col-xs-push-1 col-sm-push-1">
                     <div class="row">                    
@@ -187,14 +220,14 @@
                     </div>                      
                   </div>  
                 <% end %>
-                <div class="col-md-3 col-sm-4 col-xs-5">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                   <span class="glyphicon glyphicon-comment" style="font-size: 120%"></span>
-                  <a href="#comment" class="btn btn2">Comment</a>
+                  <a href="#comment" class="btn btn2" style="margin-left: -10px; margin-top: 5px">Comment</a>
                 </div>
-                <div class="col-md-3 col-sm-4 col-xs-3">
-                  <%= image_tag("share-icon.png", size: "20x20", style: "margin-top: -10px; margin-left: -15px") %>
+                <div class="col-md-3 col-sm-4 col-xs-4">
+                  <%= image_tag("share-icon.png", size: "20x20", style: "margin-left: 25px") %>
                   <a href="#" class="btn btn2">Share</a>
-                </div>                
+                </div>             
               </div>                             
           </div>
           <div class="panel-footer" id="comment">
@@ -243,7 +276,7 @@
                         <h4><%= user.name.capitalize %>: <%= com.description %></h4>   
                       </div>  
                     </div>
-                    <div class="col-md-6 col-md-push-12 col-sm-6 col-xs-6 col-xs-push-10">    
+                    <div class="col-md-6 col-md-push-12 col-sm-6 col-xs-6 col-xs-push-10">
                       <div class="dropdown">
                         <div class="col-md-4 col-xs-3 col-sm-4 btn-group">
                           <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
@@ -279,6 +312,23 @@
         <h1>Please sign In Or Sign Up before trying to view or modify the Feed</h1>
       </div>
     <% end %>
+    <div class="col-md-3 col-xs-12 col-sm-12">
+      <div class="panel" style="border-radius: 0px">
+        <div class="panel-body">
+          <div class="col-md-12 col-xs-12 col-sm-12">
+            <div class="row">
+              <a href="#" class="btn btn7" style="border-radius: 0px; padding-left: 15px; padding-right: 15px; margin-bottom: 5px"># Requests From Someone</a>
+            </div>
+            <div class="row">
+              <a href="#" class="btn btn7" style="border-radius: 0px; padding-left: 15px; padding-right: 15px; margin-bottom: 5px"><%= image_tag("event-icon.png", size: "20x20") %>  # Event Invites</a>
+            </div>
+            <div class="row">  
+              <a href="#" class="btn btn7" style="border-radius: 0px; padding-left: 15px; padding-right: 15px"><%= image_tag("birthday-icon.png", size: "20x20") %> Someone Has a Birthday</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>    
   </div>
 </div>
 
