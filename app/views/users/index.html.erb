@@ -82,8 +82,8 @@
                         <% accepted_user = user.friendships.where(accepted: true)  %>
                         <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
                         <% i_friend_of_u = user.friends.include?(current_user) %>
-                        <% if !is_friend && !i_friend_of_u %> 
-                        <%= link_to '+  Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border: 1px solid white" %>
+                        <% if !is_friend && !i_friend_of_u && !accepted_friend %> 
+                        <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border: 1px solid white" %>
                         <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
                           <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%; margin-left: -10px; border: 1px solid white; color: white" %>
                           <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%" %> 
