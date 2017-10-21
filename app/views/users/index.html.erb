@@ -68,11 +68,23 @@
               <div class="panel panel-default ui-widget-content ui-corner-all" id="effect" style="border-radius: 0px">
                 <div class="panel-body">
                   <div class="col-md-2 col-xs-12 col-sm-12" style="margin-top: -15px; margin-left: -30px">
-                    <%= image_tag user.image.url, style: "height: 80; width: 80", class: "img-responsive" %>
+                    <% if user.name %>
+                      <%= image_tag user.image.url, style: "height: 80; width: 80", class: "img-responsive" %>
+                    <% else %>
+                      <h4 style="font-size: 100%; margin-left: 5%; margin-top:40%">Please Add Photo</h4>
+                    <% end %>
                   </div>
                   <div class="col-md-3 col-xs-12 col-sm-12 name2">
-                    <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
-                    <p style="color: #A9A9A9"><%= user.email %></p>
+                    <% if user.name %>
+                      <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
+                    <% else %>
+                      <h4 style="font-size: 100%">Please Update Your Name</h4>
+                    <% end %> 
+                    <% if user.email %> 
+                      <p style="color: #A9A9A9"><%= user.email %></p>
+                    <% else %>
+                      <h4 style="font-size: 100%">Please Update Your Email</h4>  
+                    <% end %>  
                   </div> 
                   <div class="col-md-7 col-md-push-3 col-xs-12 col-sm-12">
                     <div class="row" style="margin-top: 10px">

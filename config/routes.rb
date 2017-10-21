@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :friends
-
-  devise_for :users, ActiveAdmin::Devise.config
+  devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  
+  resources :friends
+  devise_for :users
   resources :posts do
     resources :likes
     resources :comments

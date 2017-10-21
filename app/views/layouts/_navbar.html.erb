@@ -49,7 +49,9 @@
               </div>
               <div class="col-md-2 col-md-pull-1 hidden-xs hidden-sm" style="margin-top: 10px; margin-top: 5px">  
                 <li>
-                  <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%; margin-right: 5px"><%= current_user.name.capitalize %></a>
+                  <% if current_user.name %>
+                    <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%; margin-right: 5px"><%= current_user.name.capitalize %></a>
+                  <% end %> 
                 </li>
               </div>  
             <% end %>
@@ -87,7 +89,7 @@
             </li>   
           </ul>
         </div>
-        <div class="col-md-1 col-md-pull-1 hidden-xs hidden-sm">   
+        <div class="col-md-1 hidden-xs hidden-sm">   
           <div class="dropdown">
             <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
             </button>

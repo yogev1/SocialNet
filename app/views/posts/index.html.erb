@@ -1,4 +1,4 @@
-<script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
+
 
 <div class="container-fluid" style="padding-top:70px">    
   <!--  user authentication -->
@@ -6,17 +6,25 @@
   <div class="row">
     <div class="col-md-2 col-sm-12 col-xs-12">
       <div class="row">
-        <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
-        <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
+        <% if current_user.image.present? %>
+          <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
+        <% else %>
+          <h4 style="font-size: 100%; padding-right: 10px">Please Add Photo</h4>
+        <% end %> 
+        <% if current_user.name %>
+          <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
+        <% else %>
+          <h4 style="font-size: 100%">Please Update Name</h4>
+        <% end %>          
       </div>
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat;">News Feed</a>
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat; min-width: 180px">News Feed</a>
         </div>  
       </div>
       <div class="row">
         <div class="col-md-6 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat;">Messenger</a>
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat; min-width: 180px">Messenger</a>
         </div>    
       </div>
       <div class="row">
@@ -50,13 +58,19 @@
         <div class="panel-body">
           <div class="row">
             <div class="col-md-2">
-              <%= image_tag(current_user.image.url, size: "50x50", class: "img-responsive img-circle") %>
-            </div>
-            <div class="col-md-12 col-xs-12 col-sm-12">  
-              <%= bootstrap_form_for(@post) do |f| %>
-              <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="text-align: center; font-size: 150%; color: #B0B0B0;padding-right: 100px;"><h4 >What's on your mind?</h4></button>
+              <% if current_user.image.present? %>
+                <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
+              <% else %>
+                <h4 style="font-size: 100%">Please Add Photo</h4>
               <% end %>
-            </div>  
+            </div>
+            <%= bootstrap_form_for(@post) do |f| %>
+              <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="text-align: center; font-size: 150%; color: #B0B0B0;padding-right: 100px;">
+                <div class="col-md-12 col-xs-12 col-sm-12"> 
+                  <h4>What's on your mind?</h4>
+                </div>
+              </button>
+            <% end %> 
           </div>
         </div>
         <div class="panel-footer">
@@ -66,28 +80,28 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <div class="row">
-                <div class="col-md-1 col-sm-2 col-xs-2 col-xs-pull-1">
-                  <a href="#" class="navbar-brand" style="font-size: 100%; margin-left:5px">Post</a>
+              <div class="panel-title" style="margin-top: -20px">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-pull-1">
+                  <a href="#" class="navbar-brand" style="font-size: 100%">Post</a>
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-pull-1" style=" margin-right: 5px">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-pull-1">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Photo/Video</a>
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-2">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-push-1">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Live Video</a>
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-push-1">
+                <div class="col-md-2 col-sm-2 col-xs-2 col-xs-push-2">
                   <a href="#" class="navbar-brand" style="font-size: 100%;">Life Event</a>
                 </div>
-                <div class="col-md-3 col-sm-1 col-xs-1">
+                <div class="col-md-2 col-sm-1 col-xs-1">
                 </div>
-                <div class="col-md-2 col-sm-2 col-xs-2" style="margin-top: 10px">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size: 150%">&times;</span></button>
+                <div class="col-md-2 col-sm-2 col-xs-3 col-xs-push-2" style="margin-top: -8px;">
                 </div>   
-              </div>  
+              </div> 
             </div>
             <div class="modal-body">
               <%= bootstrap_form_for(@post) do |f| %>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size: 150%">&times;</span></button>
               <%= f.text_area :description, hide_label: true, style: "font-size: 120%; border: none", placeholder: "What's on your mind?", rows: "5", cols: "100" %>
             </div>
             <div class="modal-footer" style="max-height: 40px">
@@ -95,7 +109,7 @@
                 <%= f.file_field :image, class: "glyphicon glyphicon-camera inputfile", style: "font-size: 150%", hide_label: true %> 
               </div> 
               <div class="col-md-1 col-md-push-1">
-                <%= image_tag("addfriend-icon.png", size: "30x30") %>
+                <%= image_tag("addfriend-icon.png", size: "20x20") %>
               </div>               
               <div class="col-md-1 col-md-push-1">
                 <i class="fa fa-map-marker" aria-hidden="true" style="font-size:24px"></i>
