@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  organizer_id: 1
+  participant_id: 1
+  name: MyString
+  location: MyString
+  description: MyString
+  date: MyString
+  time: MyString
+  category: MyString
+
+two:
+  organizer_id: 1
+  participant_id: 1
+  name: MyString
+  location: MyString
+  description: MyString
+  date: MyString
+  time: MyString
+  category: MyString

@@ -1,0 +1,24 @@
+<div class="container" style="margin-top:70px">
+  <strong>Organizer:</strong>
+  <%= @event.organizer_id %>
+  <strong>Participant:</strong>
+  <%= @event.participant_id %>
+  <strong>Name:</strong>
+  <%= @event.name %>
+  <strong>Location:</strong>
+  <%= @event.location %>
+  <strong>Description:</strong>
+  <%= @event.description %>
+  <strong>Date:</strong>
+  <%= @event.date %>
+  <strong>Time:</strong>
+  <%= @event.time %>
+  <strong>Category:</strong>
+  <%= @event.category %>
+
+<%= image_tag @event.image.url, size: "200x200" %>
+
+<%= link_to 'Edit', edit_event_path(@event) %>
+<%= link_to 'Destroy', @event, method: :delete, data: { confirm: 'Are you sure?' } %>  
+<%= link_to 'Back', events_path %>
+</div>

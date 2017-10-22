@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'participants/create'
+  get 'participants/destroy'
+
+  resources :events
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  resources :friends
+
   devise_for :users
+  
+  resources :friends
+
   resources :posts do
     resources :likes
     resources :comments

@@ -5,7 +5,7 @@
   <% if user_signed_in? %>
   <div class="row">
     <div class="col-md-2 col-sm-12 col-xs-12">
-      <div class="row center-block" style="text-align: center">
+      <div class="row center-block">
         <% if current_user.image.present? %>
           <%= image_tag(current_user.image.url, class: "img-responsive img-circle center-block", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
         <% else %>
@@ -37,7 +37,7 @@
           <h6>Explore</h6>
         </div>
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
-            <a href="#" class="btn btn6" style="border-radius: 0px; min-width: 180px;"><%= image_tag("event-icon.png", size: "20x20") %>Events</a>
+            <a href="<%= events_path %>" class="btn btn6" style="border-radius: 0px; min-width: 180px;"><%= image_tag("event-icon.png", size: "20x20") %>Events</a>
           </div>
           <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
             <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 180px">Pages</a>

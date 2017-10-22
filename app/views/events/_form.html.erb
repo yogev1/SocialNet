@@ -1,0 +1,26 @@
+<%= bootstrap_form_for @event, html: { multipart: true } do |form| %>
+  <% if event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+      <ul>
+      <% event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+  <div class="col-md-4">
+    <%= form.text_field :name, id: :event_name %>
+    <%= form.text_field :location, id: :event_location %>
+    <%= form.text_field :description, id: :event_description %>
+    <%= form.submit class: "btn btn6", style: "padding: 6px 22px; margin-top: 20px" %>
+  </div>
+  <div class="col-md-4">
+    <%= form.text_field :time, id: :event_time %>
+    <%= form.text_field :category, id: :event_category %>
+    <%= form.text_field :date, id: :event_date %>
+    <%= form.file_field :image %>    
+  </div>  
+</div>  
+<% end %>

@@ -20,4 +20,10 @@ class User < ApplicationRecord
   def all_friends
     friends | received_friends
   end 
+
+  # for events
+  has_many :participations
+  has_many :events, through: :participations
+  has_many :hosted_events, class_name: "Event", foreign_key: :organizer_id
+  
 end
