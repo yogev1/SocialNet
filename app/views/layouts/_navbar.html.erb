@@ -76,14 +76,14 @@
               <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="border-radius: 0px; height: 100%">
-                <li><a href="#">Create Group</a></li>
-                <li><a href="#">Manage Groups</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#">Activity Log</a></li>
-                <li><a href="#">News Feed Preferences</a></li>
-                <li><a href="#">Settings</a></li>
+                <li style="background-color: white"><a href="#">Create Group</a></li>
+                <li style="background-color: white"><a href="#">Manage Groups</a></li>
+                <li role="separator" class="divider" style="background-color: white"></li>
+                <li style="background-color: white"><a href="#">Activity Log</a></li>
+                <li style="background-color: white"><a href="#">News Feed Preferences</a></li>
+                <li style="background-color: white"><a href="#">Settings</a></li>
                 <% if user_signed_in? %>
-                <li style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop" %>
+                <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
                 </li>
                 <% end %>  
               </ul>
@@ -112,7 +112,7 @@
               <li><a href="#">News Feed Preferences</a></li>
               <li><a href="#">Settings</a></li>
               <% if user_signed_in? %>
-              <li style="margin-top: 5px; margin-bottom: 5px;"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop" %>
+              <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
               </li>
             <% end %>  
             </ul>
