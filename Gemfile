@@ -33,7 +33,7 @@ gem 'devise'
 gem 'nested_form'
 gem 'bootstrap_form'
 gem "paperclip", ">= 5.0"
-gem 'aws-sdk', ">= 2.0"
+gem 'aws-sdk-rails'
 gem 'rspec'
 gem 'activeadmin'
 # Use Redis adapter to run Action Cable in production
