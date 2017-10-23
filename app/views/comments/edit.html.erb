@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12" style="margin-top: 10%">
+      <%= bootstrap_form_for(@comment, :url => post_comment_path(post_id: @post.id, id: @comment.id), method: :patch ) do |f| %>
+        <%= f.text_area :description, size: "200x10" %>
+      	<%= f.submit "Save Changes" %>
+      <% end %>
+    </div>
+  </div>
+</div>    

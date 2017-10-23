@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
 	has_many :posts
+  has_many :comments
   has_many :likes    
   
   # for friends
@@ -25,5 +26,6 @@ class User < ApplicationRecord
   has_many :participations
   has_many :events, through: :participations
   has_many :hosted_events, class_name: "Event", foreign_key: :organizer_id
+  has_many :event_comments
   
 end

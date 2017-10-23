@@ -16,16 +16,16 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    @post = Post.find_by(id: params[:post_id])
     @comment = Comment.find_by(id: params[:id])
   end
 
   def update
     @comment = Comment.find_by(id: params[:id])
-    post = Post.find_by(id: @comment.post_id)
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to post_path(post), notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: post_path(@post) }
+        format.html { redirect_to posts_path, notice: 'Comment was successfully updated.' }
+        format.json { render :show, status: :ok, location: posts_path }
       else
         format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.find_by(id: params[:id])
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Comment was successfully destroyed.' }
+      format.html { redirect_to posts_path, notice: 'Comment was successfully destroyed.' }
       format.json { head :no_content }
     end   
   end

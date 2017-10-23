@@ -6,4 +6,7 @@ class Event < ApplicationRecord
   has_many :participations 
   has_many :participants, through: :participations, source: :user
   belongs_to :organizer, class_name: "User", foreign_key: :organizer_id
+
+  # comments
+  has_many :event_comments
 end

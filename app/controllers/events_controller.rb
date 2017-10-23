@@ -12,6 +12,7 @@ class EventsController < InheritedResources::Base
   # GET /events/1.json
   def show
     @participants = @event.participants.reject {|x| x.id == @event.organizer_id}
+    @event_comments = @event.event_comments.all.order(created_at: "DESC")
   end
 
   # GET /events/new

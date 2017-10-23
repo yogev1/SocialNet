@@ -1,38 +1,52 @@
 <div class="container" style="margin-top: 70px">
-<div class="row">
-  <div class="col-md-8">
-    <h1 class="bold" style="font-weight: 900">Upcoming Events</h1><br>
-    <% @events.each do |event| %>
-      <div class="col-md-6">
-        <a href="<%= event_path(event) %>" style="text-decoration: none; color: black"><div class="panel" style="border-radius: 0px; border: none">
-          <% if event.image.present? %>
-            <div class="panel-body" style="background-image: url(<%= event.image.url %>); background-repeat: no-repeat; background-size: cover; min-height: 200px">
-            </div>
-          <% end %>  
-          <div class="panel-footer">
-            <div class="row">
-              <div class="col-md-12 bold">
-                <h2><%= event.name %></h2>
-                <h4><%= event.category %></h4>           
+  <div class="row">
+    <div class="col-md-8 col-sm-12 col-xs-12">
+      <h1 class="bold" style="font-weight: 900">Upcoming Events</h1><br>
+      <div class="row">
+        <div class="col-md-12 hidden-xs hidden-sm" style="margin-left: 15px">
+          <%= link_to 'New Event', new_event_path, class: "btn btn6 bold", style: "padding: 6px 50px; font-size: 150%" %>
+        </div><br>
+        <div class="col-sm-12 col-xs-12 hidden-md hidden-lg text-center">
+          <%= link_to 'New Event', new_event_path, class: "btn btn6 bold", style: "padding: 6px 50px; font-size: 150%" %>
+        </div>        
+      </div><br>        
+      <% @events.each do |event| %>
+        <div class="col-md-6">
+          <a href="<%= event_path(event) %>" style="text-decoration: none; color: black"><div class="panel" style="border-radius: 0px; border: none">
+            <% if event.image.present? %>
+              <div class="panel-body" style="background-image: url(<%= event.image.url %>); background-repeat: no-repeat; background-size: cover; min-height: 200px">
               </div>
-            </div>       
-            <div class="row">
-              <div class="col-md-6 bold">
-                <%= event.description %>           
-              </div>
-              <div class="col-md-6 bold">
-                <%= event.location %>
-                <%= event.date %>
-                <%= event.time %>            
-              </div>              
-            </div>             
-          </div>  
-        </div></a>
-      </div>  
-    <% end %>
-  </div>
-  <div class="col-md-2">
-    <%= link_to 'New Event', new_event_path, class: "btn btn6 bold", style: "padding: 6px 50px; font-size: 150%" %>
-  </div>  
+            <% end %>  
+            <div class="panel-footer">
+              <div class="row">
+                <div class="col-md-12 bold">
+                  <h2><%= event.name %></h2>
+                  <h4><%= event.category %></h4>           
+                </div>
+              </div>       
+              <div class="row">
+                <div class="col-md-6 bold">
+                  <%= event.description %>           
+                </div>
+                <div class="col-md-6 bold">
+                  <%= event.location %>
+                  <%= event.date %>
+                  <%= event.time %>            
+                </div>              
+              </div>             
+            </div>  
+          </div></a>
+        </div>  
+      <% end %>
+    </div><br> 
+    <div class="col-md-8 col-xs-12 col-sm-12">
+      <div class="panel" style="border: none; border-radius: 0px">
+        <div class="panel-heading bold">
+          <h3>Comments</h3>
+        </div>
+        <div class="panel-body">
+        </div>
+      </div>      
+    </div>    
   </div>
 </div>

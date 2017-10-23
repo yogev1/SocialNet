@@ -71,6 +71,11 @@
   font-weight: bold; 
 }
 
+.btn8 {
+  background-color: #A9A9A9;
+  color: black;
+  padding: 2px 40px;
+}
 
 button .full-width{
   width:100%;
@@ -287,4 +292,29 @@ fieldset[disabled] .btn-dblue.active {
 #drop:hover{
   background-color: #284c79;
 }
+
+.navtab {
+  border-radius: 0px;
+  border: none;
+  background-color: white;
+  color: black;
+  font-size: 130%;
+}
+
+
+.tabpane1 {
+  background-color: white;
+  padding: 20px; 
+  margin-top:10px;
+}
+
+.nav > li.active > a,
+.nav > li.active > a:hover,
+.nav > li.active > a:focus {
+  background-color: #800000;
+  border-radius: 0px;
+  border: none;
+  color: white;
+  font-size: 130%;
+} 
 
