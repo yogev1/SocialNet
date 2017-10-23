@@ -7,7 +7,7 @@ class ParticipantsController < ApplicationController
   	@participant.user_id = current_user.id
     respond_to do |format|
       if @participant.save
-        format.html { redirect_to events_path }
+        format.html { redirect_to event_path(event) }
         format.json { render :index, status: :created, location: events_path }
       else
         format.html { render :new }
@@ -18,11 +18,11 @@ class ParticipantsController < ApplicationController
   end
 
   def destroy
-  	event = Event.find_by(id: params[:id])  	
-  	@participant = event.participations.find_by(user_id: current_user.id) 
+  	event = Event.find_by(id: params[:event_id])  	
+  	@participant = event.participations.find_by(user_id: params[:id]) 
     @participant.destroy
     respond_to do |format|
-      format.html { redirect_to events_path }
+      format.html { redirect_to event_path(event) }
       format.json { head :no_content }
     end  	
   end

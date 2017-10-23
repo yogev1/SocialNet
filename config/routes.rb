@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'participants/create'
-  get 'participants/destroy'
-
+  resources :participants
   resources :events do 
     resources :event_comments
   end

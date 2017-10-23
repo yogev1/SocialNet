@@ -12,7 +12,7 @@
       </div><br>        
       <% @events.each do |event| %>
         <div class="col-md-6">
-          <a href="<%= event_path(event) %>" style="text-decoration: none; color: black"><div class="panel" style="border-radius: 0px; border: none">
+          <a href="<%= event_path(event) %>" style="text-decoration: none; color: black"><div class="panel" style="border-radius: 0px; border: none; min-height: 400px; background-color: #F5F5F5">
             <% if event.image.present? %>
               <div class="panel-body" style="background-image: url(<%= event.image.url %>); background-repeat: no-repeat; background-size: cover; min-height: 200px">
               </div>
@@ -22,7 +22,7 @@
                 <div class="col-md-12 bold">
                   <h2><%= event.name %></h2>
                   <h4><%= event.category %></h4>           
-                </div>
+                </div>              
               </div>       
               <div class="row">
                 <div class="col-md-6 bold">
@@ -31,8 +31,28 @@
                 <div class="col-md-6 bold">
                   <%= event.location %>
                   <%= event.date %>
-                  <%= event.time %>            
-                </div>              
+                  <%= event.time %>  
+                </div>
+              </div> 
+              <div class="row">
+                <div class="col-md-6 bold col-md-push-6">
+                  <% is_participant = event.participants.find_by(id: current_user.id) %>
+                  <% if event.organizer != current_user %>
+                    <% if !is_participant %>
+                      <div class="text-center">
+                        <p><%= link_to "Join This Event", participants_path(event_id: event.id), method: :post, class: "btn btn-light", style: "font-size: 100%; padding: 2px 10px; border: 1px solid black;border-radius: 0px; background-color: #0099ff; color: white" %></p>
+                      </div>
+                    <% elsif is_participant %>
+                      <div class="text-center">
+                        <%= link_to "Remove Participation", participant_path(event_id: event.id, id: current_user.id), method: :delete, class: "btn btn-light", style: "font-size: 100%; padding: 2px 10px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %>
+                      </div>                                               
+                    <% end %>
+                  <% else %>  
+                    <div class="text-center" style="margin-top: 20px">
+                      <h1 class="label" style="font-size: 100%; background-color: black; border-radius: 0px"> You're The Organizer</h1>
+                    </div> 
+                  <% end %>   
+                </div>
               </div>             
             </div>  
           </div></a>
