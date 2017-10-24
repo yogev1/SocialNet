@@ -4,8 +4,6 @@ Rails.application.routes.draw do
   resources :events do 
     resources :event_comments
   end
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
   devise_for :users
   resources :friends
   resources :posts do
