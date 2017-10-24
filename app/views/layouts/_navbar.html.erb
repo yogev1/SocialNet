@@ -37,59 +37,48 @@
               </div>
             </li>
           </ul>
-        </div>  
-        <div class="row hidden-xs hidden-sm text-center visible-md visible-lg">
-          <ul class="nav navbar-nav navbar-right" style="display: inline">
-            <% if user_signed_in? %>
-              <div class="col-md-2">
-                <li>
-                  <% if current_user.image.present? %>
-                    <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle") %> 
-                  <% end %>  
-                </li>
-              </div>
-              <div class="col-md-2 col-md-pull-1" style="margin-top: 5px;">  
-                <li>
-                  <% if current_user.name %>
-                    <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
-                  <% end %> 
-                </li>
-              </div>  
-            <% end %>
-            <div class="col-md-2"> 
-              <li>
+        </div> 
+        <div class="col-md-6 hidden-xs hidden-sm"> 
+          <div class="row hidden-xs hidden-sm text-center visible-md visible-lg">
+            <ul class="nav navbar-nav navbar-right" style="display: inline; margin-top: -10px;">            
+              <li class="col-md-2" style="margin-top:10px">
+                <% if current_user.image.present? %>
+                <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle") %> 
+                <% end %>  
+              </li> 
+              <li class="col-md-2 col-md-pull-1" style="margin-top:5px">
+                <% if current_user.name %>
+                <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
+                <% end %> 
+              </li>
+              <li class="col-md-1" style="margin-top:10px">   
+                <div class="dropdown">
+                  <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="border-radius: 0px; height: 100%">
+                    <li style="background-color: white"><a href="#">Create Group</a></li>
+                    <li style="background-color: white"><a href="<%= events_path %>">Events</a></li>
+                    <li style="background-color: white"><a href="#">Activity Log</a></li>
+                    <li style="background-color: white"><a href="#">News Feed Preferences</a></li>
+                    <li style="background-color: white"><a href="#">Settings</a></li>
+                    <% if user_signed_in? %>
+                      <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
+                      </li>
+                    <% end %>  
+                  </ul>
+                </div>
+              </li>            
+              <li class="col-md-1">
                 <a href="<%= users_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
               </li>
-            </div>
-            <div class="col-md-2">
-              <li>
+              <li class="col-md-1">
                 <a href="<%= root_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
-              </li>
-            </div>
-            <div class="col-md-2">                
-              <li>
+              </li>             
+              <li class="col-md-1">
                 <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
               </li>
-            </div>
-          </ul>
-          <div class="col-md-2">   
-            <div class="dropdown">
-              <button class="btn glyphicon glyphicon-triangle-bottom" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="background-color: inherit">
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2" style="border-radius: 0px; height: 100%">
-                <li style="background-color: white"><a href="#">Create Group</a></li>
-                <li style="background-color: white"><a href="#">Manage Groups</a></li>
-                <li role="separator" class="divider" style="background-color: white"></li>
-                <li style="background-color: white"><a href="#">Activity Log</a></li>
-                <li style="background-color: white"><a href="#">News Feed Preferences</a></li>
-                <li style="background-color: white"><a href="#">Settings</a></li>
-                <% if user_signed_in? %>
-                <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
-                </li>
-                <% end %>  
-              </ul>
-            </div>
-          </div>          
+            </ul>          
+          </div>
         </div>      
         <!-- for smaller screens -->
         <div class="row hidden-md hidden-lg visible-xs visible-sm" style="height: 100%">
@@ -107,14 +96,12 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
               <li><a href="#">Create Group</a></li>
-              <li><a href="#">Manage Groups</a></li>
-              <li role="separator" class="divider"></li>
               <li><a href="#">Activity Log</a></li>
               <li><a href="#">News Feed Preferences</a></li>
               <li><a href="#">Settings</a></li>
               <% if user_signed_in? %>
-              <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
-              </li>
+                <li style="margin-top: 5px; margin-bottom: 5px; background-color: #800000"><%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn", id:"drop", style: "color: white" %>
+                </li>
             <% end %>  
             </ul>
           </div>

@@ -30,5 +30,11 @@ class User < ApplicationRecord
 
   def self.search(search)
     where("name LIKE ? OR email LIKE ? ", "%#{search.downcase}%", "%#{search.downcase}%") 
-  end  
+  end
+
+  # for messenger
+
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
 end
