@@ -251,6 +251,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-rails
+  bcrypt
   bootstrap!
   bootstrap_form
   byebug
