@@ -7,21 +7,25 @@
       <h1>Recent Logins</h1>
       <h4>Click On The Picture To Add An Account</h4>
       <div class="row">
-        <a href="<%= new_user_session_path %>"><div class="panel" style="margin-right: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px">
-          <div class="panel-body panlog" style="background-image: url(<%= asset_path 'recent-login1.jpeg' %>);">
+        <a href="<%= new_user_session_path %>">
+          <div class="panel" style="margin-right: 10px; border-top-left-radius: 5px; border-top-right-radius: 5px">
+            <div class="panel-body panlog" style="background-image: url(<%= asset_path 'recent-login1.jpeg' %>);">
+            </div>
+            <div class="panel-footer text-center" style="max-height: 50px;background-color: white">
+              <h4 style="font-weight: bold">Yogev</h4>
+            </div>
           </div>
-          <div class="panel-footer text-center" style="max-height: 50px;background-color: white">
-            <h4 style="font-weight: bold">Yogev</h4>
+        </a>
+        <a href="<%= new_user_registration_path %>">
+          <div class="panel" style="border-top-left-radius: 5px; border-top-right-radius: 5px">
+            <div class="panel-body panlog" style="background-color: #F5F5F5">
+              <%= image_tag("addaccount-icon.png", size: "50x50", class: "img-responsive center-block", style: "margin-top: 35%") %>
+            </div>
+            <div class="panel-footer text-center" style="max-height: 50px;background-color: white">
+              <h4 style="font-weight: bold">Add Account</h4>
+            </div>
           </div>
-        </div></a>
-        <a href="<%= new_user_registration_path %>"><div class="panel" style="border-top-left-radius: 5px; border-top-right-radius: 5px">
-          <div class="panel-body panlog" style="background-color: #F5F5F5">
-            <%= image_tag("addaccount-icon.png", size: "50x50", class: "img-responsive center-block", style: "margin-top: 35%") %>
-          </div>
-          <div class="panel-footer text-center" style="max-height: 50px;background-color: white">
-            <h4 style="font-weight: bold">Add Account</h4>
-          </div>
-        </div></a>
+        </a>
       </div>      
     </div> 
     <div class="col-md-2 col-sm-12 col-xs-12">
@@ -62,7 +66,7 @@
         </div>
       <% end %>
   	</div>
-    <div class=" col-md-1 col-sm-12 col-xs-12">
+    <div class="col-md-1 col-sm-12 col-xs-12">
     </div>    
   </div>
 </div>  

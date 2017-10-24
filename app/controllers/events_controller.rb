@@ -5,7 +5,11 @@ class EventsController < InheritedResources::Base
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:search]
+      @events = Event.search(params[:search]).order(:name)
+    else
+      @events = Event.all
+    end  
   end
 
   # GET /events/1

@@ -27,5 +27,8 @@ class User < ApplicationRecord
   has_many :events, through: :participations
   has_many :hosted_events, class_name: "Event", foreign_key: :organizer_id
   has_many :event_comments
-  
+
+  def self.search(search)
+    where("name LIKE ? OR email LIKE ? ", "%#{search.downcase}%", "%#{search.downcase}%") 
+  end  
 end

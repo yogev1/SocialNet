@@ -9,4 +9,8 @@ class Event < ApplicationRecord
 
   # comments
   has_many :event_comments
+
+  def self.search(search)
+    where("name LIKE ? OR description LIKE ? OR location LIKE ? OR date LIKE ? OR time LIKE ? OR category LIKE ?", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%", "%#{search.downcase}%") 
+  end
 end

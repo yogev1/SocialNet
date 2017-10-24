@@ -4,8 +4,12 @@ class PostsController < ApplicationController
 
   # GET /posts
   # GET /posts.json
-  def index
-    @posts = Post.all.order(created_at: "DESC").limit(20)
+  def index    
+    if params[:search]   
+      @results = Post.search(params[:search]).order(:id) + Event.search(params[:search]).order(:name) + User.search(params[:search]).order(:name)
+    else
+      @posts = Post.all.order(created_at: "DESC").limit(20)
+    end 
     @post = Post.new
   end
 
