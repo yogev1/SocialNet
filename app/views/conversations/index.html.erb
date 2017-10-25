@@ -1,25 +1,40 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
 <!-- chat -->
 <div class="container" style="margin-top: 100px">
-  <div class="row">
-    <div class="col-md-9">
+  <div class="row nopadding">
+    <div class="col-md-4 col-md-pull-1 col-sm-6 col-xs-6">
+      <div class="panel" style="border-radius: 0px; border-right: 1px solid #D0D0D0">
+        <div class="panel-heading">
+          <h2 class="text-center bold">Chat</h2>
+        </div>
+        <div class="panel-body">
+          <% @users.each do |user| %>
+            <div class="row">
+              <div class="col-md-3 col-md-push-1 col-sm-4 col-xs-4">
+                <% if user.image.present? %>
+                  <%= image_tag user.image.url(:thumb), class: "img-responsive img-circle", size: "20x20" %>
+                <% else %>
+                  <h3></h3>
+                <% end %>  
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-4">                           
+                <%= link_to user.name.capitalize, conversations_path(user_id: user), remote: true, method: :post, style: "font-size: 130%", class: "bold" %>
+              </div>
+              <div class="col-md-7 col-sm-4 col-xs-4">
+              </div>
+            </div><br>              
+          <% end %> 
+        </div>
+      </div>
+    </div>    
+    <div class="col-md-6 col-md-pull-1 col-sm-6 col-xs-6">
       <div id="conversations-list">
         <% @conversations.each do |conversation| %>
           <%= render 'conversations/conversation', conversation: conversation, user: current_user %>
         <% end %>
       </div>
     </div>
-    <div class="col-md-3">
-      <div class="panel" sytle="border-radius: 0px">
-        <div class="panel-heading">
-          <h3 class="panel-title">Chat With Other Users</h3>
-        </div>
-        <div class="panel-body">
-          <% @users.each do |user| %>
-          <%= link_to user.email, conversations_path(user_id: user), remote: true, method: :post %>
-          <% end %>
-        </div>
-      </div>
-    </div>
+    <div class="col-md-2">
+    </div>  
   </div>
 </div>  

@@ -4,19 +4,19 @@
       <ul  class="nav nav-pills nav-fill" style="margin-top: 410px">
         <li class="active navtab" style="margin-right: 10px">
           <a class="" href="#1a" data-toggle="tab" style="border-radius: 0px;
-  border: none;">General Comments</a>
+            border: none;">General Comments</a>
         </li>
         <li style="margin-right: 10px" class="nav-item">
           <a class="navtab" href="#2a" data-toggle="tab" style="border-radius: 0px;
-  border: none;">Details</a>
+            border: none;">Details</a>
         </li>
         <li style="margin-right: 10px" class="nav-item">
           <a class="navtab" href="#3a" data-toggle="tab" style="border-radius: 0px;
-  border: none;">Date And Time</a>
+            border: none;">Date And Time</a>
         </li>
         <li style="margin-right: 10px" class="nav-item">
           <a class="navtab" href="#4a" data-toggle="tab" style="border-radius: 0px;
-  border: none;">Organizers And Roles</a>
+            border: none;">Organizers And Roles</a>
         </li>
         <li>
           <%= link_to "All Events", events_path, class: "btn nav-item", style: "font-size: 130%; border-radius: 0px; border: none;" %>
@@ -55,10 +55,10 @@
           <h4>
             <div class="row">
               <div class="col-md-4 col-xs-4 col-sm-4">
-                <h4>Date: <%= @event.date %></h4>
+                <h3>Date: <%= @event.date %></h3>
               </div>
               <div class="col-md-6 col-xs-8 col-sm-8">
-                <h4>Time: <%= @event.time %></h4>
+                <h3>Time: <%= @event.time %></h3>
               </div>
             </div>                 
           </h4>            
@@ -70,49 +70,18 @@
                 <% organizer = User.find_by(id: @event.organizer_id) %>
                 <h3>Organizer: <%= organizer.name %></h3>
               </div>
-              <div class="col-md-4 col-xs-4 col-sm-4">
+              <div class="col-md-4 col-xs-8 col-sm-8">
+                <h3>Participants:</h3>
                 <% participants = @event.participants %>
                 <% participants.each do |p| %>
-                  <div class="row">
-                    <h3><%= p.name %></h3>
-                  </div>  
+                  <h3><%= p.name %></h3> 
                 <% end %>  
               </div>
             </div>  
           </h4>            
         </div>
       </div><br><br>
-      <div class="panel" style="border: none; border-radius: 0px">
-        <div class="panel-heading bold">
-          <h3>Comments</h3>
-        </div>
-        <div class="panel-body">
-          <%= bootstrap_form_for(EventComment.new, :url => event_event_comments_path(event_id: @event.id)) do |f| %> 
-            <%= f.text_area :description, size: "300x5", hide_label: true, style: "background-color: #D3D3D3" %> 
-            <%= f.submit "Add Comment", class: "btn", style: "font-size: 150%; padding:5px" %>
-          <% end %><hr>
-          <% @event_comments.each do |com| %>
-            <% user = User.find_by(id: com.user_id) %>
-            <div class="row">
-              <% if com.description %>
-              <div class="col-md-7 col-sm-6 col-xs-6 col-md-push-1">
-                <h3><%= user.name.capitalize %>:&nbsp&nbsp&nbsp   
-                  <%= com.description %></h3>
-              </div>
-              <div class="col-md-4 col-sm-6 col-xs-6 btn-group" style="margin-top: 20px">
-                <%= link_to 'Edit', edit_event_event_comment_path(event_id: @event.id, id: com.id), class: "btn", style: "font-size: 130%; padding: 2px 18px; border: 1px solid black;border-radius: 0px" %>
-                <%= link_to 'Delete', event_event_comment_path(event_id: @event.id, id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn", style: "font-size: 130%; padding: 2px 10px; border: 1px solid black;border-radius: 0px" %>
-              </div>                       
-              <% end %>    
-            </div><hr>       
-          <% end %>
-        </div>
-      </div>           
-    </div> 
-    <div class="col-md-1 col-xs-12 col-sm-12">
-    </div>    
-    <div class="col-md-3 col-xs-12 col-sm-12">
-      <div class="panel" style="border-radius: 0px; margin-top: 20px">
+      <div class="panel hidden-md hidden-lg" style="border-radius: 0px;">
         <div class="panel-heading">
           <% if current_user == @event.organizer %>
             <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Organizer Privileges</h1><hr>
@@ -141,9 +110,94 @@
           </div><br>
         </div>
       </div> 
-            
-    
-        <div class="panel">
+      <div class="panel" style="border-radius: 0px">
+        <div class="panel-heading">
+          <% if current_user == @event.organizer %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Manage Participants</h1><hr>
+          <% else %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Other Participants</h1><hr>
+          <% end %>  
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <% participants = @event.participants.reject {|x| x == current_user} %>
+              <% participants.each do |p| %>
+                <div class="row bold">
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <h4><%= p.name.capitalize %></h4>
+                  </div>
+                  <div class="col-md-8 col-sm-12 col-xs-12">
+                    <% if current_user == @event.organizer %>
+                      <h4><%= link_to "Remove Participation", participant_path(event_id: @event.id, id: p.id), method: :delete, class: "btn btn-light", style: "font-size: 80%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %></h4>
+                    <% end %>  
+                  </div>
+                </div>  
+              <% end %>
+            </div>  
+          </div>
+        </div>
+      </div>
+      <div class="panel" style="border: none; border-radius: 0px">
+        <div class="panel-heading bold">
+          <h3>Comments</h3>
+        </div>
+        <div class="panel-body">
+          <%= bootstrap_form_for(EventComment.new, :url => event_event_comments_path(event_id: @event.id)) do |f| %> 
+            <%= f.text_area :description, size: "300x5", hide_label: true, style: "background-color: #D3D3D3" %> 
+            <%= f.submit "Add Comment", class: "btn", style: "font-size: 150%; padding:5px" %>
+          <% end %><hr>
+          <% @event_comments.each do |com| %>
+            <% user = User.find_by(id: com.user_id) %>
+            <div class="row">
+              <% if com.description %>
+              <div class="col-md-7 col-sm-6 col-xs-6 col-md-push-1">
+                <h3><%= user.name.capitalize %>:&nbsp&nbsp&nbsp   
+                  <%= com.description %></h3>
+              </div>
+              <div class="col-md-4 col-sm-6 col-xs-6 btn-group" style="margin-top: 20px">
+                <%= link_to 'Edit', edit_event_event_comment_path(event_id: @event.id, id: com.id), class: "btn", style: "font-size: 130%; padding: 2px 18px; border: 1px solid black;border-radius: 0px" %>
+                <%= link_to 'Delete', event_event_comment_path(event_id: @event.id, id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn", style: "font-size: 130%; padding: 2px 10px; border: 1px solid black;border-radius: 0px" %>
+              </div>                       
+              <% end %>    
+            </div><hr>       
+          <% end %>
+        </div>
+      </div>           
+    </div> 
+    <div class="col-md-1 col-xs-12 col-sm-12">
+    </div>   
+    <div class="col-md-3 col-xs-12 col-sm-12 hidden-sm hidden-xs">
+      <div class="panel" style="border-radius: 0px">
+        <div class="panel-heading">
+          <% if current_user == @event.organizer %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Organizer Privileges</h1><hr>
+          <% else %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Participant Privileges</h1><hr>
+          <% end %>  
+        </div>  
+        <div class="panel-body">
+          <div class="row">
+            <% is_participant = @event.participants.find_by(id: current_user.id) %>
+            <% if @event.organizer == current_user %>
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-light", style: "font-size: 130%; padding: 2px 32px; border: 1px solid black;border-radius: 0px" %><br><br>
+                <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light", style: "font-size: 130%; padding: 2px 20px; border: 1px solid black; border-radius: 0px" %><br><br>
+                <a href="https://www.eventbrite.com/signin" class="btn btn-light", style="font-size: 130%; padding: 2px 5px; border: 1px solid black;border-radius: 0px">Open EventBrite</a>              
+              </div>
+            <% elsif !is_participant %>
+            <div class="col-md-12 text-center">
+              <p><%= link_to "Join This Event", participants_path(event_id: @event.id), method: :post, class: "btn btn-light", style: "font-size: 130%; padding: 2px 10px; border: 1px solid black;border-radius: 0px; background-color: #0099ff; color: white" %></p>
+            </div>
+            <% elsif is_participant %>
+              <div class="col-md-12 text-center">
+                <%= link_to "Remove Participation", participant_path(event_id: @event.id, id: current_user.id), method: :delete, class: "btn btn-light", style: "font-size: 130%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %>
+              </div>                         
+            <% end %>
+          </div><br>
+        </div>
+      </div> 
+      <div class="panel">
         <div class="panel-heading">
           <% if current_user == @event.organizer %>
             <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Manage Participants</h1><hr>
@@ -172,7 +226,7 @@
         </div>
       </div>
     </div>
-  </div>        
+  </div>      
 </div>
 
 

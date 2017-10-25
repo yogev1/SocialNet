@@ -160,7 +160,10 @@ button .full-width{
     overflow:hidden;
 }
 
-
+.nopadding > div[class^="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+}
 
 
 /*
@@ -198,8 +201,7 @@ for user profile
 }
 
 .panlog { 
-  min-height: 170px; 
-  min-width: 170px; 
+  min-height: 170px;  
   background-size:cover; 
   border-top-left-radius: 5px; 
   border-top-right-radius: 5px;
@@ -314,10 +316,6 @@ ul.nav > li.active > a:focus {
   color: white;
   font-size: 140%;
 }
-
-.navtab.active {
-  background-color: #800000;
-} 
 
 .nav-fill li a {
   color: black;
