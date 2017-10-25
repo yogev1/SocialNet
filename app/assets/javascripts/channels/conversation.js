@@ -11,7 +11,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
         var messages_visible = (conversation).find('.panel-body').is(':visible');
  
         if (!messages_visible) {
-          conversation.removeClass('panel-default').addClass('panel-success');
+          conversation.removeClass('panel').addClass('panel-success');
         }
         conversation.find('.messages-list').find('ul').append(data['message']);
       }
@@ -22,7 +22,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
       }
     }
     else {
-      conversation.find('ul').append(data['message']);
+      conversation.find('.messages-list').append(data['message']);
     }
  
     var messages_list = conversation.find('.messages-list');
