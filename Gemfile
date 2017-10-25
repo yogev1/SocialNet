@@ -8,7 +8,7 @@ git_source(:github) do |repo_name|
 end
 
 gem 'bcrypt'
-
+gem 'jquery-rails'
 gem "font-awesome-rails"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -30,7 +30,7 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
-gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'devise'
 gem 'nested_form'
 gem 'bootstrap_form'
