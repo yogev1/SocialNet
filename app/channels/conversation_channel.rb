@@ -11,12 +11,10 @@ class ConversationChannel < ApplicationCable::Channel
     message_params = data['message'].each_with_object({}) do |el, hash|
       hash[el.values.first] = el.values.last
     end
- 
-    Message.create(message_params)
-  end
- 
+    Message.create(message_params)  
+    
     ActionCable.server.broadcast(
-      "conversations-#{current_user.id}",
+    "conversations-#{current_user.id}",
       message: message_params
     )
   end
