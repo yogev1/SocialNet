@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :conversations, only: [:create] do
+
+  resources :conversations, only: [:create, :index] do
     member do
       post :close
     end

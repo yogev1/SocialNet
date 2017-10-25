@@ -11,12 +11,6 @@ class PostsController < ApplicationController
       @posts = Post.all.order(created_at: "DESC").limit(20)
     end 
     @post = Post.new
-    # for messenger
-    session[:conversations] ||= []
- 
-    @users = User.all.where.not(id: current_user)
-    @conversations = Conversation.includes(:recipient, :messages)
-                                 .find(session[:conversations])
   end
 
   # GET /posts/1
