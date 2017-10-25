@@ -17,8 +17,10 @@
                   <h3></h3>
                 <% end %>  
               </div>
-              <div class="col-md-2 col-sm-4 col-xs-4">                           
-                <%= link_to user.name.capitalize, conversations_path(user_id: user), remote: true, method: :post, style: "font-size: 130%", class: "bold" %>
+              <div class="col-md-2 col-sm-4 col-xs-4"> 
+                <% if user.name %>                          
+                  <%= link_to user.name.capitalize, conversations_path(user_id: user), remote: true, method: :post, style: "font-size: 130%", class: "bold" %>
+                <% end %>  
               </div>
               <div class="col-md-7 col-sm-4 col-xs-4">
               </div>
