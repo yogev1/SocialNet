@@ -298,9 +298,8 @@ fieldset[disabled] .btn-dblue.active {
   border: none;
   background-color: white;
   color: black;
-  font-size: 130%;
+  font-size: 100%;
 }
-
 
 .tabpane1 {
   background-color: white;
@@ -308,18 +307,24 @@ fieldset[disabled] .btn-dblue.active {
   margin-top:10px;
 }
 
-.nav > li.active > a,
-.nav > li.active > a:hover,
-.nav > li.active > a:focus {
+ul.nav > li.active > a,
+ul.nav > li.active > a:hover,
+ul.nav > li.active > a:focus {
   background-color: #800000;
-  border-radius: 0px;
-  border: none;
   color: white;
-  font-size: 130%;
+  font-size: 140%;
+}
+
+.navtab.active {
+  background-color: #800000;
 } 
 
+.nav-fill li a {
+  color: black;
+  font-size: 110%;
+} 
 
-CSS
+/*messenger*/
 
 .messages-list {
   max-height: 200px;

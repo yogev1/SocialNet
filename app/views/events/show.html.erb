@@ -1,86 +1,25 @@
-<div class="container" style="margin-top:90px; margin-bottom: 40px">
+<div class="container" style="margin-top:90px">
   <div class="row">
-    <div class="col-md-8 col-xs-12 col-sm-12" style="background-image: url(<%= @event.image.url %>); background-repeat: no-repeat; background-size: cover; min-height: 400px; position: center center">
-    </div>
-    <div class="col-md-1 col-xs-12 col-sm-12">
-    </div>    
-    <div class="col-md-3 col-xs-12 col-sm-12">
-      <div class="panel" style="border-radius: 0px; margin-top: 20px">
-        <div class="panel-heading">
-          <% if current_user == @event.organizer %>
-            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Organizer Privileges</h1><hr>
-          <% else %>
-            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Participant Privileges</h1><hr>
-          <% end %>  
-        </div>  
-        <div class="panel-body">
-          <div class="row">
-            <% is_participant = @event.participants.find_by(id: current_user.id) %>
-            <% if @event.organizer == current_user %>
-              <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-                <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-light", style: "font-size: 130%; padding: 2px 32px; border: 1px solid black;border-radius: 0px" %><br><br>
-                <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light", style: "font-size: 130%; padding: 2px 20px; border: 1px solid black; border-radius: 0px" %><br><br>
-                <a href="https://www.eventbrite.com/signin" class="btn btn-light", style="font-size: 130%; padding: 2px 32px; border: 1px solid black;border-radius: 0px">Open EventBrite</a>              
-              </div>
-            <% elsif !is_participant %>
-            <div class="col-md-12 text-center">
-              <p><%= link_to "Join This Event", participants_path(event_id: @event.id), method: :post, class: "btn btn-light", style: "font-size: 130%; padding: 2px 10px; border: 1px solid black;border-radius: 0px; background-color: #0099ff; color: white" %></p>
-            </div>
-            <% elsif is_participant %>
-              <div class="col-md-12 text-center">
-                <%= link_to "Remove Participation", participant_path(event_id: @event.id, id: current_user.id), method: :delete, class: "btn btn-light", style: "font-size: 130%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %>
-              </div>                         
-            <% end %>
-          </div><br>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-heading">
-          <% if current_user == @event.organizer %>
-            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Manage Participants</h1><hr>
-          <% else %>
-            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Other Participants</h1><hr>
-          <% end %>  
-        </div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-md-12 text-center">
-              <% participants = @event.participants.reject {|x| x == current_user} %>
-              <% participants.each do |p| %>
-                <div class="row bold">
-                  <div class="col-md-4 col-sm-12 col-xs-12">
-                    <h4><%= p.name.capitalize %></h4>
-                  </div>
-                  <div class="col-md-8 col-sm-12 col-xs-12">
-                    <% if current_user == @event.organizer %>
-                      <h4><%= link_to "Remove Participation", participant_path(event_id: @event.id, id: p.id), method: :delete, class: "btn btn-light", style: "font-size: 80%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %></h4>
-                    <% end %>  
-                  </div>
-                </div>  
-              <% end %>
-            </div>  
-          </div>
-        </div>
-      </div> 
-    </div>   
-  </div>
-  <div class="row">           
-    <div class="col-md-8 col-xs-12 col-sm-12 bold" style="margin-top: 20px; margin-left: -15px;"> 
-      <ul  class="nav">
-        <li class="active" style="margin-right: 10px">
-          <a class="navtab" href="#1a" data-toggle="tab">General Comments</a>
+    <div class="col-md-8 col-xs-12 col-sm-12 bold" style="background-image: url(<%= @event.image.url %>); background-repeat: no-repeat; background-size: cover; height: 400px; position: center center">
+      <ul  class="nav nav-pills nav-fill" style="margin-top: 410px">
+        <li class="active navtab" style="margin-right: 10px">
+          <a class="" href="#1a" data-toggle="tab" style="border-radius: 0px;
+  border: none;">General Comments</a>
         </li>
-        <li style="margin-right: 10px">
-          <a class="navtab" href="#2a" data-toggle="tab">Details</a>
+        <li style="margin-right: 10px" class="nav-item">
+          <a class="navtab" href="#2a" data-toggle="tab" style="border-radius: 0px;
+  border: none;">Details</a>
         </li>
-        <li style="margin-right: 10px">
-          <a class="navtab" href="#3a" data-toggle="tab">Date And Time</a>
+        <li style="margin-right: 10px" class="nav-item">
+          <a class="navtab" href="#3a" data-toggle="tab" style="border-radius: 0px;
+  border: none;">Date And Time</a>
         </li>
-        <li style="margin-right: 10px">
-          <a class="navtab" href="#4a" data-toggle="tab">Organizers And Roles</a>
+        <li style="margin-right: 10px" class="nav-item">
+          <a class="navtab" href="#4a" data-toggle="tab" style="border-radius: 0px;
+  border: none;">Organizers And Roles</a>
         </li>
         <li>
-          <%= link_to "All Events", events_path, class: "btn", style: "font-size: 130%" %>
+          <%= link_to "All Events", events_path, class: "btn nav-item", style: "font-size: 130%; border-radius: 0px; border: none;" %>
         </li>
       </ul>
       <div class="tab-content">
@@ -168,9 +107,72 @@
             </div><hr>       
           <% end %>
         </div>
-      </div>          
-    </div>  
-  </div>
+      </div>           
+    </div> 
+    <div class="col-md-1 col-xs-12 col-sm-12">
+    </div>    
+    <div class="col-md-3 col-xs-12 col-sm-12">
+      <div class="panel" style="border-radius: 0px; margin-top: 20px">
+        <div class="panel-heading">
+          <% if current_user == @event.organizer %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Organizer Privileges</h1><hr>
+          <% else %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Participant Privileges</h1><hr>
+          <% end %>  
+        </div>  
+        <div class="panel-body">
+          <div class="row">
+            <% is_participant = @event.participants.find_by(id: current_user.id) %>
+            <% if @event.organizer == current_user %>
+              <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                <%= link_to 'Edit Event', edit_event_path(@event), class: "btn btn-light", style: "font-size: 130%; padding: 2px 32px; border: 1px solid black;border-radius: 0px" %><br><br>
+                <%= link_to 'Delete Event', @event, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-light", style: "font-size: 130%; padding: 2px 20px; border: 1px solid black; border-radius: 0px" %><br><br>
+                <a href="https://www.eventbrite.com/signin" class="btn btn-light", style="font-size: 130%; padding: 2px 5px; border: 1px solid black;border-radius: 0px">Open EventBrite</a>              
+              </div>
+            <% elsif !is_participant %>
+            <div class="col-md-12 text-center">
+              <p><%= link_to "Join This Event", participants_path(event_id: @event.id), method: :post, class: "btn btn-light", style: "font-size: 130%; padding: 2px 10px; border: 1px solid black;border-radius: 0px; background-color: #0099ff; color: white" %></p>
+            </div>
+            <% elsif is_participant %>
+              <div class="col-md-12 text-center">
+                <%= link_to "Remove Participation", participant_path(event_id: @event.id, id: current_user.id), method: :delete, class: "btn btn-light", style: "font-size: 130%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %>
+              </div>                         
+            <% end %>
+          </div><br>
+        </div>
+      </div> 
+            
+    
+        <div class="panel">
+        <div class="panel-heading">
+          <% if current_user == @event.organizer %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Manage Participants</h1><hr>
+          <% else %>
+            <h1 class="label center-block" style="font-size: 130%; background-color: black; border-radius: 0px">Other Participants</h1><hr>
+          <% end %>  
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <% participants = @event.participants.reject {|x| x == current_user} %>
+              <% participants.each do |p| %>
+                <div class="row bold">
+                  <div class="col-md-4 col-sm-12 col-xs-12">
+                    <h4><%= p.name.capitalize %></h4>
+                  </div>
+                  <div class="col-md-8 col-sm-12 col-xs-12">
+                    <% if current_user == @event.organizer %>
+                      <h4><%= link_to "Remove Participation", participant_path(event_id: @event.id, id: p.id), method: :delete, class: "btn btn-light", style: "font-size: 80%; padding: 2px 1px; border: 1px solid black;border-radius: 0px; background-color: #800000; color: white" %></h4>
+                    <% end %>  
+                  </div>
+                </div>  
+              <% end %>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>        
 </div>
 
 

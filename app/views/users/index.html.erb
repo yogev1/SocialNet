@@ -1,7 +1,7 @@
   <style>
     .toggler { width: auto; height: auto; position: relative; }
     #button { text-decoration: none; }
-    #effect { width: auto; height: auto;  position: relative; }
+    #effect { width: auto; height: auto;  position: relative; background-color: #284c79; }
   </style>
   <script>
   $( function() {
@@ -9,7 +9,7 @@
     $( "#button" ).on( "click", function() {
       if ( state ) {
         $( "#effect" ).animate({
-          backgroundColor: "white",
+          backgroundColor: "#284c79",
           color: "#284c79",
           width: "50%"
         }, 1000 );
