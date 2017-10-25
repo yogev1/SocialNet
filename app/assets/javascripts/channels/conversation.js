@@ -32,7 +32,7 @@ App.conversation = App.cable.subscriptions.create("ConversationChannel", {
   speak: function(message) {
     return this.perform('speak', {
       message: message
-    });
+    })
   }
 });
 $(document).on('submit', '.new_message', function(e) {
