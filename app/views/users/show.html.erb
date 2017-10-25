@@ -101,29 +101,29 @@
                     Photos
                   </h2>
                 </div>
-                <div class="panel-body">
-                  <div style="margin-left: -15px">
+                <div class="panel-body" style="padding-left:0; padding-right:0">
+                  <div class="row">
                     <% @posts.each do |p| %>
-                      <div class="col-md-4 col-sm-3 col-xs-3 card2">
-                        <% if p.image.present? %>  
-                          <div class="front"> 
-                            <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 96px; width: 88px;" %></a>
-                          </div> 
-                          <div class="back" style="background-color: #284c79; max-height: 90px; max-width: 90px; opacity: 0.7">
-                            <div style="background-color: #284c79">
-                              <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
-                            </div>  
-                          </div>
-                          <script>
-                            $(".card2").flip({
-                              axis: 'y',
-                              trigger: 'hover'
-                            }); 
-                          </script>
-                        <% end %>     
-                      </div> 
+                      <% if p.image.present? %>
+                      <div class="col-md-4 col-sm-3 col-xs-3 card2">  
+                        <div class="front"> 
+                          <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 70px; width: 70px" %></a>
+                        </div> 
+                        <div class="back" style="background-color: #284c79; max-height: 90px; max-width: 90px; opacity: 0.7">
+                          <div style="background-color: #284c79">
+                            <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
+                          </div>  
+                        </div>
+                        <script>
+                        $(".card2").flip({
+                          axis: 'y',
+                          trigger: 'hover'
+                        }); 
+                        </script>
+                      </div>
+                      <% end %>     
                     <% end %> 
-                  </div>
+                  </div>  
                 </div>
               </div>
               <div class="panel">
@@ -369,49 +369,46 @@
             </div>         
           </div>        
         </div>      
-      <div class="tab-pane" id="about" style="padding-top: 20px">
-        <div class="row">
-          <div class="col-md-4">
-          </div>
-          <div class="col-md-8">     
-            <div class="panel panel-default">
-              <div class="panel-heading text-center">
-                <h3>About</h3>
-              </div>             
-              <div class="panel-body" style="min-height: 220px"> 
-                <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn7" %>
+        <div class="tab-pane" id="about" style="padding-top: 20px">
+          <div class="row">
+            <div class="col-md-12">     
+              <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                  <h3>About</h3>
+                </div>             
+                <div class="panel-body" style="min-height: 220px"> 
+                  <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn7" %>
+                </div>  
               </div>  
-            </div>  
-          </div>             
+            </div>             
+          </div>
         </div>
-      </div>
-    <div class="tab-pane" id="friends" style="padding-top: 20px"> 
-      <div class="row">
-          <%= link_to 'Expend Your Network', users_path, class: "btn btn-danger", style: "font-size: 150%; padding: 6px 80px" %>
-          <%= link_to 'Manage Friend Requests', users_path, class: "btn btn-primary btn-lg" %>
-          <%= link_to 'Your Friends', friendships_path, class: "btn btn-success btn-lg" %>
+        <div class="tab-pane" id="friends" style="padding-top: 20px"> 
+          <div class="row">
+            <%= link_to 'Expend Your Network', users_path, class: "btn btn-danger", style: "font-size: 150%; padding: 6px 80px" %>
+            <%= link_to 'Manage Friend Requests', users_path, class: "btn btn-primary btn-lg" %>
+            <%= link_to 'Your Friends', friendships_path, class: "btn btn-success btn-lg" %>
+          </div>
+        </div>
+        <div class="tab-pane" id="photos">
+          <div class="row">
+            <div class="col-md-12 text-center" style="padding-top: 20px">
+              
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="more" style="padding-top: 20px"> 
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12"> 
+              <h4></h4>    
+              <h3></h3>
+            </div>                         
+          </div>
+        </div>    
       </div>
     </div>
-    <div class="tab-pane" id="photos">
-      <div class="row">
-        <div class="col-md-12 text-center" style="padding-top: 20px">
-          
-        </div>
-      </div>
-    </div>
-    <div class="tab-pane" id="more" style="padding-top: 20px"> 
-      <div class="row">
-        <div class="col-md-12 col-sm-12 col-xs-12"> 
-          <h4></h4>    
-          <h3></h3>
-        </div>                         
-      </div>
-    </div>    
   </div>
 </div>
-</div>
-</div>
-
 
 <div class="modal fade" id="post" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
