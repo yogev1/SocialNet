@@ -17,18 +17,18 @@
           <% end %>            
         </div>
         <% if @user.id == current_user.id %>
-          <div class="col-md-2 col-sm-6 col-md-push-2 text-center hidden-xs" style="margin-top: 350px"> 
+          <div class="col-md-2 col-md-push-2 text-center hidden-sm hidden-xs" style="margin-top: 350px"> 
             <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
           </div>
-          <div class="col-md-2 col-sm-6 col-md-push-2 text-center hidden-xs" style="margin-top: 350px"> 
+          <div class="col-md-2 col-md-push-2 text-center hidden-sm hidden-xs" style="margin-top: 350px"> 
             <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
           </div> 
-          <div class="col-xs-5 col-xs-push-1 visible-xs" style="z-index: 5; margin-top: 10px"> 
+          <div class="col-xs-3 col-xs-pull-6 visible-xs" style="z-index: 5; margin-top: 50px; margin-bottom: 20px"> 
             <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
-          </div>
-          <div class="col-xs-4 col-xs-4 col-xs-push-1 visible-xs" style="z-index: 5; margin-top: 10px"> 
+          </div>                
+          <div class="col-xs-1 col-xs-pull-4 visible-xs" style="z-index: 5; margin-top: 50px; margin-bottom: 20px"> 
             <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
-          </div>                 
+          </div> 
         <% end %>
       </div>
     </div> 
