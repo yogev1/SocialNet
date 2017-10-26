@@ -165,6 +165,10 @@ button .full-width{
     padding-left: 0;
 }
 
+.nopadding2 > div[class^="col-"], .nopadding2 > div[class^="col-"] > a {
+    padding-right: 0;
+    padding-left: 0;
+}
 
 /*
 for user profile
