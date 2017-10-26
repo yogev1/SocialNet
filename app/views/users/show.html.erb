@@ -6,7 +6,7 @@
       <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
         <div class="col-md-3 col-sm-3 col-xs-7" style="margin-top: 230px; z-index: 100">
           <% if current_user.image.present? %>
-            <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 200px; width: 200px") %>
+            <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 170px; width: 170px") %>
             <% end %>
         </div>          
         <div class="col-md-2 col-sm-2 col-xs-5" style="margin-top: 320px"> 
@@ -372,12 +372,27 @@
         <div class="tab-pane" id="about" style="padding-top: 20px">
           <div class="row">
             <div class="col-md-12">     
-              <div class="panel panel-default">
-                <div class="panel-heading text-center">
+              <div class="panel">
+                <div class="panel-heading" style="background-color: #F5F5F5; border-bottom: 1px solid grey">
                   <h3>About</h3>
                 </div>             
-                <div class="panel-body" style="min-height: 220px"> 
-                  <%= link_to "Sign_out", destroy_user_session_path, :method => 'delete', class: "btn btn7" %>
+                <div class="panel-body" style="padding-top:0;">
+                  <div class="col-md-3 col-xs-4 col-sm-4" style="border-right: 1px solid grey;">
+                    <ul class="nav flex-column" style="padding-bottom:0">
+                      <li class="nav-item">
+                        <a class="nav-link active" href="#">Overview</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Work And Education</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Contact And Basic Info</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Life Events</a>
+                      </li>                                           
+                    </ul>
+                  </div>
                 </div>  
               </div>  
             </div>             
@@ -385,9 +400,85 @@
         </div>
         <div class="tab-pane" id="friends" style="padding-top: 20px"> 
           <div class="row">
-            <%= link_to 'Expend Your Network', users_path, class: "btn btn-danger", style: "font-size: 150%; padding: 6px 80px" %>
-            <%= link_to 'Manage Friend Requests', users_path, class: "btn btn-primary btn-lg" %>
-            <%= link_to 'Your Friends', friendships_path, class: "btn btn-success btn-lg" %>
+            <div class="col-md-12 col-xs-12 col-sm-12">
+              <div class="panel">
+                <div class="panel-heading" style="background-color: #F5F5F5;">
+                  <h3><a href="<%= users_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a> Friends &nbsp&nbsp&nbsp&nbsp<%= link_to 'Find Friends\Manage Friend Requests', users_path, class: "btn bold", style: "font-size: 80%; padding: 6px 10px; border: 1px groove black" %></h3>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="#All-Fri">All Friends</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#Recent-Fri">Recently Added</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#New-Post">New Posts</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled" href="#Birthday">Birthdays</a>
+                  </li>
+                </ul>             
+                <div class="panel-body" style="padding-top:0;">
+                  <div class="col-md-12 col-xs-12 col-sm-12"> 
+                    <div class="tab-pane" id="All-Fri" style="padding-top: 20px"> 
+                      <div class="row">
+                        <% if @user.friends %>
+                          <% @user.friends.each do |f| %> 
+                            <a href="<%= user_path(f) %>"><div class="col-md-6 col-sm-6 col-xs-12">
+                              <div class="media" style="border: 1px solid #E8E8E8;">
+                                <div class="col-md-6 col-sm-6 col-xs-6" style="padding-left:0">
+                                  <div class="media-left">
+                                    <% if f.image.present? %>
+                                      <div>
+                                        <%= image_tag f.image.url, style: "padding-left:0", size: "110x110" %>  
+                                      </div>
+                                    <% end %>
+                                  </div>  
+                                </div> 
+                                <div class="col-md-6 col-sm-6 col-xs-6 col-md-pull-2 col-sm-pull-1 col-xs-pull-2"> 
+                                  <div class="media-body">
+                                    <h5 class="media-heading" style="margin-top: 50px; font-weight: 900"><%= f.name.capitalize %>
+                                    </h5>
+                                    <h5>
+                                      # Mutual Friends
+                                    </h5>
+                                  </div>
+                                </div>  
+                              </div>
+                            </div></a>  
+                          <% end %>
+                        <% end %>                        
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="All-Fri" style="padding-top: 20px"> 
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12"> 
+                          <h4></h4>    
+                          <h3></h3>
+                        </div>                         
+                      </div>
+                    </div>                    
+                    <div class="tab-pane" id="New-Post" style="padding-top: 20px"> 
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12"> 
+                          <h4></h4>    
+                          <h3></h3>
+                        </div>                         
+                      </div>
+                    </div>
+                    <div class="tab-pane" id="Birthday" style="padding-top: 20px"> 
+                      <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12"> 
+                          <h4></h4>    
+                          <h3></h3>
+                        </div>                         
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+              </div>
+            </div>
           </div>
         </div>
         <div class="tab-pane" id="photos">
