@@ -3,46 +3,57 @@
   <!--  user authentication -->
   <% if user_signed_in? %>
   <div class="row">
-    <div class="col-md-2 col-sm-12 col-xs-12">
+    <div class="col-md-2 col-sm-12 col-xs-12" style="margin-bottom: 20px">
       <div class="row center-block">
-        <% if current_user.image.present? %>
-          <%= image_tag(current_user.image.url, class: "img-responsive img-circle center-block", style: "margin-top: 10px; height: 30px; width: 30px; margin-left: 45px;") %>
-        <% else %>
-          <h4 style="font-size: 100%; padding-right: 10px">Please Add Photo</h4>
-        <% end %> 
-        <% if current_user.name %>
-          <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
-        <% else %>
-          <h4 style="font-size: 100%">Please Update Name</h4>
-        <% end %>          
+        <div class="col-md-4 col-md-pull-1 col-xs-4 col-sm-4">
+          <% if current_user.image.present? %>
+            <%= image_tag(current_user.image.url, class: "img-responsive img-circle center-block", style: "margin-top: 10px; height: 20px; width: 20px; margin-left: 45px;") %>
+          <% else %>
+            <h4 style="font-size: 100%; padding-right: 10px">Please Add Photo</h4>
+          <% end %> 
+        </div>
+        <div class="col-md-6 col-xs-8 col-sm-8" style="margin-top: -5px">  
+          <% if current_user.name %>
+            <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><%= current_user.name.capitalize %></a>
+          <% else %>
+            <h4 style="font-size: 100%">Please Update Name</h4>
+          <% end %>
+        </div>            
       </div>
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'newsfeed-icon.png' %>); background-repeat: no-repeat; min-width: 150px">News Feed</a>
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "newsfeed-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>News Feed</a>
         </div>  
       </div>
-      <div class="row">
-        <div class="col-md-6 col-xs-12 col-sm-12" style="text-align: center; margin-bottom: 1px; width: 100%">
-          <a href="<%= conversations_path %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; background-image: url(<%= asset_path 'messenger-icon2.png' %>); background-repeat: no-repeat; min-width: 150px">Messenger</a>
-        </div>    
-
-          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
-            <a href="<%= events_path %>" class="btn btn6" style="border-radius: 0px; min-width: 150px;"><%= image_tag("event-icon.png", size: "20x20") %>Events</a>
-          </div>
-          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
-            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px;">Pages</a>
-          </div>
-          <div class="col-md-12 col-xs-12 col-sm-12" style="margin-bottom: 1px; text-align: center">
-            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px;">Groups</a>
-          </div>
-          <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; margin-bottom: 5px;">
-            <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px;">Friends List</a>
-          </div>                          
-      </div>      
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "messenger-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>Messenger</a>
+        </div>  
+      </div>   
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "event-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Events</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "pages-icon.png", size: "20x20", style: "margin-left: -75px; margin-right: 10px" %>Pages</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "groups-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Groups</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
+          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+        </div>  
+      </div>     
     </div>
     <div class="col-md-6 col-sm-12 col-xs-12">
       <div class="hidden-md hidden-lg visible-sm visible-xs">
-        <div class="panel" style="border-radius: 0px">
+        <div class="panel" style="border-radius: 0px; background-color: #F8F8F8">
           <div class="panel-body">
             <div class="col-md-12 col-xs-12 col-sm-12">
               <div class="row">
@@ -334,7 +345,7 @@
       </div>    
     <% end %>
     <div class="col-md-3 col-xs-12 col-sm-12 hidden-sm hidden-xs">
-      <div class="panel" style="border-radius: 0px">
+      <div class="panel" style="border-radius: 0px; background-color: #F8F8F8">
         <div class="panel-body">
           <div class="col-md-12 col-xs-12 col-sm-12">
             <div class="row">
