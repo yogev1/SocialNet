@@ -94,24 +94,24 @@ button .full-width{
 }
 
 .navbar {
-   background-color: #284c79;
+   background-color: #3b5998;
    height: 50px;
    color: white;
 }
 
 .colp { 
-  background: #284c79;
+  background: #3b5998;
 }
 
 
 .navbar-home {
-   background-color: #284c79;
+   background-color: #3b5998;
    height: 100px;
    color: white;
 }
 
 .navbar-home2 {
-   background-color: #284c79;
+   background-color: #3b5998;
    height: 60px;
    color: white;
 }
@@ -226,58 +226,6 @@ for user profile
     font-size:15px !important;
 }
 
-/* Colours Used for Glyphicons and some text */
-.dgreen { color: #060; }
-.green { color: #0F0; }
-.blue { color: #00F; }
-
-/* Button Colours */
-.btn-dblue { 
-  color: #ffffff; 
-  background-color: #1B23BD; 
-  border-color: #000A7A; 
-} 
- 
-.btn-dblue:hover, 
-.btn-dblue:focus, 
-.btn-dblue:active, 
-.btn-dblue.active, 
-.open .dropdown-toggle.btn-dblue { 
-  color: #ffffff; 
-  background-color: #18148C; 
-  border-color: #000A7A; 
-} 
- 
-.btn-dblue:active, 
-.btn-dblue.active, 
-.open .dropdown-toggle.btn-dblue { 
-  background-image: none; 
-} 
- 
-.btn-dblue.disabled, 
-.btn-dblue[disabled], 
-fieldset[disabled] .btn-dblue, 
-.btn-dblue.disabled:hover, 
-.btn-dblue[disabled]:hover, 
-fieldset[disabled] .btn-dblue:hover, 
-.btn-dblue.disabled:focus, 
-.btn-dblue[disabled]:focus, 
-fieldset[disabled] .btn-dblue:focus, 
-.btn-dblue.disabled:active, 
-.btn-dblue[disabled]:active, 
-fieldset[disabled] .btn-dblue:active, 
-.btn-dblue.disabled.active, 
-.btn-dblue[disabled].active, 
-fieldset[disabled] .btn-dblue.active { 
-  background-color: #1B23BD; 
-  border-color: #000A7A; 
-} 
- 
-.btn-dblue .badge { 
-  color: #1B23BD; 
-  background-color: #ffffff; 
-}
-
 .src-image {
   display: none;
 }
@@ -372,4 +320,99 @@ ul.nav-fill > li.active > a:focus {
   margin: 5px 20px;
   padding: 10px;
   float: left;
+}
+
+
+.search-form .form-group {
+  float: right !important;
+  transition: all 0.35s, border-radius 0s;
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+}
+.search-form .form-group input.form-control {
+  padding-right: 20px;
+  border: 0 none;
+  background: transparent;
+  box-shadow: none;
+  display:block;
+}
+.search-form .form-group input.form-control::-webkit-input-placeholder {
+  display: none;
+}
+.search-form .form-group input.form-control:-moz-placeholder {
+  /* Firefox 18- */
+  display: none;
+}
+.search-form .form-group input.form-control::-moz-placeholder {
+  /* Firefox 19+ */
+  display: none;
+}
+.search-form .form-group input.form-control:-ms-input-placeholder {
+  display: none;
+}
+.search-form .form-group:hover,
+.search-form .form-group.hover {
+  width: 100%;
+  border-radius: 4px 25px 25px 4px;
+}
+.search-form .form-group span.form-control-feedback {
+  position: absolute;
+  top: -1px;
+  right: -2px;
+  z-index: 2;
+  display: block;
+  width: 34px;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #3596e0;
+  left: initial;
+  font-size: 14px;
+}
+
+#drop10 > li > a:hover {
+  background-color: #3b5998;
+}
+
+
+
+.nav1>li>a:hover, .nav1>li>a:focus, .nav1 .open>a, .nav1 .open>a:hover, .nav1 .open>a:focus {
+    background: #3b5998;
+}
+.dropdown {
+    background: inherit;
+    width:20px;    
+}
+.dropdown-menu>li>a {
+    color:#428bca;
+}
+.dropdown ul.dropdown-menu {
+    border-radius:4px;
+    box-shadow:none;
+    margin-top:20px;
+    width:300px;
+}
+.dropdown ul.dropdown-menu:before {
+    content: "";
+    border-bottom: 10px solid #fff;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: absolute;
+    top: -10px;
+    right: 16px;
+    z-index: 10;
+}
+.dropdown ul.dropdown-menu:after {
+    content: "";
+    border-bottom: 12px solid #ccc;
+    border-right: 12px solid transparent;
+    border-left: 12px solid transparent;
+    position: absolute;
+    top: -12px;
+    right: 14px;
+    z-index: 9;
 }

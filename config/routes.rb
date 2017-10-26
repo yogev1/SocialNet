@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  
+  get 'searches/index', to: 'searches#index'
 
   resources :conversations, only: [:create, :index] do
     member do

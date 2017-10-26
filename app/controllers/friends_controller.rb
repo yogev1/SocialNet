@@ -3,7 +3,7 @@ class FriendsController < ApplicationController
   
   def create      
     @friend = current_user.friendships.build(friend_id: params[:friend_id])
-    @friend.update(user_id: current_user.id)  
+    #@friend.update(user_id: current_user.id)  
     if @friend.save
       flash[:notice] = "Friend Request Sent"
       redirect_to users_path
@@ -35,6 +35,6 @@ class FriendsController < ApplicationController
   private
 
   def user_params
-    params.require(:friend).permit(:user_id, :friend_id, :accepted)
+    params.require(:friend).permit(:friend_id, :accepted)
   end
 end

@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    if params[:search]    
+      @results = Post.search(params[:search]).order(:id) + 
+        Event.search(params[:search]).order(:name) + 
+        User.search(params[:search]).order(:name)
+    end     
     @users = User.all
   end
 

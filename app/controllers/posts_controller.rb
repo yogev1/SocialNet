@@ -5,11 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index    
-    if params[:search]   
-      @results = Post.search(params[:search]).order(:id) + Event.search(params[:search]).order(:name) + User.search(params[:search]).order(:name)
-    else
-      @posts = Post.all.order(created_at: "DESC").limit(20)
+    if @url == "searchesindex"   
+      @results = Post.search(params[:search]).order(:id) + 
+        Event.search(params[:search]).order(:name) + 
+        User.search(params[:search]).order(:name)
     end 
+    @posts = Post.all.order(created_at: "DESC").limit(20)
     @post = Post.new
   end
 
