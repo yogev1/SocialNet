@@ -22,17 +22,17 @@
       </div>
       <div class="row" style="margin-bottom: 1px; margin-top: 10px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "newsfeed-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>News Feed</a>
+          <a href="<%= root_path %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "newsfeed-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>News Feed</a>
         </div>  
       </div>
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "messenger-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>Messenger</a>
+          <a href="<%= conversations_path %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "messenger-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>Messenger</a>
         </div>  
       </div>   
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "event-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Events</a>
+          <a href="<%= events_path %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "event-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Events</a>
         </div>  
       </div>
       <div class="row" style="margin-bottom: 1px">
@@ -47,7 +47,7 @@
       </div>
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+          <a href="<%= user_path(current_user) %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
         </div>  
       </div>     
     </div>
