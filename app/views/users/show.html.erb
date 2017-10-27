@@ -23,7 +23,7 @@
           <div class="col-md-2 col-md-push-2 text-center hidden-sm hidden-xs" style="margin-top: 350px"> 
             <%= link_to 'View Activity Log', edit_user_path(@user), class: "btn btn4 btn-default" %>
           </div> 
-          <div class="col-xs-3 col-xs-pull-6 visible-xs" style="z-index: 5; margin-top: 50px; margin-bottom: 20px"> 
+          <div class="col-xs-3 col-xs-pull-7 visible-xs" style="z-index: 5; margin-top: 50px; margin-bottom: 20px"> 
             <%= link_to 'Update Info', edit_user_path(@user), class: "btn btn4 btn-default", style: "padding: 6px 25px;" %>
           </div>                
           <div class="col-xs-1 col-xs-pull-4 visible-xs" style="z-index: 5; margin-top: 50px; margin-bottom: 20px"> 
@@ -60,7 +60,7 @@
                   <span class="glyphicon glyphicon-triangle-bottom"></span>More</a>
               </li>
             </ul>
-            <ul class="nav nav-tabs visible-xs" style="margin-top: 80px">
+            <ul class="nav nav-tabs visible-xs" style="margin-top: 10px">
               <li class="active col-xs-6">
                 <a href="#timeline" data-toggle="tab">
                   TimeLine </a>
@@ -132,32 +132,31 @@
                   </h2>                  
                 </div>
                 <div class="panel-body" style="margin-left: -20px">
-                    <% current_user.friends.each do |f| %>
-                      <div class="col-md-4 col-sm-3 col-xs-3 card2">
-                        <!-- dblue -->
-                        <% if f.image.present? %>  
-                          <div class="front"> 
-                            <a href="<%= user_path(f) %>" class="btn btn-lg" role="button"><%= image_tag f.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
-                          </div> 
-                          <div class="back"  style="background-color: #284c79; max-height: 82px; max-width: 82px">
-                            <div>
-                              <h4 class="text-center" style="color: white"><br><%= f.name %></h4>
-                            </div>  
-                          </div>
-                          <script>
-                            $(".card2").flip({
-                              axis: 'y',
-                              trigger: 'hover'
-                            }); 
-                          </script>
-                        <% end %>     
-                      </div> 
-                    <% end %> 
-                  
+                  <% current_user.friends.each do |f| %>
+                    <div class="col-md-4 col-sm-3 col-xs-3 card2">
+                      <!-- dblue -->
+                      <% if f.image.present? %>  
+                        <div class="front"> 
+                          <a href="<%= user_path(f) %>" class="btn btn-lg" role="button"><%= image_tag f.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
+                        </div> 
+                        <div class="back"  style="background-color: #284c79; max-height: 82px; max-width: 82px">
+                          <div>
+                            <h4 class="text-center" style="color: white"><br><%= f.name %></h4>
+                          </div>  
+                        </div>
+                        <script>
+                        $(".card2").flip({
+                          axis: 'y',
+                          trigger: 'hover'
+                        }); 
+                        </script>
+                      <% end %>     
+                    </div> 
+                  <% end %> 
                 </div>
               </div>                                  
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-sm-12 col-xs-12">
               <div class="panel">
                 <div class="panel-heading" style="background-color: #F5F5F5">
                 </div>
