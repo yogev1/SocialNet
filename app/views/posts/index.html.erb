@@ -250,9 +250,9 @@
                   <h2><%= post.description %></h2>   
                 <% else %> 
                   <h1><%= post.description %></h1>                 
-                  <div class="card" style="max-height: 400px"> 
+                  <div class="card" style="max-height: 50%"> 
                     <div class="front"> 
-                      <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto" %><br/><br/>
+                      <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto; min-height: 350px" %><br/><br/>
                     </div> 
                     <div class="back">
                       <div style="background-color: #284c79">
