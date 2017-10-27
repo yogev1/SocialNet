@@ -4,11 +4,15 @@
   <div class="container">
     <div class="navbar-header">
       <div class="row">
-        <div class="col-sm-12 col-xs-12 col-xs-pull-3 col-sm-pull-3">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-xs-pull-4">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded=" " aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
-            <a href="<%= root_path %>"><span class="icon-bar" style="margin-left: -160px"><%= image_tag("fakebook-icon.png", style: "height: 30px; width: 150px") %></span></a>
-            <span class="glyphicon glyphicon-user" style="font-size: 200%"></span>
+            <div class="col-sm-6 col-xs-6 col-md-6 col-xs-pull-8">  
+              <a href="<%= root_path %>"><span class="icon-bar"><%= image_tag("fakebook-icon.png", style: "height: 30px;") %></span></a>
+            </div>  
+            <div class="col-sm-6 col-xs-6 col-md-6">
+              <span class="glyphicon glyphicon-user" style="font-size: 200%"></span>
+            </div>  
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>            
@@ -16,87 +20,89 @@
         </div>        
       </div>
     </div>
-    <div class="col-md-12 col-sm-12 col-xs-12">
-      <div id="navbar" class="collapse navbar-collapse colp" style="margin-top:10px">
-        <div class="col-md-2 hidden-xs hidden-sm">
-          <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
-        </div>
-        <div class="col-md-5 hidden-xs hidden-sm">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-4">
-                <form action="searches/index" class="search-form">
-                  <div class="form-group has-feedback">
-                    <input type="text" class="form-control btn" name="search" id="search" placeholder="Search Posts/Users/Events/Groups...">
-                    <span class="glyphicon glyphicon-search form-control-feedback"></span> 
-                  </div>
-                </form>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <div id="navbar" class="collapse navbar-collapse colp" style="margin-top:10px">
+          <div class="col-md-2 hidden-xs hidden-sm">
+            <a href="<%= root_path %>"><%= image_tag("fakebook-icon.png", size: "120x30") %></a>
+          </div>
+          <div class="col-md-5 hidden-xs hidden-sm">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <form action="searches/index" class="search-form">
+                    <div class="form-group has-feedback">
+                      <input type="text" class="form-control btn" name="search" id="search" placeholder="Search Posts/Users/Events/Groups...">
+                      <span class="glyphicon glyphicon-search form-control-feedback"></span> 
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        </div> 
-        <div class="col-md-5"> 
-          <div class="row text-center">
-            <ul id="drop10" class="nav navbar-nav navbar-right" style="display: inline; margin-top: -10px;">            
-              <li class="col-md-2 col-sm-2 col-xs-2 hidden-xs hidden-sm" style="margin-top:10px">
-                <% if current_user.image.present? %>
-                <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle") %> 
-                <% end %>  
-              </li> 
-              <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-2" style="margin-top:5px">
-                <% if current_user.name %>
-                <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
-                <% end %> 
-              </li>
-              <li class="col-md-1 col-sm-2 col-xs-2">
-                <a href="<%= users_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
-              </li>
-              <li class="col-md-1 col-sm-2 col-xs-2">
-                <a href="<%= conversations_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
-              </li>             
-              <li class="col-md-2 col-sm-2 col-xs-2">
-                <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
-              </li>
-              <li class="col-md-1 col-sm-2 col-xs-2 hidden-xs" style="margin-top: 15px;">
-                <div class="dropdown nav1">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-menu-hamburger pull-right" style="font-size: 150%; margin-bottom: 15px; color: white"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="<%= edit_user_path(current_user) %>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="<%= events_path %>">Events <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Activity Log <span class="badge pull-right"> 42 </span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Create Group <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">News Feed Preferences <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                    <li class="divider"></li>            
-                    <li><a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="col-md-1 col-sm-2 col-xs-2 hidden-lg hidden-md hidden-sm" style="margin-top: 10px;">
-                <div class="dropdown nav1">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-menu-hamburger pull-right" style="font-size: 150%; margin-bottom: 15px; color: white"></span></a>
-                  <ul class="dropdown-menu" style="margin-left: -100px; background-color: white; margin-top: 40px; width: 200px">
-                    <li><a href="<%= edit_user_path(current_user) %>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="<%= events_path %>">Events <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Activity Log <span class="badge pull-right"> 42 </span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">Create Group <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">News Feed Preferences <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                    <li class="divider"></li>            
-                    <li><a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
-                  </ul>
-                </div>
-              </li>              
-            </ul>          
-          </div>
-        </div>        
-      </div>  
-    </div><!--/.navbar-collapse --> 
+          </div> 
+          <div class="col-md-5"> 
+            <div class="row text-center">
+              <ul id="drop10" class="nav navbar-nav navbar-right" style="display: inline; margin-top: -10px;">            
+                <li class="col-md-2 col-sm-2 col-xs-2 hidden-xs hidden-sm" style="margin-top:10px">
+                  <% if current_user.image.present? %>
+                  <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle") %> 
+                  <% end %>  
+                </li> 
+                <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-2" style="margin-top:5px">
+                  <% if current_user.name %>
+                  <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
+                  <% end %> 
+                </li>
+                <li class="col-md-1 col-sm-2 col-xs-2">
+                  <a href="<%= users_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
+                </li>
+                <li class="col-md-1 col-sm-2 col-xs-2">
+                  <a href="<%= conversations_path %>"><%= image_tag("messenger-icon.png", size: "25x25") %></a>
+                </li>             
+                <li class="col-md-2 col-sm-2 col-xs-2">
+                  <a href="<%= root_path %>"><%= image_tag("notifications-icon.png", size: "25x25") %></a>
+                </li>
+                <li class="col-md-1 col-sm-2 col-xs-2 hidden-xs" style="margin-top: 15px;">
+                  <div class="dropdown nav1">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-menu-hamburger pull-right" style="font-size: 150%; margin-bottom: 15px; color: white"></span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="<%= edit_user_path(current_user) %>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="<%= events_path %>">Events <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Activity Log <span class="badge pull-right"> 42 </span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Create Group <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">News Feed Preferences <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                      <li class="divider"></li>            
+                      <li><a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                  </div>
+                </li>
+                <li class="col-md-1 col-sm-2 col-xs-2 hidden-lg hidden-md hidden-sm" style="margin-top: 10px;">
+                  <div class="dropdown nav1">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-menu-hamburger pull-right" style="font-size: 150%; margin-bottom: 15px; color: white"></span></a>
+                    <ul class="dropdown-menu pull-right" style="background-color: white; margin-top: 40px; width: 250px">
+                      <li><a href="<%= edit_user_path(current_user) %>">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="<%= events_path %>">Events <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Activity Log <span class="badge pull-right"> 42 </span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">Create Group <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                      <li class="divider"></li>
+                      <li><a href="#">News Feed Preferences <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                      <li class="divider"></li>            
+                      <li><a href="<%= destroy_user_session_path %>" data-method="delete">Sign Out <span class="glyphicon glyphicon-log-out pull-right"></span></a></li>
+                    </ul>
+                  </div>
+                </li>              
+              </ul>          
+            </div>
+          </div>        
+        </div>  
+      </div><!--/.navbar-collapse -->
+    </div> 
   </div><!-- /.container-fluid -->  
 </nav>
