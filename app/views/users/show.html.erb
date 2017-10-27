@@ -9,7 +9,7 @@
             <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 170px; width: 170px") %>
             <% end %>
         </div>          
-        <div class="col-md-2 col-sm-2 col-xs-5" style="margin-top: 320px"> 
+        <div class="col-md-2 col-sm-2 col-xs-5 col-xs-pull-1" style="margin-top: 320px"> 
           <% if current_user.name %>
             <a href="<%= user_path(current_user) %>" class="navbar-brand col" style="color:black; font-size: 15px"><h1 style="font-weight: 700; color:white"><%= @user.name.capitalize %></h1></a>
           <% else %>
@@ -328,28 +328,25 @@
                       <div class="row"> 
                         <div class="col-md-6 col-xs-12 col-sm-12">
                           <div class="row">
-                            <div class="col-md-12 col-xs-12 col-sm-12">
                               <% like_names = Like.where(post_id: post.id).limit(3) %>
                               <% if post.likes %>
                                 <% like_names.each do |user| %>
-                                  <% user = user.user_id %>
-                                  <% user = User.find_by(id: user) %>
-                                  <h5 style="color: blue"><a href="<%= user_path(user) %>"><%= user.name %></a></h5>
-                                  <% if like_names.last.user_id != user.id %>
-                                    <h7 style="color: #00a3cc; font-size: 160%">,&nbsp</h7>
-                                  <% end %>
-                                <% end %>
-                                <% if like_names.count > 1 %>
-                                  <h5 style="color: blue">....</h5>
-                                <% end %>
+                                  <div class="col-md-3 col-sm-1 col-xs-2">
+                                    <% user = user.user_id %>
+                                    <% user = User.find_by(id: user) %>
+                                    <h5 style="color: blue"><a href="<%= user_path(user) %>"><%= user.name %><% if like_names.last.user_id != user.id %>,&nbsp<% else %>....<% end %>
+                                    </h5></a>
+                                  </div>                            
+                                <% end %>  
                               <% end %>
+                            <div class="col-md-2 col-sm-1 col-xs-2 col-md-push-1" style="margin-top: 7px">  
                               <% if post.likes.count > 0 %>
-                                <h3 class="label" style="color: black; font-size: 120%; margin-top: 5px"><%= post.likes.count %></h3>
-                              <% end %> 
-                            </div> 
-                          </div>    
+                                <h3 class="label" style="color: black; font-size: 120%"><%= post.likes.count %></h3>
+                              <% end %>
+                            </div>     
+                          </div>     
                         </div>                  
-                      </div><br><br>
+                      </div><br>
                       <!-- post Comments -->
                       <div class="panel font" style="background-color: inherit"> 
                         <div class="panel-body">
