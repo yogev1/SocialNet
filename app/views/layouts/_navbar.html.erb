@@ -48,7 +48,7 @@
                   <%= image_tag(current_user.image.url, size: "30x30", class: "img-responsive img-circle") %> 
                   <% end %>  
                 </li> 
-                <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-2" style="margin-top:5px">
+                <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-3 col-xs-pull-1" style="margin-top:5px">
                   <% if current_user.name %>
                   <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
                   <% end %> 
