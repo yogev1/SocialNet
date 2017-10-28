@@ -30,7 +30,7 @@
     <div class="col-md-7 col-xs-12 col-sm-12">     
       <div class="panel" style="border-radius: 0px">
         <div class="panel-heading">
-          <h1 class="panel-title">Pending Friend Requests</h1>
+          <h1 class="panel-title" style="font-weight: bold">Pending Friend Requests</h1>
         </div>
         <div class="panel-body">
           <% @users.each do |user| %>
@@ -53,8 +53,8 @@
                 <p style="color: #A9A9A9"><%= user.email %></p>
               </div>
               <div class="col-md-6">            
-                <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%" %>
-                <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%" %>
+                <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%; border-radius: 1px" %>
+                <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%; border-radius: 1px" %>
               </div>  
             </div><br><br>    
               <% @boolean = true %>              
@@ -65,62 +65,129 @@
           <% end %>               
         </div>
       </div>
-      <% @users.each do |user| %>
-        <% if user != current_user %>
-          <div class="row">
-            <div class="col-md-12 toggler col-xs-12 col-sm-12">
-              <div class="panel panel-default ui-widget-content ui-corner-all" id="effect" style="border-radius: 0px">
-                <div class="panel-body">
-                  <div class="col-md-2 col-xs-12 col-sm-12" style="margin-top: -15px; margin-left: -30px">
-                    <% if user.image.present? %>
-                      <%= image_tag user.image.url, style: "height: 80; width: 80", class: "img-responsive" %>
-                    <% else %>
-                      <h5 style="font-size: 100%; margin-left: 5%; margin-top:40%">Please Add Photo</h5>
-                    <% end %>
-                  </div>
-                  <div class="col-md-3 col-xs-12 col-sm-12 name2">
-                    <% if user.name %>
-                      <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
-                    <% else %>
-                      <h4 style="font-size: 100%">Please Update Your Name</h4>
-                    <% end %> 
-                    <% if user.email %> 
-                      <p style="color: #A9A9A9"><%= user.email %></p>
-                    <% else %>
-                      <h4 style="font-size: 100%">Please Update Your Email</h4>  
-                    <% end %>  
-                  </div> 
-                  <div class="col-md-7 col-md-push-3 col-xs-12 col-sm-12">
-                    <div class="row" style="margin-top: 10px">
-                      <div class="col-md-8 col-xs-12 col-sm-12">                    
-                        <% is_friend = current_user.friends.include?(user) %>
-                        <% accepted = current_user.friendships.where(accepted: true) %>
-                        <% accepted_user = user.friendships.where(accepted: true)  %>
-                        <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
-                        <% i_friend_of_u = user.friends.include?(current_user) %>
-                        <% if !is_friend && !i_friend_of_u && !accepted_friend %> 
-                        <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border: 1px solid white" %>
-                        <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
-                          <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 80%; margin-left: -10px; border: 1px solid white; color: white" %>
-                          <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 80%" %> 
-                        <% elsif is_friend && !accepted_friend %>
-                          <span class="label label-success" style="max-height: 20px; min-width: 130px; font-size: 80%">Friend Request Sent</span>
-                          <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-danger", style: "max-height: 20px; min-width: 120px; font-size: 75%; margin-top: 10px; color: white" %>
-                        <% end %>                               
-                        <% if accepted_friend %>
-                          <%= link_to 'Cancel Friendship', friend_path(id: user.id), method: :delete, data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "font btn btn-danger", style: "max-height: 20px; min-width: 130px; font-size: 80%" %>
+      <div class="panel">
+        <div class="panel-heading" style="border-bottom: 1px solid #E0E0E0">
+          <h3 class="panel-title" style="font-weight: bold">People You May Know</h3>
+        </div>
+        <div class="panel-body" style="background-color: white">
+          <% @users.each do |user| %>
+            <% if user != current_user %>
+              <div class="row" style="padding: 10px">
+                <div class="col-md-12 col-xs-12 col-sm-12" style="border-bottom: 1px solid #E0E0E0">
+                  <div class="media" style="border-radius: 0px; margin-bottom: 10px; background-color: white">
+                    <div class="row">
+                      <div class="col-md-3 col-xs-6 col-sm-4" style="margin-top: -15px; margin-left: -30px">
+                        <% if user.image.present? %>
+                          <%= image_tag user.image.url, style: "height: 100; width: 100", class: "img-responsive" %>
+                        <% else %>
+                          <h5 style="font-size: 100%; margin-left: 5%; margin-top:40%">Please Add Photo</h5>
                         <% end %>
-                        <button id="button" class="ui-state-default ui-corner-all glyphicon glyphicon-backward" style="margin-left: 10px;padding-right: 20px; max-width: 15px;"></button>
-                      </div> 
-                    </div>                    
-                  </div>                      
-                </div>
+                      </div>
+                      <div class="col-md-3 col-xs-6 col-sm-4 name2">
+                        <% if user.name %>
+                          <a style="color: #A9A9A9" href="<%= user_path(user) %>"><%= user.name.capitalize %></a>
+                        <% else %>
+                          <h4 style="font-size: 100%">Please Update Your Name</h4>
+                        <% end %> 
+                        <% if user.email %> 
+                          <p style="color: #A9A9A9"><%= user.email %></p>
+                        <% else %>
+                          <h4 style="font-size: 100%">Please Update Your Email</h4>
+                        <% end %>  
+                      </div>
+                      <div class="row hidden-md hidden-lg"> 
+                        <div class="col-xs-12 col-sm-4">
+                          <div class="row" style="margin-top: 10px">
+                            <div class="col-sm-12 col-xs-12">
+                              <% is_friend = current_user.friends.include?(user) %>
+                              <% accepted = current_user.friendships.where(accepted: true) %>
+                              <% accepted_user = user.friendships.where(accepted: true)  %>
+                              <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
+                              <% i_friend_of_u = user.friends.include?(current_user) %>
+                              <% if !is_friend && !i_friend_of_u && !accepted_friend %>
+                              <div class="col-sm-12 hidden-md hidden-lg hidden-xs">
+                                <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border-radius: 1px; font-weight: 900" %>
+                              </div> 
+                              <div class="col-xs-12 col-xs-push-1 hidden-md hidden-lg hidden-sm">
+                                <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border-radius: 1px; font-weight: 900" %>
+                              </div>                                
+                              <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
+                                <div class="col-sm-12 hidden-xs">
+                                  <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 100%; border: 1px solid white; color: white; border-radius: 1px; padding-right: 3px; padding-left: 4px; margin-bottom: 5px" %>
+                                </div>
+                                <div class="col-sm-12 hidden-xs">  
+                                  <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 5px; padding-left: 5px" %>
+                                </div> 
+                                <div class="col-xs-12 hidden-sm col-xs-push-1">
+                                  <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 100%; border: 1px solid white; color: white; border-radius: 1px; padding-right: 3px; padding-left: 4px; margin-bottom: 5px" %>
+                                </div>
+                                <div class="col-xs-12 hidden-sm col-xs-push-1">  
+                                  <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 5px; padding-left: 5px" %>
+                                </div>   
+                              <% elsif is_friend && !accepted_friend %>
+                                <div class="col-sm-12 hidden-xs">
+                                  <span class="label label-success" style="max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 20px">Friend Request Sent</span>
+                                </div>
+                                <div class="col-sm-12 hidden-xs" style="margin-top: -3px">
+                                  <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-danger", style: "max-height: 20px; min-width: 120px; font-size: 100%; color: white; border-radius: 1px; padding-right: 5px; padding-left: 5px;margin-top: 15px" %>
+                                </div> 
+                                <div class="col-xs-12 col-xs-push-1 hidden-sm">
+                                  <span class="label label-success" style="max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 20px">Friend Request Sent</span>
+                                </div>
+                                <div class="col-xs-12 col-xs-push-1 hidden-sm" style="margin-top: 10px">
+                                  <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-danger", style: "max-height: 20px; min-width: 120px; font-size: 100%; color: white; border-radius: 1px; padding-right: 5px; padding-left: 5px" %>
+                                </div>                               
+                              <% end %>                               
+                              <% if accepted_friend %>
+                                <div class="col-xs-12 col-xs-push-1 hidden-sm hidden-md hidden-lg">
+                                  <%= link_to 'Cancel Friendship', friend_path(id: user.id), method: :delete, data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "font btn btn-danger", style: "min-width: 130px; padding: 3px 5px; border-radius:1px; font-size: 90%; font-weight:900" %>
+                                </div>
+                                <div class="col-sm-12 col-md-12 hidden-xs">
+                                  <%= link_to 'Cancel Friendship', friend_path(id: user.id), method: :delete, data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "font btn btn-danger", style: "min-width: 130px; padding: 3px 5px; border-radius:1px; font-size: 90%; font-weight:900" %>
+                                </div>  
+                              <% end %>
+                            </div> 
+                          </div>                    
+                        </div>
+                      </div>
+                      <div class="row hidden-xs hidden-sm">                        
+                        <div class="col-md-6 col-md-push-2">
+                          <div class="row" style="margin-top: 10px">
+                            <div class="col-md-8">
+                              <% is_friend = current_user.friends.include?(user) %>
+                              <% accepted = current_user.friendships.where(accepted: true) %>
+                              <% accepted_user = user.friendships.where(accepted: true)  %>
+                              <% accepted_friend = accepted.find_by(user_id: user.id) || accepted.find_by(friend_id: user.id) || accepted_user.find_by(user_id: user.id) || accepted_user.find_by(friend_id: user.id) %>
+                              <% i_friend_of_u = user.friends.include?(current_user) %>
+                              <% if !is_friend && !i_friend_of_u && !accepted_friend %> 
+                              <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border-radius: 1px; font-weight: 900" %>
+                              <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
+                                <div class="col-md-12">
+                                  <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 100%; border: 1px solid white; color: white; border-radius: 1px; padding-right: 8px; padding-left: 4px; margin-bottom: 5px" %>
+                                </div>
+                                <div class="col-md-12">  
+                                  <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 10px; padding-left: 5px" %>
+                                </div> 
+                              <% elsif is_friend && !accepted_friend %>
+                                <span class="label label-success" style="max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 20px">Friend Request Sent</span>
+                                <%= link_to 'Cancel Friend Request', friend_path(id: current_user.id), method: :delete, class: "font btn btn-danger", style: "max-height: 20px; min-width: 120px; font-size: 100%; margin-top: 10px; color: white; border-radius: 1px; padding-right: 5px; padding-left: 5px" %>
+                              <% end %>                               
+                              <% if accepted_friend %>
+                                <%= link_to 'Cancel Friendship', friend_path(id: user.id), method: :delete, data: { confirm: 'Are you sure you want to cancel friendship?' }, class: "font btn btn-danger", style: "min-width: 130px; padding: 3px 5px; border-radius:1px; font-size: 90%; font-weight:900" %>
+                              <% end %>
+                            </div> 
+                          </div>                    
+                        </div> 
+                      </div>                     
+                    </div>
+                  </div>
+                </div> 
               </div>
-            </div>  
-          </div>
-        <% end %>
-      <% end %>
-    </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>  
     <div class="col-md-3 col-xs-12 col-sm-12">
       <div class="panel" style="border-radius: 0px">
         <div class="panel-heading">
