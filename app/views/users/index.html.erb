@@ -162,10 +162,10 @@
                               <% if !is_friend && !i_friend_of_u && !accepted_friend %> 
                               <%= link_to '+ Add Friend', friends_path(friend_id: user), method: :post, class: "font btn btnfriend", style: "max-height: 25px; min-width: 130px; font-size: 110%; color: white; border-radius: 1px; font-weight: 900" %>
                               <% elsif !is_friend && i_friend_of_u && !accepted_friend %>
-                                <div class="col-md-12">
+                                <div class="col-md-12 col-md-pull-1">
                                   <%= link_to 'Accept Friend Request', friend_path(id: user.id), method: :patch, class: "font btn btnfriend", style: "max-height: 20px; min-width: 130px; font-size: 100%; border: 1px solid white; color: white; border-radius: 1px; padding-right: 8px; padding-left: 4px; margin-bottom: 5px" %>
                                 </div>
-                                <div class="col-md-12">  
+                                <div class="col-md-12 col-md-pull-1">  
                                   <%= link_to 'Ignore Friend Request', friend_path(id: user.id), method: :delete, class: "font btn btn-default", style: "max-height: 20px; min-width: 130px; font-size: 100%; border-radius: 1px; padding-right: 10px; padding-left: 5px" %>
                                 </div> 
                               <% elsif is_friend && !accepted_friend %>
