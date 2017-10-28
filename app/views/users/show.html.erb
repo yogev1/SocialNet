@@ -1,4 +1,35 @@
 
+<script>
+    if(window.location.hash) {
+      var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+     
+    jQuery.ajax({
+      type:    'post',
+      url:     user_path(current_user),
+      dataType: "json",
+      data:    { anchor: hash}
+      console.log('success')
+  })
+      // hash found
+  } else {
+      // No hash found
+  }
+</script>
+// <script>
+// $(document).on('click', '#fri-list', function() {
+//   event.preventDefault()
+//   var hash = window.location.hash.substring(1);
+
+//   $.ajax({
+//     type:    "POST",
+//     url:     "http://localhost:3000/users/3",
+//     data:    { anchor: hash },
+//     success: function(post){ console.log('success') },
+//     error:   function(post){ console.log(this) }
+//   })
+// })
+// </script>
+<% @anchor_value = params[:anchor] %>
 
 <div class="container-fluid" style="margin-top: 30px">
   <div class="row">
@@ -39,7 +70,11 @@
         <div data-spy="scroll" class="tabbable-panel">
           <div class="tabbable-line">
             <ul class="nav nav-tabs hidden-xs">
-              <li class="active col-xs-3">
+              <% if @anchor_value == "friends" %>
+                <li class="col-xs-3">
+              <% else %>
+                <li class="active col-xs-3">
+              <% end %>               
                 <a href="#timeline" data-toggle="tab">
                   TimeLine </a>
               </li>
@@ -47,7 +82,11 @@
                 <a href="#about" data-toggle="tab">
                    About</a>
               </li>
-              <li>
+              <% if @anchor_value == "friends" %>
+                <li class="active">
+              <% else %>
+                <li>
+              <% end %>                
                 <a href="#friends" data-toggle="tab">
                    Friends</a>
               </li>
@@ -69,7 +108,7 @@
                 <a href="#about" data-toggle="tab">
                    About</a>
               </li>
-              <li class="col-xs-6">
+              <li class="col-xs-6 active">
                 <a href="#friends" data-toggle="tab">
                    Friends</a>
               </li>
@@ -91,7 +130,11 @@
   <div class="row">
     <div class="col-md-10">    
       <div class="tab-content">
-        <div class="tab-pane active" id="timeline">
+        <% if @anchor_value == "friends" %>
+          <div class="tab-pane" id="timeline">
+        <% else %>
+          <div class="tab-pane active" id="timeline">
+        <% end %>  
           <div class="row" style="margin-top: 10px">
             <div class="col-md-4">
               <div class="panel">
@@ -101,7 +144,7 @@
                     Photos
                   </h2>
                 </div>
-                <div class="panel-body" style="padding-left:0; padding-right:0; margin-left: -10px">
+                <div class="panel-body" style="margin-left: -10px">
                   <% @posts.each do |p| %>
                     <% if p.image.present? %>
                       <div class="col-md-4 col-sm-4 col-xs-4 card2">  
@@ -176,6 +219,10 @@
                             <button type="button" class="btn btn5" data-toggle="modal" data-target="#post" style="text-align: center; font-size: 150%; color: #B0B0B0;padding-right: 100px">
                               <div class="col-md-12 col-xs-12 col-sm-12"> 
                                 <h4>What's on your mind?</h4>
+                  <script type="text/javascript"></script>
+                                        
+                                          <%= @anchor_value %>
+                                         
                               </div>
                             </button>
                           <% end %>
@@ -188,7 +235,7 @@
                 </div>
               </div>
               <% @posts.each do |post| %>
-                <div class="col-md-12">         
+                <div class="col-md-12 col-xs-12 col-sm-12">         
                   <div class="panel">
                     <div class="panel-heading">
                       <% user = User.find_by(id: post.user_id) %>
@@ -430,7 +477,11 @@
             </div>             
           </div>
         </div>
-        <div class="tab-pane" id="friends" style="padding-top: 20px"> 
+        <% if @anchor_value == "friends" %>
+          <div class="tab-pane active" id="friends" style="padding-top: 20px">
+        <% else %>
+          <div class="tab-pane" id="friends" style="padding-top: 20px">
+        <% end %>            
           <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12">
               <div class="panel">

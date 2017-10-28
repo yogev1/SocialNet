@@ -23,5 +23,5 @@ class ApplicationController < ActionController::Base
       i += 1
     end
     @url = @url.join
-  end
+  end  
 end

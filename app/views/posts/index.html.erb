@@ -1,4 +1,5 @@
- <script type="text/javascript" src="./javascript.js"></script>
+
+<script type="text/javascript" src="./javascript.js"></script>
 <div class="container-fluid" style="padding-top:70px">    
   <!--  user authentication -->
   <% if user_signed_in? %>
@@ -47,7 +48,7 @@
       </div>
       <div class="row" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
-          <a href="<%= user_path(current_user) %>" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+          <%= link_to "Friend Lists", user_path(current_user, anchor: "friends"), class: "btn btn6", id: "fri-list", style: "margin-left: -118px;padding: 2px 30px; border-radius: 0px; min-width: 150px" %><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -148px; margin-right: 10px" %>
         </div>  
       </div>     
     </div>
@@ -147,7 +148,7 @@
                   <div class="col-md-2 col-sm-2 col-xs-3 col-md-push-1 col-sm-push-1 col-xs-push-1">
                     <a href="#" style="font-size: 100%;">Life Event</a>
                   </div>
-                  <div class="col-md-2 col-sm-2 col-xs-1 col-md-push-3" style="margin-top: -6px">
+                  <div class="col-md-2 col-sm-2 col-xs-1 col-md-push-3 col-sm-push-3" style="margin-top: -6px">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i aria-hidden="true" style="font-size: 150%">&times;</i></button>
                   </div>    
                 </div>
@@ -157,10 +158,16 @@
                 </div>
                 <div class="modal-footer">
                   <div class="row nopadding2">
-                    <div class="col-md-1 col-sm-1 col-xs-1 col-xs-push-1" style="margin-top: -10px">
+                    <div class="col-md-1 col-md-push-1 hidden-xs hidden-sm visible-md visible-lg" style="margin-top: -8px;margin-right: -10px">
+                      <%= f.file_field :image, class: "glyphicon glyphicon-camera inputfile", style: "font-size: 24px", hide_label: true %> 
+                    </div>
+                    <div class="col-xs-1 col-xs-push-1 hidden-sm hidden-md hidden-lg visible-xs" style="margin-top: -8px; margin-right: 7px">
                       <%= f.file_field :image, class: "glyphicon glyphicon-camera inputfile", style: "font-size: 24px", hide_label: true %> 
                     </div> 
-                    <div class="col-md-1 col-sm-1 col-xs-1 col-xs-push-1" style="margin-top: 5px">
+                    <div class="col-sm-1 col-sm-push-1 visible-sm hidden-md hidden-lg hidden-xs" style="margin-top: -8px; margin-right: -10px">
+                      <%= f.file_field :image, class: "glyphicon glyphicon-camera inputfile", style: "font-size: 24px", hide_label: true %> 
+                    </div>                     
+                    <div class="col-md-1 col-sm-1 col-xs-1 col-xs-push-1" style="margin-top: 5px; margin-left: -10px">
                       <%= image_tag("addfriend-icon.png", size: "24px") %>
                     </div>               
                     <div class="col-md-1 col-sm-1 col-xs-1 col-xs-push-1" style="margin-top: 2px">
@@ -171,7 +178,10 @@
                     </div>
                     <div class="col-md-6 col-sm-3 col-xs-4">
                     </div>
-                    <div class="col-md-2 col-sm-2 col-xs-4 col-md-pull-1 col-xs-pull-1">  
+                    <div class="hidden-md hidden-lg col-sm-2 col-xs-4 col-sm-push-2 col-xs-pull-1">  
+                      <%= f.submit "Post", class: "btn bold", style: "margin-left :40px;padding: 4px 30px" %>
+                    </div>
+                    <div class="hidden-xs hidden-sm col-md-2 col-md-pull-1">  
                       <%= f.submit "Post", class: "btn bold", style: "margin-left :40px;padding: 4px 30px" %>
                     </div>
                   </div>   
