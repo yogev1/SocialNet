@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @session = Session.find_by(user_id: params[:user_id])
+    @session = Session.find_by(user_id: current_user.id)
     @session.destroy
     respond_to do |format|
       format.html { sign_out_and_redirect(current_user)}
