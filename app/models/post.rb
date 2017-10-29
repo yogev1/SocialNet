@@ -8,5 +8,5 @@ class Post < ApplicationRecord
 
   def self.search(search)
     where("description LIKE ? OR title LIKE ? ", "%#{search.downcase}%", "%#{search.downcase}%") 
-  end
+  end 
 end

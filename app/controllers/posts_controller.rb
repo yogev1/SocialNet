@@ -12,8 +12,17 @@ class PostsController < ApplicationController
     end 
     @posts = Post.all.order(created_at: "DESC").limit(20)
     @post = Post.new
+    @users = User.all           
   end
+  
 
+  def is_user_logged_in(user_id)
+    if session[:user_id]
+      return true
+    else 
+      return false  
+    end
+  end 
   # GET /posts/1
   # GET /posts/1.json
   def show

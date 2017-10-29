@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :update_sanitized_params, if: :devise_controller?
   before_action :get_time
   before_action :get_url_search
+  before_action :create_user_session  
 
 	def get_time
 		@time_now = Time.zone.now
@@ -23,5 +24,13 @@ class ApplicationController < ActionController::Base
       i += 1
     end
     @url = @url.join
-  end  
+  end
+
+  def create_user_session
+    if user_signed_in? 
+      if !Session.find_by(user_id: current_user.id)
+        Session.create(user_id: current_user.id)
+      end
+    end  
+  end    
 end

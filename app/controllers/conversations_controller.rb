@@ -3,16 +3,13 @@ class ConversationsController < ApplicationController
   def index
     # for messenger
     session[:conversations] ||= []
- 
     @users = User.all.where.not(id: current_user)
     @conversations = Conversation.includes(:recipient, :messages)
                                  .find(session[:conversations])
   end
   def create
     @conversation = Conversation.get(current_user.id, params[:user_id])
-    
     add_to_conversations unless conversated?
- 
     respond_to do |format|
       format.js
     end
@@ -20,9 +17,7 @@ class ConversationsController < ApplicationController
   
   def close
     @conversation = Conversation.find(params[:id])
- 
     session[:conversations].delete(@conversation.id)
- 
     respond_to do |format|
       format.js
     end

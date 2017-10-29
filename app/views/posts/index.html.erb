@@ -1,8 +1,6 @@
 
 <script type="text/javascript" src="./javascript.js"></script>
 <div class="container-fluid" style="padding-top:70px">    
-  <!--  user authentication -->
-  <% if user_signed_in? %>
   <div class="row">
     <div class="col-md-2 col-sm-12 col-xs-12" style="margin-bottom: 20px">
       <div class="row">
@@ -312,7 +310,7 @@
                         </div> 
                         <div class="col-md-6 col-sm-6 col-xs-6 col-md-pull-7 col-xs-pull-7 col-sm-pull-6" style="margin-top: 5px"> 
                           <% like = post.likes.find_by(post_id: post.id, user_id: current_user.id) %>  
-                          <%= link_to 'UnLike', post_like_path(post_id: post.id, id: like.id), method: :delete, class: "btn btn2" %>
+                          <%= link_to 'Unlike', post_like_path(post_id: post.id, id: like.id), method: :delete, class: "btn btn2" %>
                         </div>  
                       </div>                      
                     </div>  
@@ -416,7 +414,6 @@
     <% end %> 
     </div>
   </div>     
-  <% end %>
     <div class="col-md-3 col-xs-12 col-sm-12 hidden-sm hidden-xs">
       <div class="panel" style="border-radius: 0px; background-color: #F8F8F8">
         <div class="panel-body">
@@ -431,6 +428,37 @@
               <a href="#" class="btn btn7" style="border-radius: 0px;"><%= image_tag("birthday-icon.png", size: "20x20") %> Someone Has a Birthday</a>
             </div>
           </div>
+        </div>
+      </div>
+      <!-- chat -->
+      <div class="panel" style="border-radius: 0px; border-right: 1px solid #D0D0D0">
+        <div class="panel-heading">
+          <h2 class="text-center bold">Chat</h2>
+        </div>
+        <div class="panel-body">
+          <% @users.each do |user| %>
+            <div class="row">
+              <div class="col-md-3 col-md-push-1 col-sm-4 col-xs-4">
+                <% if user.image.present? %>
+                  <%= image_tag user.image.url(:thumb), class: "img-responsive img-circle", size: "30x30" %>
+                <% else %>
+                  <h3></h3>
+                <% end %>  
+              </div>
+              <div class="col-md-2 col-sm-4 col-xs-4"> 
+                <% if user.name %>                          
+                  <%= link_to user.name.capitalize, conversations_path(user_id: user), style: "font-size: 130%", class: "bold" %>
+                <% end %>  
+              </div>
+              <div class="col-md-7 col-sm-4 col-xs-4 col-md-push-2" style="margin-top: 10px">
+                <% if Session.find_by(user_id: user.id) %>     
+                  <i class="fa fa-circle" aria-hidden="true" style="color: green; font-size: 60%"></i>
+                <% else %> 
+                  <i class="fa fa-circle" aria-hidden="true" style="color: red; font-size: 60%"></i> 
+                <% end %>
+              </div>
+            </div><br>              
+          <% end %> 
         </div>
       </div>
     </div>    

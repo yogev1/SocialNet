@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   get 'searches/index', to: 'searches#index'
 
   resources :conversations, only: [:create, :index] do
