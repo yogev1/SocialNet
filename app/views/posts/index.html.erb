@@ -11,9 +11,12 @@
             <h4 style="font-size: 100%; padding-right: 10px">Please Add Photo</h4>
           <% end %> 
         </div>
-        <div class="col-md-6 col-xs-8 col-sm-8 col-sm-push-2 col-xs-push-2">  
-          <% if current_user.name %>
-            <a href="<%= user_path(current_user) %>" class="col" style="color: black; font-size: 15px"><%= current_user.name.capitalize %></a>
+        <div class="col-md-6 col-xs-8 col-sm-8 col-sm-push-3 col-xs-push-2" style="margin-top: 20px">
+          <% if current_user.name.split(' ').count > 1 %>
+            <% name = current_user.name.split(' ')[0] %>
+          <% end %>  
+          <% if name %>
+            <a href="<%= user_path(current_user) %>" class="col" style="color: black; font-size: 15px; font-weight: 900"><%= name.capitalize %></a>
           <% else %>
             <h4 style="font-size: 100%">Please Update Name</h4>
           <% end %>
@@ -217,9 +220,14 @@
                   <% end %>  
                 </div>
                 <div class="col-md-2 col-sm-4 col-xs-4"> 
-                  <% if user.name %>                          
-                    <%= link_to user.name.capitalize, conversations_path(user_id: user), style: "font-size: 130%", class: "bold" %>
-                  <% end %>  
+                  <% if user.name %>
+                    <% if user.name.split(' ').count > 1 %>
+                      <% name = user.name.split(' ')[0] %>
+                    <% end %>  
+                    <% if name %>                                          
+                      <%= link_to name.capitalize, conversations_path(user_id: user), style: "font-size: 130%", class: "bold" %>
+                    <% end %>
+                  <% end %>    
                 </div>
                 <div class="col-md-7 col-sm-4 col-xs-4 col-sm-push-2 col-xs-push-2" style="margin-top: 10px">
                   <% if Session.find_by(user_id: user.id) %>     

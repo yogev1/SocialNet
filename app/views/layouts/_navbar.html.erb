@@ -49,9 +49,14 @@
                   <% end %>  
                 </li> 
                 <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-3 col-xs-pull-1">
-                  <% if current_user.name %>
-                  <a href="<%= user_path(current_user) %>" class="col" style="font-size:120%"><%= current_user.name.capitalize %></a>
-                  <% end %> 
+                  <% if current_user.name.split(' ').count > 1 %>
+                    <% name = current_user.name.split(' ')[0] %>
+                  <% end %>  
+                  <% if name %>
+                    <a href="<%= user_path(current_user) %>" class="col" style="color: white; font-size: 15px; font-weight: 900"><%= name.capitalize %></a>
+                  <% else %>
+                    <h4 style="font-size: 100%">Please Update Name</h4>
+                  <% end %>
                 </li>
                 <li class="col-md-1 col-sm-2 col-xs-2">
                   <a href="<%= users_path %>"><%= image_tag("friends-icon.png", size: "30x25") %></a>
