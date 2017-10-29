@@ -46,11 +46,21 @@
           <a href="#" class="btn btn6" style="padding: 2px 30px; border-radius: 0px; min-width: 150px"><%= image_tag "groups-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Groups</a>
         </div>  
       </div>
-      <div class="row" style="margin-bottom: 1px">
+      <div class="row hidden-md  hidden-lg" style="margin-bottom: 1px">
         <div class="col-md-12 col-xs-12 col-sm-12" style="text-align: center; width: 100%">
           <%= link_to "Friend Lists", user_path(current_user, anchor: "friends"), class: "btn btn6", id: "fri-list", style: "margin-left: -118px;padding: 2px 30px; border-radius: 0px; min-width: 150px" %><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -148px; margin-right: 10px" %>
         </div>  
-      </div>     
+      </div> 
+      <div class="row hidden-xs hidden-sm hidden-lg" style="margin-bottom: 1px">
+        <div class="col-md-12" style="text-align: center; width: 100%">
+          <a href="<%= user_path(current_user, anchor: "friends") %>" class="btn btn6", id="fri-list", style="padding: 2px 27px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+        </div>  
+      </div>
+      <div class="row hidden-xs hidden-sm hidden-md" style="margin-bottom: 1px">
+        <div class="col-lg-12" style="text-align: center; width: 100%">
+          <a href="<%= user_path(current_user, anchor: "friends") %>" class="btn btn6", id="fri-list", style="padding: 2px 27px; border-radius: 0px; min-width: 150px"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+        </div>  
+      </div>                  
     </div>
     <div class="col-md-6 col-sm-12 col-xs-12">
       <div class="hidden-md hidden-lg visible-sm visible-xs">
