@@ -5,27 +5,24 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index    
-    if @url == "searchesindex"   
+    if params[:search]   
       @results = Post.search(params[:search]).order(:id) + 
         Event.search(params[:search]).order(:name) + 
         User.search(params[:search]).order(:name)
-    end 
+    end     
     @posts = Post.all.order(created_at: "DESC").limit(20)
     @post = Post.new
-    @users = User.all           
+    @users = User.all   
   end
   
-
-  def is_user_logged_in(user_id)
-    if session[:user_id]
-      return true
-    else 
-      return false  
-    end
-  end 
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if params[:search]   
+      @results = Post.search(params[:search]).order(:id) + 
+        Event.search(params[:search]).order(:name) + 
+        User.search(params[:search]).order(:name)
+    end     
   end
 
   # GET /posts/new

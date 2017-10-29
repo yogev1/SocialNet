@@ -2,10 +2,12 @@ Rails.application.routes.draw do
 
   
   get 'sessions/create'
-
   get 'sessions/destroy'
-
   get 'searches/index', to: 'searches#index'
+  get 'events/searches/index', to: 'searches#index'
+  get 'users/searches/index', to: 'searches#index'
+  get 'posts/searches/index', to: 'searches#index'
+  
 
   resources :conversations, only: [:create, :index] do
     member do
