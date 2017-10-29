@@ -11,8 +11,8 @@
             <h4 style="font-size: 100%; padding-right: 10px">Please Add Photo</h4>
           <% end %> 
         </div>
-        <div class="col-md-6 col-xs-8 col-sm-8 col-sm-push-3 col-xs-push-2" style="margin-top: 20px">
-          <% if current_user.name.split(' ').count > 1 %>
+        <div class="col-md-6 col-xs-8 col-sm-8 col-sm-push-2 col-xs-push-2">
+          <% if current_user.name.split(' ').count > 0 %>
             <% name = current_user.name.split(' ')[0] %>
           <% end %>  
           <% if name %>
@@ -241,7 +241,6 @@
           <% end %> 
         </div>
       </div>        
-      
     <div class="row">  
       <% @posts.each do |post| %>
         <div class="col-md-12">         

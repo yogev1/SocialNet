@@ -49,7 +49,7 @@
                   <% end %>  
                 </li> 
                 <li class="col-md-2 col-md-pull-1 col-sm-2 col-xs-3 col-xs-pull-1">
-                  <% if current_user.name.split(' ').count > 1 %>
+                  <% if current_user.name.split(' ').count > 0 %>
                     <% name = current_user.name.split(' ')[0] %>
                   <% end %>  
                   <% if name %>
