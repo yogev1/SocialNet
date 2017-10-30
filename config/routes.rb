@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
-  
+  # for messenger lights
   get 'sessions/create'
   get 'sessions/destroy'
+
+
+  # for searches
   get 'searches/index', to: 'searches#index'
   get 'events/searches/index', to: 'searches#index'
   get 'users/searches/index', to: 'searches#index'

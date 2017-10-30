@@ -146,7 +146,7 @@
         </div>
         <div class="panel-body">
           <%= bootstrap_form_for(EventComment.new, :url => event_event_comments_path(event_id: @event.id)) do |f| %> 
-            <%= f.text_area :description, size: "300x5", hide_label: true, style: "background-color: #D3D3D3" %> 
+            <%= f.text_area :description, size: "300x5", hide_label: true, style: "background-color: #D3D3D3", required: true %> 
             <%= f.submit "Add Comment", class: "btn", style: "font-size: 150%; padding:5px" %>
           <% end %><hr>
           <% @event_comments.each do |com| %>

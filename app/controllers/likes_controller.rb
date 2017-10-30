@@ -5,11 +5,7 @@ class LikesController < ApplicationController
     @like.update(user_id: current_user.id)
     respond_to do |format|
       if @like.save
-        format.html { redirect_to posts_path }
-        format.json { render :show, status: :created, location: post_path(@post) }
-      else
-        format.html { redirect_to posts_path }
-        format.json { render json: @like.errors, status: :unprocessable_entity }
+        format.js
       end
     end     
   end
@@ -18,8 +14,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(id: params[:id])
     @like.destroy
     respond_to do |format|
-      format.html { redirect_to posts_path }
-      format.json { head :no_content }
+      format.js
     end     
   end
 

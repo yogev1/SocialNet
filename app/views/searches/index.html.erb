@@ -168,7 +168,7 @@
               <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12" style="max-height:70px">
                   <%= bootstrap_form_for(Comment.new, :url => post_comments_path(post_id: post.id)) do |f| %> 
-                  <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;" %>
+                  <%= f.text_area :description, size: "300x1", hide_label: true, placeholder: "Write a comment..." , style: "border-radius: 15px;", required: true %>
                   <%= f.submit "Submit Comment", class: "btn btn2", style: "border: 1px solid black; margin-left: 3px" %><br><br>
                   <% end %>
                 </div>

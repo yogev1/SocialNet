@@ -3,6 +3,7 @@
 @import "bootstrap";
 @import "font-awesome";
 
+
 .font {
    font-family: 'Raleway', sans-serif;
 }
@@ -57,7 +58,9 @@
     font-size: 150%;
 }
 
-.btn6 {
+
+
+.btn6:hover, .btn6:active {
   background-color: #F8F8F8;
 }
 

@@ -1,0 +1,21 @@
+
+
+
+$('.like').bind('ajax:success', function() {
+   $(this).closest('div').append("<%= j(render 'posts/unlike') %>");	  
+});
+
+// $('.link').click(function(e) {
+//     var wrap = $(this).closest('.wrap').find('.list' );
+//     var mydata = "test data";
+
+//     $(wrap).hide(1000, function(){                        
+//         $(wrap).append($(mydata));
+//         $(wrap).show(6000);
+//     });
+
+// });
+
+// $('.like').bind('ajax:success', function() {
+// 	$(this).append("<%= j(render 'likes/unlike' ) %>")
+// });	
