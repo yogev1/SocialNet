@@ -5,6 +5,7 @@ class LikesController < ApplicationController
     @like.update(user_id: current_user.id)
     respond_to do |format|
       if @like.save
+        format.html { redirect_to posts_path }
         format.js
       end
     end     
@@ -14,6 +15,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(id: params[:id])
     @like.destroy
     respond_to do |format|
+      format.html { redirect_to posts_path }
       format.js
     end     
   end

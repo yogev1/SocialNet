@@ -338,7 +338,7 @@
                         <span class="glyphicon glyphicon-thumbs-up" style="font-size: 130%; margin-left: 20px"></span> 
                       </div>
                       <div class="col-md-6 col-sm-6 col-xs-6 col-md-pull-6 col-xs-pull-7 col-sm-pull-6" style="margin-top: 5px">   
-                        <%= link_to "Like", post_likes_path(post_id: post.id), remote: true, method: :post, class: "btn btn2" %>
+                        <%= link_to "Like", post_likes_path(post_id: post.id), method: :post, class: "btn btn2" %>
                       </div>  
                     </div>
                   </div>                       
@@ -351,7 +351,7 @@
                         </div> 
                         <div class="col-md-6 col-sm-6 col-xs-6 col-md-pull-7 col-xs-pull-8 col-sm-pull-6" style="margin-top: 5px; margin-left: -5px"> 
                           <% like = post.likes.find_by(post_id: post.id, user_id: current_user.id) %>  
-                          <%= link_to 'Unlike', post_like_path(post_id: post.id, id: like.id), remote: true, method: :delete, class: "btn btn2" %>
+                          <%= link_to 'Unlike', post_like_path(post_id: post.id, id: like.id), method: :delete, class: "btn btn2" %>
                         </div>  
                       </div>                      
                     </div>  
