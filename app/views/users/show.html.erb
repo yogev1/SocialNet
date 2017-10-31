@@ -155,69 +155,6 @@
           <div class="tab-pane active" id="timeline">
         <% end %>  
           <div class="row" style="margin-top: 10px">
-            <div class="col-md-4 hidden-md hidden-lg">
-              <div class="panel" style="border: 1px solid #D8D8D8">
-                <div class="panel-heading" style="background-color: white">
-                  <h2 class="panel-title">
-                    <%= image_tag("photosgrid-icon.png", style: "height: 30px; width: 30px") %>
-                    Photos
-                  </h2>
-                </div>
-                <div class="panel-body" style="margin-left: -10px">
-                  <% @posts.each do |p| %>
-                    <% if p.image.present? %>
-                      <div class="col-md-4 col-sm-4 col-xs-4 card2">  
-                        <div class="front"> 
-                          <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px" %></a>
-                        </div> 
-                        <div class="back" style="background-color: #284c79; max-height: 82px; width: 82px opacity: 0.7">
-                          <div style="background-color: #284c79">
-                            <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
-                          </div>  
-                        </div>
-                        <script>
-                        $(".card2").flip({
-                          axis: 'y',
-                          trigger: 'hover'
-                        }); 
-                        </script>
-                      </div>
-                    <% end %>     
-                  <% end %> 
-                </div>
-              </div>
-              <div class="panel" style="border: 1px solid #D8D8D8">
-                <div class="panel-heading">
-                  <h2 class="panel-title">
-                    <%= image_tag("friendsgrid-icon.png", style: "height: 30px; width: 30px") %>
-                    Friends
-                  </h2>                  
-                </div>
-                <div class="panel-body" style="margin-left: -20px">
-                  <% current_user.friends.each do |f| %>
-                    <div class="col-md-4 col-sm-3 col-xs-3 card2">
-                      <!-- dblue -->
-                      <% if f.image.present? %>  
-                        <div class="front"> 
-                          <a href="<%= user_path(f) %>" class="btn btn-lg" role="button"><%= image_tag f.image.url, class: "img-responsive",style: "height: 80px; width: 80px;" %></a>
-                        </div> 
-                        <div class="back"  style="background-color: #284c79; max-height: 82px; max-width: 82px">
-                          <div>
-                            <h4 class="text-center" style="color: white"><br><%= f.name %></h4>
-                          </div>  
-                        </div>
-                        <script>
-                        $(".card2").flip({
-                          axis: 'y',
-                          trigger: 'hover'
-                        }); 
-                        </script>
-                      <% end %>     
-                    </div> 
-                  <% end %> 
-                </div>
-              </div>                                  
-            </div>            
             <div class="col-md-4 follow-scroll hidden-xs hidden-sm">
               <div class="panel" style="border: 1px solid #D8D8D8">
                 <div class="panel-heading" style="background-color: white">
@@ -281,7 +218,7 @@
                 </div>
               </div>                                  
             </div>
-            <div class="col-md-8 colxs-12 col-sm-12">
+            <div class="col-md-8 col-xs-12 col-sm-12">
               <div class="panel" style="border: 1px solid #D8D8D8">
                 <div class="panel-heading" style="background-color: #F5F5F5">
                 </div>
@@ -312,6 +249,36 @@
                 <div class="panel-footer" style="background: white">
                 </div>
               </div>
+              <!-- chat -->
+              <div class="panel hidden-md hidden-lg" style="border-radius: 0px; border: 1px solid #C0C0C0; background-color: #E8E8E8">
+                <div class="panel-body" style="border: 1px solid #F5F5F5;">
+                  <% @users.each do |user| %>
+                    <% if user != current_user %>
+                      <div class="row">
+                        <div class="col-md-4 col-sm-4 col-xs-4">
+                          <% if user.image.present? %>
+                            <%= image_tag user.image.url(:thumb), class: "img-responsive img-circle", size: "30x30" %>
+                          <% else %>
+                            <h3></h3>
+                          <% end %>  
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-4"> 
+                          <% if user.name %>                          
+                            <%= link_to user.name.capitalize, conversations_path(user_id: user), style: "font-size: 100%", class: "bold" %>
+                          <% end %>  
+                        </div>
+                        <div class="col-md-5 col-sm-4 col-xs-4 col-md-push-3" style="margin-top: 10px">
+                          <% if Session.find_by(user_id: user.id) %>     
+                            <i class="fa fa-circle" aria-hidden="true" style="color: #40ff00; font-size: 60%"></i>
+                          <% else %> 
+                            <i class="fa fa-circle" aria-hidden="true" style="color: red; font-size: 60%"></i> 
+                          <% end %>
+                        </div>
+                      </div><br> 
+                    <% end %>             
+                  <% end %> 
+                </div>
+              </div>              
               <% @posts.each do |post| %>
                 <div class="col-md-12 col-xs-12 col-sm-12" style="padding-left: 0; padding-right: 0">         
                   <div class="panel" style="border: 1px solid #D8D8D8">
@@ -645,7 +612,36 @@
         <div class="tab-pane" id="photos">
           <div class="row">
             <div class="col-md-12 text-center" style="padding-top: 20px">
-              
+              <div class="panel" style="border: 1px solid #D8D8D8">
+                <div class="panel-heading" style="background-color: white">
+                  <h2 class="panel-title">
+                    <%= image_tag("photosgrid-icon.png", style: "height: 30px; width: 30px") %>
+                    Photos
+                  </h2>
+                </div>
+                <div class="panel-body" style="margin-left: -10px">
+                  <% @posts.each do |p| %>
+                    <% if p.image.present? %>
+                      <div class="col-md-4 col-sm-4 col-xs-4 card2">  
+                        <div class="front"> 
+                          <a href="#" class="btn btn-lg" role="button"><%= image_tag p.image.url, class: "img-responsive",style: "height: 80px; width: 80px" %></a>
+                        </div> 
+                        <div class="back" style="background-color: #284c79; max-height: 82px; width: 82px opacity: 0.7">
+                          <div style="background-color: #284c79">
+                            <h4 class="text-center" style="color: white"><br>post #<br><%= p.id %></h4>
+                          </div>  
+                        </div>
+                        <script>
+                        $(".card2").flip({
+                          axis: 'y',
+                          trigger: 'hover'
+                        }); 
+                        </script>
+                      </div>
+                    <% end %>     
+                  <% end %> 
+                </div>
+              </div>              
             </div>
           </div>
         </div>
@@ -659,7 +655,7 @@
         </div>    
       </div>
     </div>
-    <div class="col-md-2 follow-scroll" style="margin-top : 10px">
+    <div class="col-md-2 follow-scroll hidden-sm hidden-xs" style="margin-top : 10px">
       <!-- chat -->
       <div class="panel" style="min-height: 400px; border-radius: 0px; border: 1px solid #C0C0C0; background-color: #E8E8E8">
         <div class="panel-body" style="min-height: 400px; border: 1px solid #F5F5F5;">
