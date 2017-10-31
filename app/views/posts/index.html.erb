@@ -2,7 +2,68 @@
 <script type="text/javascript" src="./javascript.js"></script>
 <div class="container-fluid" style="padding-top:70px">    
   <div class="row">
-    <div class="col-md-2 col-sm-12 col-xs-12 col-lg-2" style="margin-bottom: 20px">
+    <div class="col-md-2 col-sm-12 col-xs-12 col-lg-2 hidden-sm hidden-xs" style="margin-bottom: 20px; position: fixed">
+      <div class="row" style="margin-top: 20px">
+        <div class="col-md-4 col-md-push-2 col-xs-4 col-sm-4 col-sm-push-5 col-xs-push-4" style="padding-right: 0px">
+          <% if current_user.image.present? %>
+            <%= image_tag(current_user.image.url, class: "img-responsive img-circle", style: "height: 20px; width: 20px;") %>
+          <% else %>
+            <h4 style="font-size: 80%; padding-right: 10px">Please Add Photo</h4>
+          <% end %> 
+        </div>
+        <div class="col-md-8 col-xs-8 col-sm-8 col-sm-push-2 col-xs-push-2 col-md-pull-2"style="padding-left: 0px; margin-left: -10px">
+          <% if current_user.name.split(' ').count > 0 %>
+            <% name = current_user.name.split(' ')[0] %>
+          <% end %>  
+          <% if name %>
+            <a href="<%= user_path(current_user) %>" class="col" style="color: black; font-size: 15px; font-weight: 900"><%= name.capitalize %></a>
+          <% else %>
+            <h4 style="font-size: 80%">Please Update Name</h4>
+          <% end %>
+        </div>            
+      </div>
+      <div class="row" style="margin-bottom: 1px; margin-top: 10px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <a href="<%= root_path %>" class="btn" style="padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "newsfeed-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>News Feed</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <a href="<%= conversations_path %>" class="btn" style="padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "messenger-icon.png", size: "20x20", style: "margin-left: -40px; margin-right: 10px" %>Messenger</a>
+        </div>  
+      </div>   
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <a href="<%= events_path %>" class="btn" style="padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "event-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Events</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <a href="#" class="btn" style="padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "pages-icon.png", size: "20x20", style: "margin-left: -75px; margin-right: 10px" %>Pages</a>
+        </div>  
+      </div>
+      <div class="row" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <a href="#" class="btn" style="padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "groups-icon.png", size: "20x20", style: "margin-left: -70px; margin-right: 10px" %>Groups</a>
+        </div>  
+      </div>
+      <div class="row hidden-md  hidden-lg" style="margin-bottom: 1px">
+        <div class="col-md-12 col-xs-12 col-sm-12 btn6" style="text-align: center; width: 100%">
+          <%= link_to "Friend Lists", user_path(current_user, anchor: "friends"), class: "btn", id: "fri-list", style: "margin-left: -118px;padding: 2px 30px; border-radius: 0px; min-width: 150px; background-color: inherit" %><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -148px; margin-right: 10px" %>
+        </div>  
+      </div> 
+      <div class="row hidden-xs hidden-sm hidden-lg" style="margin-bottom: 1px">
+        <div class="col-md-12 btn6" style="text-align: center; width: 100%">
+          <a href="<%= user_path(current_user, anchor: "friends") %>" class="btn", id="fri-list", style="padding: 2px 27px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+        </div>  
+      </div>
+      <div class="row hidden-xs hidden-sm hidden-md" style="margin-bottom: 1px">
+        <div class="col-lg-12 btn6" style="text-align: center; width: 100%">
+          <a href="<%= user_path(current_user, anchor: "friends") %>" class="btn", id="fri-list", style="padding: 2px 27px; border-radius: 0px; min-width: 150px; background-color: inherit"><%= image_tag "friendlist-icon.png", size: "20x20", style: "margin-left: -42px; margin-right: 10px" %>Friend Lists</a>
+        </div>  
+      </div>                  
+    </div>
+    <div class="col-md-2 col-sm-12 col-xs-12 col-lg-2 hidden-md hidden-lg" style="margin-bottom: 20px;">
       <div class="row">
         <div class="col-md-4 col-md-push-2 col-xs-4 col-sm-4 col-sm-push-5 col-xs-push-4" style="padding-right: 0px">
           <% if current_user.image.present? %>
@@ -63,7 +124,7 @@
         </div>  
       </div>                  
     </div>
-    <div class="col-md-6 col-sm-12 col-xs-12">
+    <div class="col-md-6 col-sm-12 col-xs-12 col-md-push-2">
       <div class="hidden-md hidden-lg visible-sm visible-xs">
         <div class="panel" style="border: 1px solid #D8D8D8">
           <div class="panel-body">
@@ -205,9 +266,6 @@
       </div>  
       <!-- chat -->
       <div class="panel hidden-md hidden-lg" style="border-radius: 0px; border-right: 1px solid #D0D0D0">
-        <div class="panel-heading">
-          <h2 class="text-center bold">Chat</h2>
-        </div>
         <div class="panel-body">
           <% @users.each do |user| %>
             <% if user != current_user %>
@@ -457,7 +515,7 @@
     <% end %> 
     </div>
   </div>     
-    <div class="col-md-3 col-xs-12 col-sm-12 hidden-sm hidden-xs">
+    <div class="col-md-3 col-xs-12 col-sm-12 hidden-sm hidden-xs col-md-push-8" style="position: fixed">
       <div class="panel" style="border: 1px solid #D8D8D8">
         <div class="panel-body">
           <div class="col-md-12 col-xs-12 col-sm-12">

@@ -173,6 +173,10 @@ button .full-width{
     padding-left: 0;
 }
 
+.nopadding3 > li {
+    padding-right: 0;
+    padding-left: 0;
+}
 /*
 for user profile
 */
@@ -184,7 +188,6 @@ for user profile
 }
 
 .nav-tabs {
-    height: auto;
     font-size: 120%;
     font-weight: 900;
 }

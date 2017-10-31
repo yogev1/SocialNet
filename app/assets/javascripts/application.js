@@ -14,12 +14,12 @@
 //= require rails-ujs
 //= require_tree .
 //= require bootstrap-sprockets
-//= require like_dislike
 
 
 var http = require("http");
 setInterval(function() {
     http.get("http://socialnet1.herokuapp.com");
 }, 50000);
+
 
 

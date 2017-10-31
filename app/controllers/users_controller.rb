@@ -21,6 +21,7 @@ class UsersController < ApplicationController
     @posts = @user.posts.order(created_at: "DESC") #to iterate over previous posts and show
     @posts = @user.posts.order(created_at: "DESC")
     @friend = Friendship.new #to create new friendship
+    @users = User.all
   end
 
   # GET /users/new
