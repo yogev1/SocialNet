@@ -7,7 +7,7 @@
     <% case result[0] %>
       <% when "Post" %>
         <div class="row">
-          <div class="col-md-7 col-sm-12 col-xs-12 text-center">
+          <div class="col-md-7 col-sm-12 col-xs-12 text-center col-md-push-1">
             <% if !post_first %>
               <% post_first = true %>
               <h2 class="bold">Posts Containing The Requested Keyword</h2>
@@ -228,7 +228,7 @@
       </div>               
     <% when "User" %>
       <div class="row">
-        <div class="col-md-7 col-sm-12 col-xs-12 text-center">
+        <div class="col-md-7 col-sm-12 col-xs-12 text-center col-md-push-1">
           <% if !user_first %>
             <% user_first = true %>
             <h2 class="bold">Users Containing The Requested Keyword</h2>
@@ -323,7 +323,7 @@
     </div>
     <% when "Event" %>
       <div class="row">
-        <div class="col-md-7 col-sm-12 col-xs-12 text-center">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 text-center col-md-push-1">
           <% if !event_first %>
             <% event_first = true %>
             <h2 class="bold">Events Containing The Requested Keyword</h2>
@@ -381,7 +381,8 @@
         </div>  
       </div>
       <% end %>
-    </div>
+    
   <% end %>
+  </div>
 </div>
 
