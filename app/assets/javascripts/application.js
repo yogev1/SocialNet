@@ -15,11 +15,17 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-
-var http = require("http");
 setInterval(function() {
     http.get("http://socialnet1.herokuapp.com");
 }, 50000);
 
+
+$(document).ready(function() {
+  if(window.location.hash) {
+    var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
+    $('.nav-tabs a[href="#' + hash + '"]').tab('show');
+    // hash found
+  } 
+});
 
 

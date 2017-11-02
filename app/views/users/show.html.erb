@@ -1,47 +1,38 @@
-<script>
- $(document).ready(function() {
-    var el=$('.follow-scroll');
-    var elpos=el.offset().top;
-    $(window).scroll(function () {
-        var y=$(this).scrollTop();
-        if(y<elpos){el.stop().animate({'top':0},screen.height);}
-        else{el.stop().animate({'top':y-elpos+80},screen.height);}
-  });
-
-});
-</script>
-
-<script>
-    if(window.location.hash) {
-      var hash = window.location.hash.substring(1); //Puts hash in variable, and removes the # character
-     
-    jQuery.ajax({
-      type:    'post',
-      url:     user_path(current_user),
-      dataType: "json",
-      data:    { anchor: hash}
-      console.log('success')
-  })
-      // hash found
-  } else {
-      // No hash found
-  }
-</script>
 // <script>
-// $(document).on('click', '#fri-list', function() {
-//   event.preventDefault()
-//   var hash = window.location.hash.substring(1);
+//  $(document).ready(function() {
+//     var el=$('.follow-scroll');
+//     var elpos=el.offset().top;
+//     $(window).scroll(function () {
+//         var y=$(this).scrollTop();
+//         if(y<elpos){el.stop().animate({'top':0},screen.height);}
+//         else{el.stop().animate({'top':y-elpos-100},screen.height);}
+//   });
 
-//   $.ajax({
-//     type:    "POST",
-//     url:     "http://localhost:3000/users/3",
-//     data:    { anchor: hash },
-//     success: function(post){ console.log('success') },
-//     error:   function(post){ console.log(this) }
-//   })
-// })
+// });
 // </script>
-<% @anchor_value = params[:anchor] %>
+
+<script>
+  $(document).ready(function() {
+   var $window = $(window),
+       $stickyEl = $('.sticky-div'),
+       elTop = $stickyEl.offset().top;
+
+   $window.scroll(function() {
+        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    });
+ });
+
+    $(document).ready(function() {
+   var $window = $(window),
+       $stickyEl = $('.sticky-div2'),
+       elTop = $stickyEl.offset().top;
+
+   $window.scroll(function() {
+        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+    });
+ });
+</script>
+
 
 <div class="container-fluid" style="margin-top: 30px">
   <div class="row">
@@ -88,12 +79,8 @@
       <div class="col-md-9 col-md-push-3">         
         <div data-spy="scroll" class="tabbable-panel">
           <div class="tabbable-line">
-            <ul class="nav nav-tabs hidden-xs nopadding3">
-              <% if @anchor_value == "friends" %>
-                <li class="col-xs-3">
-              <% else %>
-                <li class="active">
-              <% end %>               
+            <ul class="nav nav-tabs nopadding3">
+              <li class="active">
                 <a href="#timeline" data-toggle="tab">
                   TimeLine </a>
               </li>
@@ -101,12 +88,8 @@
                 <a href="#about" data-toggle="tab">
                    About</a>
               </li>
-              <% if @anchor_value == "friends" %>
-                <li class="active">
-              <% else %>
-                <li>
-              <% end %>                
-                <a href="#friends" data-toggle="tab">
+                <li>             
+                  <a href="#friends" data-toggle="tab">
                    Friends</a>
               </li>
               <li>
@@ -127,7 +110,7 @@
                 <a href="#about" data-toggle="tab">
                    About</a>
               </li>
-              <li class="col-xs-6 active">
+              <li class="col-xs-6">
                 <a href="#friends" data-toggle="tab">
                    Friends</a>
               </li>
@@ -149,13 +132,9 @@
   <div class="row">
     <div class="col-md-10">    
       <div class="tab-content">
-        <% if @anchor_value == "friends" %>
-          <div class="tab-pane" id="timeline">
-        <% else %>
-          <div class="tab-pane active" id="timeline">
-        <% end %>  
+        <div class="tab-pane active" id="timeline">
           <div class="row" style="margin-top: 10px">
-            <div class="col-md-4 follow-scroll hidden-xs hidden-sm">
+            <div class="col-md-4 hidden-xs hidden-sm sticky-div">
               <div class="panel" style="border: 1px solid #D8D8D8">
                 <div class="panel-heading" style="background-color: white">
                   <h2 class="panel-title">
@@ -195,7 +174,7 @@
                 </div>
                 <div class="panel-body" style="margin-left: -20px">
                   <% current_user.friends.each do |f| %>
-                    <div class="col-md-4 col-sm-3 col-xs-3 card2">
+                    <div class="col-md-4 col-sm-3 col-xs-3 card2" style="padding-bottom: 20px">
                       <!-- dblue -->
                       <% if f.image.present? %>  
                         <div class="front"> 
@@ -218,7 +197,7 @@
                 </div>
               </div>                                  
             </div>
-            <div class="col-md-8 col-xs-12 col-sm-12">
+            <div class="col-md-8 col-xs-12 col-sm-12 col-md-push-4" style="position: absolute">
               <div class="panel" style="border: 1px solid #D8D8D8">
                 <div class="panel-heading" style="background-color: #F5F5F5">
                 </div>
@@ -347,9 +326,9 @@
                             <h2><%= post.description %></h2>   
                           <% else %> 
                             <h1><%= post.description %></h1>                 
-                            <div class="card" style="max-height: 50%"> 
+                            <div class="card" style="max-height: 50%; min-height: 300px"> 
                               <div class="front"> 
-                                <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto; min-height: 350px" %><br/><br/>
+                                <%= image_tag post.image.url, class: "img-responsive text-center", style: "margin: auto; background-size: auto" %><br/><br/>
                               </div> 
                               <div class="back">
                                 <div style="background-color: #284c79">
@@ -462,13 +441,15 @@
                               <div class="col-md-3 col-sm-3 col-xs-3 col-md-pull-1 col-sm-pull-1 col-xs-pull-1">
                                 <div class="dropdown pull-right">
                                   <div class="col-md-4 col-xs-4 col-sm-4 btn-group pull-right">
-                                    <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
-                                    <div class="dropdown-menu">
-                                      <span class="glyphicon glyphicon-edit" style="padding-left: 5px; padding-right: 10px; margin-top: -5px"></span>
-                                      <%= link_to 'Edit...', edit_post_comment_path(post_id: post.id,id: com.id), class: "btn btn3" %><br>
-                                      <span class="glyphicon glyphicon-trash" style="padding-left: 5px; padding-right: 10px; margin-top: -5px"></span>
-                                      <%= link_to 'Delete...', post_comment_path(post_id: post.id,id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn3" %>
-                                    </div>  
+                                    <% if com.user_id == current_user.id %>
+                                      <button class="btn btn1 glyphicon glyphicon-option-horizontal" type="button" data-toggle="dropdown", style="padding-top: 15px"></button>
+                                      <div class="dropdown-menu">
+                                        <span class="glyphicon glyphicon-edit" style="padding-left: 5px; padding-right: 10px; margin-top: -5px"></span>
+                                        <%= link_to 'Edit...', edit_post_comment_path(post_id: post.id,id: com.id), class: "btn btn3" %><br>
+                                        <span class="glyphicon glyphicon-trash" style="padding-left: 5px; padding-right: 10px; margin-top: -5px"></span>
+                                        <%= link_to 'Delete...', post_comment_path(post_id: post.id,id: com.id), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn3" %>
+                                      </div> 
+                                    <% end %> 
                                   </div>
                                 </div>
                               </div>  
@@ -522,11 +503,8 @@
             </div>             
           </div>
         </div>
-        <% if @anchor_value == "friends" %>
-          <div class="tab-pane active" id="friends" style="padding-top: 20px">
-        <% else %>
+        
           <div class="tab-pane" id="friends" style="padding-top: 20px">
-        <% end %>            
           <div class="row">
             <div class="col-md-12 col-xs-12 col-sm-12">
               <div class="panel">
@@ -655,9 +633,9 @@
         </div>    
       </div>
     </div>
-    <div class="col-md-2 follow-scroll hidden-sm hidden-xs" style="margin-top : 10px">
+    <div class="col-md-2 hidden-sm hidden-xs" style="margin-top : 10px">
       <!-- chat -->
-      <div class="panel" style="min-height: 400px; border-radius: 0px; border: 1px solid #C0C0C0; background-color: #E8E8E8">
+      <div class="panel sticky-div2" style="min-height: 400px; border-radius: 0px; border: 1px solid #C0C0C0; background-color: #E8E8E8">
         <div class="panel-body" style="min-height: 400px; border: 1px solid #F5F5F5;">
           <% @users.each do |user| %>
             <% if user != current_user %>

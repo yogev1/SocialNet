@@ -6,10 +6,8 @@ Rails.application.routes.draw do
 
 
   # for searches
-  get 'searches/index', to: 'searches#index'
-  get 'events/searches/index', to: 'searches#index'
-  get 'users/searches/index', to: 'searches#index'
-  get 'posts/searches/index', to: 'searches#index'
+  get "searches", to: 'searches#index', as: :search
+
   
 
   resources :conversations, only: [:create, :index] do
