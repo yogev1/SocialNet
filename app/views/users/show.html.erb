@@ -3,7 +3,7 @@
 <div class="container-fluid" style="margin-top: 30px">
   <div class="row">
     <div class="col-md-10">  
-      <div class="row cov" style="background-image: url(<%= asset_path 'cover2.jpeg' %>);">
+      <div class="row cov" style="background-image: url(<%= asset_path 'cover1.jpg' %>);">
         <div class="col-md-3 col-sm-3 col-xs-7" style="margin-top: 230px; z-index: 100">
           <% if current_user.image.present? %>
             <%= image_tag(@user.image.url, class: "img-responsive img-thumbnail", style: "height: 170px; width: 170px") %>
