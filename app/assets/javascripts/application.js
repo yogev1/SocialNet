@@ -28,7 +28,6 @@ $(document).ready(function() {
   } 
 });
 
-<script>
   $(document).ready(function() {
    var $window = $(window),
        $stickyEl = $('.sticky-div'),
@@ -48,4 +47,3 @@ $(document).ready(function() {
         $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
     });
  });
-</script>
