@@ -28,22 +28,22 @@ $(document).ready(function() {
   } 
 });
 
-  $(document).ready(function() {
+$(document).ready(function() {
    var $window = $(window),
-       $stickyEl = $('.sticky-div'),
-       elTop = $stickyEl.offset().top;
+   $stickyEl = $('.sticky-div'),
+   elTop = $stickyEl.offset().top;
 
    $window.scroll(function() {
-        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-    });
- });
+    $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+  });
+});
 
-    $(document).ready(function() {
+$(document).ready(function() {
    var $window = $(window),
-       $stickyEl = $('.sticky-div2'),
-       elTop = $stickyEl.offset().top;
+   $stickyEl = $('.sticky-div2'),
+   elTop = $stickyEl.offset().top;
 
    $window.scroll(function() {
-        $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
-    });
- });
+    $stickyEl.toggleClass('sticky', $window.scrollTop() > elTop);
+  });
+});
