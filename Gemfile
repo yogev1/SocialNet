@@ -37,7 +37,7 @@ gem 'bootstrap_form'
 gem "paperclip", ">= 5.0"
 gem 'aws-sdk', '~> 2'
 gem 'rspec'
-gem 'like_dislike'
+gem 'webpacker', '~> 3.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
